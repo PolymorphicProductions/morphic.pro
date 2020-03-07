@@ -1,5 +1,7 @@
 # MorphicPro
 
+![Build CI](https://github.com/PolymorphicProductions/morphic.pro/workflows/Build%20CI/badge.svg?branch=master)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
