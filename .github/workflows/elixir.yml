@@ -18,6 +18,7 @@ jobs:
         postgresql version: 11
         postgresql db: morphic_pro_test
         postgresql user: postgres
+        postgresql: postgres
     - uses: actions/checkout@v2
     - name: Setup elixir
       uses: actions/setup-elixir@v1.2.0
