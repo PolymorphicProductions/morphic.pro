@@ -10,18 +10,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    services:
-      db:
-        image: postgres:11
-        ports: ['5432:5432']
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
+    - name: Setup PostgreSQL
+      uses: Harmon758/postgresql-action@v1.0.0
+      with:
+        postgresql version: 11
+        postgresql db: morphic_pro_test
+        postgresql user: postgres
     - uses: actions/checkout@v2
     - name: Setup elixir
       uses: actions/setup-elixir@v1.2.0
