@@ -1,0 +1,11 @@
+version: "3"
+services:
+  db:
+    image: "postgres:11"
+    container_name: "morphic_pro_data"
+    ports:
+      - "5432:5432"
+    volumes:
+      - morphic_pro_data:/var/lib/postgresql/data
+volumes:
+  morphic_pro_data:
