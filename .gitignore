@@ -35,3 +35,6 @@ npm-debug.log
 
 # Ignore elixir ls plugin
 .elixir_ls
+
+# Don't include self signed certs for dev
+/priv/cert/
