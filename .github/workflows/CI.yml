@@ -3,7 +3,7 @@ name: CI
 on: push
 
 jobs:
-  Test:
+  $GITHUB_SHA:
     runs-on: ubuntu-latest
     services:
       db:
