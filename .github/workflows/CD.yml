@@ -104,7 +104,7 @@ jobs:
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-      run: MIX_ENV=prod mix release
+      run: MIX_ENV=prod mix release --path _build/prod/{{$GITHUB_SHA}}
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:
@@ -113,5 +113,5 @@ jobs:
         key: ${{ secrets.SSH2 }}
         passphrase: ${{ secrets.SSH2_PASSPHRASE }}
         port: ${{ secrets.PORT }}
-        source: "README.md"
+        source: "_build/prod/{{$GITHUB_SHA}}"
         target: "~/"
