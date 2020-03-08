@@ -62,26 +62,40 @@ jobs:
       env:
         cache-name: cache-mix-modules
       with:
-        path: deps # mix cache files are stored in `deps` in the root of the project folder
+        path: deps
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-    - name: Install Dependencies
+    - name: Install Elixir Dependencies
       run: |
         mix local.rebar --force
         mix local.hex --force
         mix deps.get --only prod
+    - name: Setup nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.16.1'
+    - name: Cache npm modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-npm-modules
+      with:
+        path: assets/node_module
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: Install Npm Dependencies
+      working-directory: ./assets
+      run: npm install
     - name: Compile elixir
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       run: MIX_ENV=prod mix compile
-    - name: Setup nodejs
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.16.1'
     - name: Compile assets
       run: |
         npm run deploy --prefix ./assets
