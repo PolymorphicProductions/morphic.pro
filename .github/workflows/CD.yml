@@ -1,0 +1,82 @@
+name: CD
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:11
+        ports: ['5432:5432']
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: morphic_pro_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache mix modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-mix-modules
+      with:
+        path: deps # mix cache files are stored in `deps` in the root of the project folder
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: Setup elixir
+      uses: actions/setup-elixir@v1.2.0
+      with:
+        elixir-version: 1.9.4 # Define the elixir version [required]
+        otp-version: 22.2 # Define the OTP version [required]
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
+    - name: Run Tests
+      run: mix test
+     
+  Buid-Release:
+    needs: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup elixir
+      uses: actions/setup-elixir@v1.2.0
+      with:
+        elixir-version: 1.9.4 # Define the elixir version [required]
+        otp-version: 22.2 # Define the OTP version [required]
+    - name: Cache mix modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-mix-modules
+      with:
+        path: deps # mix cache files are stored in `deps` in the root of the project folder
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get --only prod
+        MIX_ENV=prod mix compile
+    - name: Complile assests
+      run: |
+        npm run deploy --prefix ./assets
+        mix phx.digest
+    - name: Build Release
+      run: MIX_ENV=prod mix release
