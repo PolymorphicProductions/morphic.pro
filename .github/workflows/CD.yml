@@ -110,7 +110,8 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH2 }}
+        passphrase: ${{ secrets.SSH2_PASSPHRASE }}
         port: ${{ secrets.PORT }}
-        key: ${{ secrets.KEY }}
         source: "README.md"
         target: "~/"
