@@ -82,6 +82,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.16.1'
+      run: |
         npm run deploy --prefix ./assets
         mix phx.digest
     - name: Build Mix Release
