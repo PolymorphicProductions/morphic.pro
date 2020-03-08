@@ -101,4 +101,7 @@ jobs:
         npm run deploy --prefix ./assets
         mix phx.digest
     - name: Build Mix Release
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       run: MIX_ENV=prod mix release
