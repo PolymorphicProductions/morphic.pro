@@ -105,3 +105,13 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       run: MIX_ENV=prod mix release
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.GITHUB_ACTION_CERT }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        source: "README.md"
+        target: "."
