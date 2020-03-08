@@ -48,7 +48,6 @@ jobs:
       run: mix test
      
   Buid-Release:
-    env
     needs: Test
     runs-on: ubuntu-latest
     steps:
