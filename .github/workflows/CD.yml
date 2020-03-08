@@ -113,5 +113,5 @@ jobs:
         key: ${{ secrets.SSH2 }}
         passphrase: ${{ secrets.SSH2_PASSPHRASE }}
         port: ${{ secrets.PORT }}
-        source: "_build/prod/prod-${GITHUB_SHA}.tar.gz"
+        source: "_build/prod/prod-$GITHUB_SHA.tar.gz"
         target: "~/"
