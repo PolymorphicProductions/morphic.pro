@@ -24,7 +24,8 @@ jobs:
           --health-retries 5
 
     steps:
-    - name: Cache node modules
+    - uses: actions/checkout@v2
+    - name: Cache mix modules
       uses: actions/cache@v1
       env:
         cache-name: cache-mix-modules
@@ -35,7 +36,6 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-    - uses: actions/checkout@v2
     - name: Setup elixir
       uses: actions/setup-elixir@v1.2.0
       with:
