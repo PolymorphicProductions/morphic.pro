@@ -38,7 +38,7 @@ jobs:
     - name: Run Tests
       run: mix test
       
-  Buid Release:
+  Buid-Release:
     runs-on: ubuntu-latest
 
     steps:
