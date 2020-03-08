@@ -1,4 +1,4 @@
-name: Build CI
+name: Test/Release
 
 on:
   push:
@@ -7,10 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  Test:
     runs-on: ubuntu-latest
-    
     services:
       db:
         image: postgres:11
@@ -39,3 +37,27 @@ jobs:
         mix deps.get
     - name: Run Tests
       run: mix test
+      
+  Buid Release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup elixir
+      uses: actions/setup-elixir@v1.2.0
+      with:
+        elixir-version: 1.9.4 # Define the elixir version [required]
+        otp-version: 22.2 # Define the OTP version [required]
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get --only prod
+        MIX_ENV=prod mix compile
+    - name: Complile assests
+      run: |
+        npm run deploy --prefix ./assets
+        mix phx.digest
+    - name: Build Release
+      run: MIX_ENV=prod mix release
+
