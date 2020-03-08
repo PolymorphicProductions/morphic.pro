@@ -111,7 +111,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
-        key: ${{ secrets.GITHUB_ACTION_CERT }}
-        passphrase: ${{ secrets.PASSPHRASE }}
+        key: ${{ secrets.KEY }}
         source: "README.md"
-        target: "."
+        target: "~/"
