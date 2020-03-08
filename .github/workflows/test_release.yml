@@ -50,6 +50,7 @@ jobs:
       run: mix test
      
   Buid-Release:
+    if: success()
     runs-on: ubuntu-latest
 
     steps:
