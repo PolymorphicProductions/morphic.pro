@@ -4,6 +4,12 @@ defmodule MorphicPro.MixProject do
   def project do
     [
       app: :morphic_pro,
+      releases: [
+        prod: [
+          include_executables_for: [:unix],
+          steps: [:assemble, :tar]
+        ]
+      ],
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
