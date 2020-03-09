@@ -114,4 +114,17 @@ jobs:
         passphrase: ${{ secrets.SSH2_PASSPHRASE }}
         port: ${{ secrets.PORT }}
         source: "_build/prod/prod-${{ github.sha }}.tar.gz"
-        target: "~/"
+        target: "/tmp"
+    - name: Extract release command
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH2 }}
+        passphrase: ${{ secrets.SSH2_PASSPHRASE }}
+        port: ${{ secrets.PORT }}
+        script: |
+          mkdir -p morphic_pro
+          mkdir -p morphic_pro/releases
+          tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory morphic_pro/releases/
+          
