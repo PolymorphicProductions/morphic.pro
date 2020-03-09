@@ -104,8 +104,9 @@ jobs:
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-        RELEASE: $(cat mix.exs | grep version | sed -e 's/.*version: "\(.*\)",/\1/')
-      run: MIX_ENV=prod mix release 
+      run: |
+      export $RELEASE=$(cat mix.exs | grep version | sed -e 's/.*version: "\(.*\)",/\1/')
+      MIX_ENV=prod mix release 
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:
