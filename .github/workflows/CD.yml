@@ -130,5 +130,5 @@ jobs:
           tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory ~/morphic_pro/releases/${{ github.sha}}/
           ./morphic_pro_test/current/bin/prod stop
           ln -sfT ~/morphic_pro/releases/${{ github.sha}}/ ~/morphic_pro/current
-          ./morphic_pro_test/current/bin/prod daemon
+          ./morphic_pro/current/bin/prod daemon
           
