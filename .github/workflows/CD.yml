@@ -126,5 +126,6 @@ jobs:
         script: |
           mkdir -p morphic_pro
           mkdir -p morphic_pro/releases
-          tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory morphic_pro/releases/
+          tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory morphic_pro/releases/${{ github.sha}}/
+          ln -s morphic_pro/releases/${{ github.sha}} morphic_pro/current
           
