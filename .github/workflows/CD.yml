@@ -124,7 +124,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             mkdir -p morphic_pro
             mkdir -p morphic_pro/releases
