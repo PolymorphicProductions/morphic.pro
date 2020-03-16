@@ -10,7 +10,7 @@ jobs:
     services:
       db:
         image: postgres:11
-        ports: ['5432:5432']
+        ports: ["5432:5432"]
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -22,113 +22,112 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Cache mix modules
-      uses: actions/cache@v1
-      env:
-        cache-name: cache-mix-modules
-      with:
-        path: deps # mix cache files are stored in `deps` in the root of the project folder
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    - name: Setup elixir
-      uses: actions/setup-elixir@v1.2.0
-      with:
-        elixir-version: 1.9.4 # Define the elixir version [required]
-        otp-version: 22.2 # Define the OTP version [required]
-    - name: Install Dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get
-    - name: Run Tests
-      run: mix test
-     
+      - uses: actions/checkout@v2
+      - name: Cache mix modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-mix-modules
+        with:
+          path: deps # mix cache files are stored in `deps` in the root of the project folder
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Setup elixir
+        uses: actions/setup-elixir@v1.2.0
+        with:
+          elixir-version: 1.9.4 # Define the elixir version [required]
+          otp-version: 22.2 # Define the OTP version [required]
+      - name: Install Dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+      - name: Run Tests
+        run: mix test
+
   Buid-Release:
     needs: Test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup elixir
-      uses: actions/setup-elixir@v1.2.0
-      with:
-        elixir-version: 1.9.4 # Define the elixir version [required]
-        otp-version: 22.2 # Define the OTP version [required]
-    - name: Cache mix modules
-      uses: actions/cache@v1
-      env:
-        cache-name: cache-mix-modules
-      with:
-        path: deps
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    - name: Install Elixir Dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get --only prod
-    - name: Setup nodejs
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.16.1'
-    - name: Cache npm modules
-      uses: actions/cache@v1
-      env:
-        cache-name: cache-npm-modules
-      with:
-        path: assets/node_module
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    - name: Install Npm Dependencies
-      working-directory: ./assets
-      run: npm install
-    - name: Compile elixir
-      env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-      run: MIX_ENV=prod mix compile
-    - name: Compile assets
-      run: |
-        npm run deploy --prefix ./assets
-        mix phx.digest
-    - name: Build Mix Release
-      env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-      run: MIX_ENV=prod mix release --version ${{ github.sha }}
-    - name: copy file via ssh key
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH2 }}
-        passphrase: ${{ secrets.SSH2_PASSPHRASE }}
-        port: ${{ secrets.PORT }}
-        source: "_build/prod/prod-${{ github.sha }}.tar.gz"
-        target: "/tmp"
-    - name: Extract release command
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH2 }}
-        passphrase: ${{ secrets.SSH2_PASSPHRASE }}
-        port: ${{ secrets.PORT }}
-        script: |
-          mkdir -p morphic_pro
-          mkdir -p morphic_pro/releases
-          mkdir -p morphic_pro/releases/${{ github.sha }}
-          tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory ~/morphic_pro/releases/${{ github.sha}}/
-          ./morphic_pro_test/current/bin/prod stop
-          ln -sfT ~/morphic_pro/releases/${{ github.sha}}/ ~/morphic_pro/current
-          ./morphic_pro/current/bin/prod daemon
-          
+      - uses: actions/checkout@v2
+      - name: Setup elixir
+        uses: actions/setup-elixir@v1.2.0
+        with:
+          elixir-version: 1.9.4 # Define the elixir version [required]
+          otp-version: 22.2 # Define the OTP version [required]
+      - name: Cache mix modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-mix-modules
+        with:
+          path: deps
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Elixir Dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get --only prod
+      - name: Setup nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.16.1"
+      - name: Cache npm modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-npm-modules
+        with:
+          path: assets/node_module
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Npm Dependencies
+        working-directory: ./assets
+        run: npm install
+      - name: Compile elixir
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+        run: MIX_ENV=prod mix compile
+      - name: Compile assets
+        run: |
+          npm run deploy --prefix ./assets
+          mix phx.digest
+      - name: Build Mix Release
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+        run: MIX_ENV=prod mix release --version ${{ github.sha }}
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.PORT }}
+          source: "_build/prod/prod-${{ github.sha }}.tar.gz"
+          target: "/tmp"
+      - name: Extract release command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.PORT }}
+          script: |
+            mkdir -p morphic_pro
+            mkdir -p morphic_pro/releases
+            mkdir -p morphic_pro/releases/${{ github.sha }}
+            tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory ~/morphic_pro/releases/${{ github.sha}}/
+            ./morphic_pro_test/current/bin/prod stop
+            ln -sfT ~/morphic_pro/releases/${{ github.sha}}/ ~/morphic_pro/current
+            ./morphic_pro/current/bin/prod daemon
