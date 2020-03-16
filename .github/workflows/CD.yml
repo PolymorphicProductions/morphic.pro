@@ -95,6 +95,8 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+          HTTP_PORT: ${{ secrets.HTTP_PORT }}
+
         run: MIX_ENV=prod mix compile
       - name: Compile assets
         run: |
@@ -112,7 +114,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.SSH_PORT }}
           source: "_build/prod/prod-${{ github.sha }}.tar.gz"
           target: "/tmp"
       - name: Extract release command
