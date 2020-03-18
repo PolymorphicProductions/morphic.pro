@@ -1,7 +1,10 @@
 version: "3"
 services:
   db:
-    image: "postgres:11"
+    image: "postgres:10"
+    environment:
+      POSTGRES_DB: "morphic_pro_dev"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     container_name: "morphic_pro_data"
     ports:
       - "5432:5432"

@@ -28,9 +28,10 @@ config :morphic_pro, MorphicProWeb.Endpoint,
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
+      "--config", 
+      "webpack.dev.config.js", 
       "--watch-stdin",
+      "--colors",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
