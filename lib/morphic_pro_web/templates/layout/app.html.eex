@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><%= assigns[:page_title] || "Morphic.Pro" %></title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>"/>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>"/>
     <%= csrf_meta_tag() %>
   </head>
   <body class="bg-black">
