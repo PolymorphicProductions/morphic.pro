@@ -1,5 +1,5 @@
 <nav
-  class="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-red-500 mb-3"
+  class="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white"
 >
   <div
     class="container px-4 mx-auto flex flex-wrap items-center justify-between"
@@ -8,15 +8,16 @@
       class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"
     >
       <a
-        class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
-        href="#pablo"
+        class="relative font-bold leading-relaxed inline-block ml-5 mr-4 py-2 whitespace-no-wrap text-gray-700"
+        href="#"
       >
-        Morphic Pro
+        <span class="text-gray-700 display-block pr-1 icon-shape logo"></span>
+        Morphic.Pro
       </a>
       <button
-        class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        class="text-gray-700 cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
         type="button"
-        onclick="toggleNavbar('example-collapse-navbar')"
+        onclick="window.toggleNavbar('example-collapse-navbar')"
       >
         <i class="fas fa-bars"></i>
       </button>
@@ -28,45 +29,60 @@
       <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-            href="#pablo"
+            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug text-gray-700 hover:opacity-75"
+            href="#"
           >
             <i
-              class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"
+              class="fas fa-book-open text-lg leading-lg text-gray-700 opacity-75"
             ></i
-            ><span class="ml-2">Share</span>
+            ><span class="ml-2">Posts</span>
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-            href="#pablo"
+            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug text-gray-700 hover:opacity-75"
+            href="#"
           >
             <i
-              class="fab fa-twitter text-lg leading-lg text-white opacity-75"
+              class="fas fa-camera text-lg leading-lg text-gray-700 opacity-75"
             ></i
-            ><span class="ml-2">Tweet</span>
+            ><span class="ml-2">Snaps</span>
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-            href="#pablo"
+            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug text-gray-700 hover:opacity-75"
+            href="#"
           >
             <i
-              class="fab fa-pinterest text-lg leading-lg text-white opacity-75"
+              class="fas fa-envelope text-lg leading-lg text-gray-700 opacity-75"
             ></i
-            ><span class="ml-2">Pin</span>
+            ><span class="ml-2">Contact</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug text-gray-700 hover:opacity-75"
+            href="#"
+          >
+            <i
+              class="fas fa-address-card text-lg leading-lg text-gray-700 opacity-75"
+            ></i
+            ><span class="ml-2">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug text-gray-700 hover:opacity-75"
+            href="#"
+          >
+            <i
+              class="fas fa-sign-in-alt text-lg leading-lg text-gray-700 opacity-75"
+            ></i
+            ><span class="ml-2">Sign In</span>
           </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<script>
-  function toggleNavbar(collapseID) {
-    document.getElementById(collapseID).classList.toggle("hidden");
-    document.getElementById(collapseID).classList.toggle("flex");
-  }
-</script>

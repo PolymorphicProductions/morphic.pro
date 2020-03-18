@@ -43,15 +43,23 @@ module.exports = (env, options) => ({
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name(file) {
+              return "[name]_[hash].[ext]";
+            },
+            outputPath: "../fonts/"
+          }
+        }
       }
     ]
   },
   devtool: "inline-source-map",
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+    new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
     new Jarvis({
       port: 1337 // optional: set a port

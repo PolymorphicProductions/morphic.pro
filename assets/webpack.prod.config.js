@@ -42,8 +42,16 @@ module.exports = (env, options) => ({
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name(file) {
+              return "[name]_[hash].[ext]";
+            },
+            outputPath: "../fonts/"
+          }
+        }
       }
     ]
   },

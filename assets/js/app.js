@@ -16,6 +16,10 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
+window.toggleNavbar = collapseID => {
+  document.getElementById(collapseID).classList.toggle("hidden");
+  document.getElementById(collapseID).classList.toggle("flex");
+};
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:
