@@ -15,7 +15,10 @@ module.exports = (env, options) => ({
     minimizer: [
       new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
       new OptimizeCSSAssetsPlugin({})
-    ]
+    ],
+    splitChunks: {
+      chunks: "all"
+    }
   },
   entry: {
     app: "./js/app.js"
