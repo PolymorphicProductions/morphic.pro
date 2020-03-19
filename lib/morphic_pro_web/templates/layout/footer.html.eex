@@ -1,0 +1,36 @@
+<footer>
+  <div class="footer bg-dark-lighter">
+    <div class="container text-center">
+      <h4>Morphic Pro <span>LLC</span></h4>
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end footer -->
+  <div class="footer-bottom bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-left">
+          <p>
+            <i class="fas fa-copyright"></i>
+            2020 Morphic Pro LLC, All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-right">
+          <ul class="list-horizontal-unstyled">
+            <li>
+              <a href="/privacy"><i class="fas fa-user-secret"></i> Privacy</a>
+            </li>
+            <li>
+              <a href="/terms"
+                ><i class="fas fa-file-signature"></i> Terms &amp; Conditions</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end footer-bottom -->
+</footer>

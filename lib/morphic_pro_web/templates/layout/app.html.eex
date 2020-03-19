@@ -25,6 +25,8 @@
       <%= render @view_module, @view_template, assigns %>
     </main>
 
+    <%= render "footer.html", conn: @conn %>
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
 
