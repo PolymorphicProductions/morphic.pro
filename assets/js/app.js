@@ -16,10 +16,21 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
+// Nav
 window.toggleNavbar = collapseID => {
   document.getElementById(collapseID).classList.toggle("hidden");
   document.getElementById(collapseID).classList.toggle("flex");
 };
+
+window.addEventListener("scroll", () => {
+  let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
+  if (window.scrollY >= 10) {
+    navbarFixed.classList.add("bg-white", "text-gray-700");
+  } else {
+    navbarFixed.classList.remove("bg-white", "text-gray-700");
+  }
+});
+
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:

@@ -19,3 +19,57 @@
     </div> -->
   </div>
 </div>
+
+
+<!-- Services section -->
+<div class="" id="services">
+  <div class="container px-3 mx-auto">
+    <div class="section-title text-center">
+      <h6 class="text-gray-500 mt-16">What I Do</h6>
+      <h2 class="text-gray-800 text-4xl font-bold mb-10 page-title">I Provide Solutions to your digital needs</h2>
+    </div>
+    <div class="flex items-stretch text-center ">
+      <!-- Service 1 -->
+      <div class="w-1/3 px-4 py-2 m-2">
+        <div class="h-full border rounded-lg border-solid p-10 shadow-xl">
+          <span class="text-4xl">
+            <i class="fab fa-js-square" style="color: #f7df1e;"></i>
+            <i class="fab fa-react" style="color: #00d8ff;""></i>
+            <i class="fab fa-html5" style="color: #e34f26;"></i>
+            <i class="fab fa-sass" style="color: rgb(187, 106, 154);"></i>
+          </span>
+          <h5 class="text-lg font-medium mb-4 mt-2">Web UI/UX</h5>
+          <p class="text-gray-500">From fully interactive Flash applications to React and ES6, I can provide that rich experience and style your website needs.</p>
+        </div>
+      </div>
+      <!-- Service 2 -->
+      <div class="w-1/3 px-4 py-2 m-2">
+        <div class="h-full border rounded-lg border-solid p-10 shadow-xl">
+          <span class="text-4xl">
+            <i class="fab fa-phoenix-framework" style="color: rgb(223, 95, 54);"></i>
+            <i class="far fa-gem" style="color: rgb(154, 53, 43)"></i>
+            <i class="fab fa-docker" style="color: #0db7ed;"></i>
+            <i class="fab fa-github" style="color: #4078c0;"></i>
+          </span>
+
+          <h5 class="text-lg font-medium mb-4 mt-2">Development/DevOps</h5>
+          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir we provide solutions to your server side needs.</p>
+        </div>
+      </div>
+      <!-- Service 3 -->
+      <div class="w-1/3 px-4 py-2 m-2">
+        <div class="h-full border rounded-lg border-solid p-10 shadow-xl">
+          <span class="text-4xl">
+            <i class="fab fa-youtube" style="color: #ff0000;"></i>
+            <i class="fab fa-vimeo-v" style="color: #1ab7ea;"></i>
+            <i class="fab fa-instagram" style="color: #c13584;"></i>
+            <i class="fas fa-film"></i>
+            <h5 class="text-lg font-medium mb-4 mt-2">Video/Photo</h5>
+          </span>
+          <p class="text-gray-500">Lights! Camera! Drones? From aerial videography to personal portaits and street photography I can capture that moment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end container -->
+
