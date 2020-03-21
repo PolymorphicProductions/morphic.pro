@@ -14,8 +14,8 @@
     <link rel="mask-icon" href="<%= Routes.static_path(@conn, "/images/safari-pinned-tab.svg") %>" color="#5bbad5">
 
     <title><%= assigns[:page_title] || "Morphic.Pro" %></title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>"/>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>"/>
+    <link rel="preload" rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>"/>
+    <link rel="preload" rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>"/>
     <%= csrf_meta_tag() %>
   </head>
 
@@ -27,8 +27,8 @@
 
     <%= render "footer.html", conn: @conn %>
 
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
+    <script rel="preload" type="text/javascript" src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
+    <script rel="preload" type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
 
   </body>
 </html>

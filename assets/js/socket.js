@@ -6,20 +6,20 @@
 //
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
-import { Socket } from "phoenix";
+// import { Socket } from "phoenix";
 
-let socket = new Socket("/socket", {});
-socket.connect();
+// let socket = new Socket("/socket", {});
+// socket.connect();
 
-let channel = socket.channel("ping");
-channel
-  .join()
-  .receive("ok", resp => {
-    console.log("Joined ping", resp);
-  })
-  .receive("error", resp => {
-    console.log("Unable to join ping", resp);
-  });
+// let channel = socket.channel("ping");
+// channel
+//   .join()
+//   .receive("ok", resp => {
+//     console.log("Joined ping", resp);
+//   })
+//   .receive("error", resp => {
+//     console.log("Unable to join ping", resp);
+//   });
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
