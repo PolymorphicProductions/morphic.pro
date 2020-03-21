@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
-@import url("https://fonts.googleapis.com/css?family=Abril+Fatface");
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
 
 @font-face {
   font-family: "icomoon";
