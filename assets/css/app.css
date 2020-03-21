@@ -17,6 +17,7 @@
     url("/fonts/icomoon.svg?hkf4u0#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 .bg-black-05 {
@@ -44,6 +45,7 @@
 .page-title {
   font-family: "Abril Fatface", cursive;
   font-weight: normal !important;
+  font-display: swap;
 }
 .section-fullscreen {
   width: 100%;
