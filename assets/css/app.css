@@ -10,11 +10,7 @@
 
 @font-face {
   font-family: "icomoon";
-  src: url("/fonts/icomoon.eot?hkf4u0");
-  src: url("/fonts/icomoon.eot?hkf4u0#iefix") format("embedded-opentype"),
-    url("/fonts/icomoon.ttf?hkf4u0") format("truetype"),
-    url("/fonts/icomoon.woff?hkf4u0") format("woff"),
-    url("/fonts/icomoon.svg?hkf4u0#icomoon") format("svg");
+  src: url("/fonts/icomoon.woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
