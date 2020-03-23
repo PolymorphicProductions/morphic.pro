@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="text-gray-900 antialiased">
+<html lang="en" class="antialiased text-gray-900">
 
   <head>
     <meta charset="utf-8" />
@@ -24,7 +24,7 @@
 
   <body class="">
     <%= render "header.html", conn: @conn %>
-    <main class="h-full">
+    <main class="relative h-full">
       <%= render @view_module, @view_template, assigns %>
     </main>
 

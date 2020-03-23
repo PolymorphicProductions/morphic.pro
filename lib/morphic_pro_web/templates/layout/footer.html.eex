@@ -1,36 +1,39 @@
-<footer>
-  <div class="footer bg-dark-lighter">
-    <div class="container text-center">
-      <h4>Morphic Pro <span>LLC</span></h4>
+<footer class="w-full pb-6 mt-20 bg-gray-900">
+  <div class="py-20 bg-gray-800">
+    <div class="text-center">
+      <h4 class="text-3xl font-bold text-gray-100">
+        Morphic Pro <span>LLC</span>
+      </h4>
     </div>
-    <!-- end container -->
   </div>
-  <!-- end footer -->
-  <div class="footer-bottom bg-dark">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-6 text-center text-md-left">
-          <p>
-            <i class="fas fa-copyright"></i>
-            2020 Morphic Pro LLC, All Rights Reserved.
-          </p>
-        </div>
-        <div class="col-12 col-md-6 text-center text-md-right">
-          <ul class="list-horizontal-unstyled">
-            <li>
-              <a href="/privacy"><i class="fas fa-user-secret"></i> Privacy</a>
-            </li>
-            <li>
-              <a href="/terms"
-                ><i class="fas fa-file-signature"></i> Terms &amp; Conditions</a
-              >
-            </li>
-          </ul>
-        </div>
+
+  <div class="py-10 text-sm text-gray-400 bg-gray-900">
+    <div
+      class="mx-auto container flex flex-wrap items-center justify-between w-full"
+    >
+      <div
+        class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start"
+      >
+        <span
+          ><i class="fas fa-copyright"></i> 2020 Morphic Pro LLC, All Rights
+          Reserved.</span
+        >
       </div>
-      <!-- end row -->
+
+      <div class="items-center flex-grow lg:flex">
+        <ul class="flex flex-col list-none lg:flex-row lg:ml-auto">
+          <li>
+            <a href="/privacy" class="pr-4"
+              ><i class="fas fa-user-secret"></i> Privacy</a
+            >
+          </li>
+          <li>
+            <a href="/terms"
+              ><i class="fas fa-file-signature"></i> Terms &amp; Conditions</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
-    <!-- end container -->
   </div>
-  <!-- end footer-bottom -->
 </footer>

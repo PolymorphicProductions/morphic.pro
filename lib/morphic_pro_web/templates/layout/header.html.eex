@@ -1,71 +1,71 @@
 <nav
-  class="navbar-fixed fixed top-0 left-0 z-10 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg text-white transition-colors duration-700"
+  class="fixed top-0 left-0 z-10 flex flex-wrap items-center justify-between w-full px-2 py-3 text-white transition-colors duration-700 navbar-fixed navbar-expand-lg"
 >
   <div
-    class="container px-4 mx-auto flex flex-wrap items-center justify-between"
+    class="container flex flex-wrap items-center justify-between px-4 mx-auto"
   >
     <div
-      class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"
+      class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start"
     >
       <a
-        class="relative font-bold leading-relaxed inline-block ml-5 mr-4 py-2 whitespace-no-wrap "
+        class="relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap "
         href="#"
       >
-        <span class=" display-block pr-1 icon-shape logo"></span>
+        <span class="pr-1 display-block icon-shape logo"></span>
         Morphic.Pro
       </a>
       <button
-        class=" cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        class="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
         type="button"
         onclick="window.toggleNavbar('collapse-navbar')"
       >
         <i class="fas fa-bars"></i>
       </button>
     </div>
-    <div class="lg:flex flex-grow items-center hidden" id="collapse-navbar">
-      <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+    <div class="items-center flex-grow hidden lg:flex" id="collapse-navbar">
+      <ul class="flex flex-col list-none lg:flex-row lg:ml-auto">
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug transition-opacity duration-500 hover:opacity-50"
+            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50"
             href="#"
           >
-            <i class="fas fa-book-open text-lg leading-lg"></i
+            <i class="text-lg fas fa-book-open leading-lg"></i
             ><span class="ml-2">Posts</span>
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug transition-opacity duration-1000 hover:opacity-50"
+            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="#"
           >
-            <i class="fas fa-camera text-lg leading-lg"></i
+            <i class="text-lg fas fa-camera leading-lg"></i
             ><span class="ml-2">Snaps</span>
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug transition-opacity duration-1000 hover:opacity-50"
+            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="#"
           >
-            <i class="fas fa-envelope text-lg leading-lg"></i
+            <i class="text-lg fas fa-envelope leading-lg"></i
             ><span class="ml-2">Contact</span>
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug transition-opacity duration-1000 hover:opacity-50"
+            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="#"
           >
-            <i class="fas fa-address-card text-lg leading-lg"></i
+            <i class="text-lg fas fa-address-card leading-lg"></i
             ><span class="ml-2">About</span>
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="px-3 py-2 flex items-center text-xs uppercase font-normal leading-snug transition-opacity duration-1000 hover:opacity-50"
+            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="#"
           >
-            <i class="fas fa-sign-in-alt text-lg leading-lg"></i
+            <i class="text-lg fas fa-sign-in-alt leading-lg"></i
             ><span class="ml-2">Sign In</span>
           </a>
         </li>
