@@ -9,7 +9,7 @@
     >
       <a
         class="relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap "
-        href="#"
+        href="/"
       >
         <span class="pr-1 display-block icon-shape logo"></span>
         Morphic.Pro
@@ -60,14 +60,23 @@
             ><span class="ml-2">About</span>
           </a>
         </li>
+
         <li class="nav-item">
-          <a
-            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="#"
-          >
-            <i class="text-lg fas fa-sign-in-alt leading-lg"></i
-            ><span class="ml-2">Sign In</span>
-          </a>
+          <%= link to: Routes.pow_session_path(@conn, :new), class: "flex
+          items-center px-3 py-2 text-xs font-normal leading-snug uppercase
+          transition-opacity duration-1000 hover:opacity-50" do %>
+          <i class="text-lg fas fa-sign-in-alt leading-lg"></i
+          ><span class="ml-2">Sign In</span>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <%= link to: Routes.pow_registration_path(@conn, :new), class: "flex
+          items-center px-3 py-2 text-xs font-normal leading-snug uppercase
+          transition-opacity duration-1000 hover:opacity-50" do %>
+          <i class="text-lg fas fa-user-circle leading-lg"></i>
+          <span class="ml-2">Register</span>
+          <% end %>
         </li>
       </ul>
     </div>

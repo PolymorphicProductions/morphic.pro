@@ -50,6 +50,7 @@ defmodule MorphicPro.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.1"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:pow, path: "/Users/joshchernoff/Dev/pow"}
     ]
   end
 

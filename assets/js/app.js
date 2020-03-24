@@ -16,18 +16,30 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
+let isNavToggled = false;
+let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
+
 // Nav
 window.toggleNavbar = collapseID => {
-  document.getElementById(collapseID).classList.toggle("hidden");
-  document.getElementById(collapseID).classList.toggle("flex");
+  isNavToggled = !isNavToggled;
+  if (isNavToggled) {
+    document.getElementById(collapseID).classList.remove("hidden");
+    document.getElementById(collapseID).classList.add("flex");
+    navbarFixed.classList.add("bg-white", "text-gray-700");
+  } else {
+    document.getElementById(collapseID).classList.add("hidden");
+    document.getElementById(collapseID).classList.remove("flex");
+    navbarFixed.classList.remove("bg-white", "text-gray-700");
+  }
 };
 
 window.addEventListener("scroll", () => {
-  let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
-  if (window.scrollY >= 10) {
-    navbarFixed.classList.add("bg-white", "text-gray-700");
-  } else {
-    navbarFixed.classList.remove("bg-white", "text-gray-700");
+  if (!isNavToggled) {
+    if (window.scrollY >= 10) {
+      navbarFixed.classList.add("bg-white", "text-gray-700");
+    } else {
+      navbarFixed.classList.remove("bg-white", "text-gray-700");
+    }
   }
 });
 

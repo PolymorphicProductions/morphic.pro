@@ -8,10 +8,11 @@ defmodule MorphicProWeb.ErrorHelpers do
   @doc """
   Generates tag for inlined form input errors.
   """
-  def error_tag(form, field) do
+  def error_tag(form, field, options \\ []) do
+    tag = Keyword.get(options, :tag, :span)
+    klass = Keyword.get(options, :class, "help-block")
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error),
-        class: "help-block",
+      content_tag(tag, translate_error(error), class: klass,
         data: [phx_error_for: input_id(form, field)]
       )
     end)

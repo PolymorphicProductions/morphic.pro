@@ -20,7 +20,7 @@
 </div>
 
 <!-- Services section -->
-<div class="" id="services">
+<div class="mb-20" id="services">
   <div class="container px-3 mx-auto">
     <div class="text-center section-title">
       <h6 class="mt-16 text-gray-500">What I Do</h6>

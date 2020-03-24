@@ -19,6 +19,12 @@
 .bg-black-05 {
   background: rgba(0, 0, 0, 0.5) !important;
 }
+.bg-black-06 {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+.bg-black-07 {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
 /* use !important to prevent issues with browser extensions that change fonts */
 .icon-shape {
   font-family: "icomoon" !important;
@@ -52,4 +58,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
+}
+
+.pow-form {
+  height: max-content;
 }
