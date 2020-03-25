@@ -60,6 +60,15 @@ defmodule MorphicProWeb do
     end
   end
 
+  def mailer_view do
+    quote do
+      use Phoenix.View, root: "lib/morphic_pro_web/templates",
+                        namespace: MorphicProWeb
+
+      use Phoenix.HTML
+    end
+  end
+
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
   """

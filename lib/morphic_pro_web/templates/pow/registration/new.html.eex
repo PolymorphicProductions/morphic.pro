@@ -14,7 +14,7 @@
 
       <div class="">
         <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset), class: "text-red-500" %>
-        <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "bg-transparent shadow appearance-none border border-gray-500 w-full py-4 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-white hover:border-gray-200 transition-colors duration-700", id: "username", placeholder: "Username" %>
+        <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "bg-transparent shadow appearance-none border border-gray-500 w-full py-4 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-white hover:border-gray-200 transition-colors duration-700", id: "username", placeholder: "Email" %>
       </div>
 
       <div class="">
