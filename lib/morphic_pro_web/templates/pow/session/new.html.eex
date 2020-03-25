@@ -5,6 +5,7 @@
   <div class="w-screen justify-center min-h-screen bg-black-07">
     <div class="pow-form md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto h-auto sm:max-w-sm">
       <h1 class="text-white text-xl text-center font-bold">Sign In</h1>
+      <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-red-400 text-center'> #{string}</h3>" end).() |> raw %>
       <%= form_for @changeset, @action, [as: :user, class: "px-8 pt-4 pb-2"], fn f -> %>
         <%= if @changeset.action do %>
           <div class="text-center font-bold text-red-400 alert alert-danger pb-6">
