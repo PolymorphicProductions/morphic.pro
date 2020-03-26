@@ -26,7 +26,7 @@ defmodule MorphicPro.MixProject do
   def application do
     [
       mod: {MorphicPro.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :mnesia]
     ]
   end
 

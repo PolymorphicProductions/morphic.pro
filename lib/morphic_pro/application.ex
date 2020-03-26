@@ -11,7 +11,10 @@ defmodule MorphicPro.Application do
       # Start the Ecto repository
       MorphicPro.Repo,
       # Start the endpoint when the application starts
-      MorphicProWeb.Endpoint
+      MorphicProWeb.Endpoint,
+      # Start the persistent cache store for auth
+      Pow.Store.Backend.MnesiaCache
+
       # Starts a worker by calling: MorphicPro.Worker.start_link(arg)
       # {MorphicPro.Worker, arg},
     ]

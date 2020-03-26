@@ -12,10 +12,14 @@ defmodule MorphicProWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  # end
 
   scope "/" do
     pipe_through :browser
@@ -27,6 +31,12 @@ defmodule MorphicProWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  scope "/", MorphicProWeb do
+    pipe_through [:browser, :protected]
+
+    post "/registration/send-confirmation-email", RegistrationController, :resend_confirmation_email
   end
 
   # Other scopes may use custom stacks.

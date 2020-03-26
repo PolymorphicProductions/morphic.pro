@@ -40,7 +40,14 @@
       </div>
 
       <% end %>
-      
+
+      <%= if @changeset.data.unconfirmed_email do %>
+        <div class="px-8 pt-4 pb-2 text-white">
+          <p>
+            Click the link in the confirmation email to change your email to <%= content_tag(:span, @changeset.data.unconfirmed_email) %>. 
+            Still haven't received the email? <%= link("Click here to send again", to: Routes.registration_path(@conn, :resend_confirmation_email), method: :post) %>.</p>
+        </div>
+      <% end %>
       <p class="text-center text-white pb-2"><%= link "Forgot Password", to: Routes.pow_reset_password_reset_password_path(@conn, :new) %></p>
 
       <p class="text-center text-gray-500 text-xs">
