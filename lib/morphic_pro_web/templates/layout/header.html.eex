@@ -60,7 +60,25 @@
             ><span class="ml-2">About</span>
           </a>
         </li>
+        <%= if Pow.Plug.current_user(@conn) do %>
+        <li class="nav-item">
+          <%= link to: Routes.pow_session_path(@conn, :delete), method: :delete,
+          class: "flex items-center px-3 py-2 text-xs font-normal leading-snug
+          uppercase transition-opacity duration-1000 hover:opacity-50" do %>
+          <i class="text-lg fas fa-sign-out-alt leading-lg"></i>
+          <span class="ml-2">Sign out</span>
+          <% end %>
+        </li>
 
+        <li class="nav-item">
+          <%= link to: Routes.pow_registration_path(@conn, :edit), class: "flex
+          items-center px-3 py-2 text-xs font-normal leading-snug uppercase
+          transition-opacity duration-1000 hover:opacity-50" do %>
+          <i class="text-lg fas fa-user-circle leading-lg"></i>
+          <span class="ml-2">Account</span>
+          <% end %>
+        </li>
+        <% else %>
         <li class="nav-item">
           <%= link to: Routes.pow_session_path(@conn, :new), class: "flex
           items-center px-3 py-2 text-xs font-normal leading-snug uppercase
@@ -78,6 +96,7 @@
           <span class="ml-2">Register</span>
           <% end %>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>

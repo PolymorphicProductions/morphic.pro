@@ -31,9 +31,10 @@ config :morphic_pro, :pow,
   repo: MorphicPro.Repo,
   web_module: MorphicProWeb,
   web_mailer_module: MorphicProWeb,
-  mailer_backend: MorphicProWeb.PowMailer,
+  mailer_backend: MorphicProWeb.Pow.Mailer,
   extensions: [PowResetPassword, PowEmailConfirmation],
-  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
+  messages_backend: MorphicProWeb.Pow.Messages
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -5,6 +5,7 @@
   <div class="flex justify-center h-screen bg-black-05">
     <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row">
       <div class="flex flex-col items-start justify-center w-full text-center md:w-2/5 md:text-left">
+        <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-white text-center'> #{string}</h3>" end).() |> raw %>
         <h1 class="my-4 text-5xl font-bold leading-tight text-white page-title">Your personal creative digital metamorphosis</h1>
         <p class="mb-8 text-2xl leading-normal text-white">Sub-hero message, not too long and not too short. Make it just right!</p>
         <button class="px-8 py-4 mx-auto my-6 font-bold text-gray-800 bg-white rounded-full shadow-lg lg:mx-0 hover:underline">Subscribe</button>
