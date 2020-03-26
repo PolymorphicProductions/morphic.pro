@@ -36,7 +36,7 @@ config :morphic_pro, :pow,
   controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
   messages_backend: MorphicProWeb.Pow.Messages
 
-config :mnesia, :dir, '../'
+#config :mnesia, :dir, '../'
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
