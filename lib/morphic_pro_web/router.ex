@@ -39,6 +39,10 @@ defmodule MorphicProWeb.Router do
     post "/registration/send-confirmation-email", RegistrationController, :resend_confirmation_email
   end
 
+  if Mix.env == :dev do
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", MorphicProWeb do
   #   pipe_through :api

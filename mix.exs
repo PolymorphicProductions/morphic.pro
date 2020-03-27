@@ -47,10 +47,11 @@ defmodule MorphicPro.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.2", override: true},
       {:plug_cowboy, "~> 2.1"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:pow, "~> 1.0.19"}
+      {:pow, "~> 1.0.19"},
+      {:bamboo, "~> 1.4"}
     ]
   end
 

@@ -66,6 +66,11 @@ defmodule MorphicProWeb do
                         namespace: MorphicProWeb
 
       use Phoenix.HTML
+
+      import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
+      import MorphicProWeb.Gettext
+
+      alias MorphicProWeb.Router.Helpers, as: Routes
     end
   end
 

@@ -38,3 +38,5 @@ npm-debug.log
 
 # Don't include self signed certs for dev
 /priv/cert/
+
+Mnesia.nonode@nohost
