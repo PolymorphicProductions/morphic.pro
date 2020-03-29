@@ -96,7 +96,8 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
           HTTP_PORT: ${{ secrets.HTTP_PORT }}
-
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
         run: MIX_ENV=prod mix compile
       - name: Compile assets
         run: |
