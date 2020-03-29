@@ -36,6 +36,11 @@ config :morphic_pro, :pow,
   controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
   messages_backend: MorphicProWeb.Pow.Messages
 
+config :morphic_pro, MorphicProWeb.Mailer,
+  adapter: Bamboo.LocalAdapter,
+  open_email_in_browser_url: "https://localhost:4001/sent_emails" # optional
+
+
 #config :mnesia, :dir, '../'
 
 # Import environment specific config. This must remain at the bottom

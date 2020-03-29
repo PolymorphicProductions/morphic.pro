@@ -1,15 +1,13 @@
 defmodule MorphicProWeb.Pow.Mailer do
   use Pow.Phoenix.Mailer
-  require Logger
 
-  def cast(%{user: user, subject: subject, text: text, html: html, assigns: _assigns}) do
-    # Build email struct to be used in `process/1`
-    %{to: user.email, subject: subject, text: text, html: html}
-  end
+  alias MorphicProWeb.{Email, Mailer}
 
-  def process(email) do
-    # Send email
+  # Pow callbacks
+  defdelegate cast(email), to: Email, as: :pow_email
+  defdelegate process(email), to: Mailer, as: :deliver_now
 
-    Logger.debug("E-mail sent: #{inspect email}")
-  end
+  # If we want to unblock the delivery 
+  #defdelegate process(email), to: Mailer, as: :deliver_later
+
 end

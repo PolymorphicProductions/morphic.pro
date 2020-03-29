@@ -14,6 +14,21 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
+mailer_api_key = 
+  System.get_env("MAILGUN_API_KEY") ||
+    raise """
+    environment variable MAILGUN_API_KEY is missing.
+    You can get one by visiting https://app.mailgun.com/app/account/security/api_keys
+    """
+
+mailer_domain = 
+  System.get_env("MAILGUN_DOMAIN") ||
+    raise """
+    environment variable MAILGUN_API_KEY is missing.
+    You can get one by visiting https://app.mailgun.com/app/sending/domains
+    """
+
+
 config :morphic_pro, MorphicPro.Repo,
   # ssl: true,
   url: database_url,
@@ -28,6 +43,11 @@ config :morphic_pro, MorphicProWeb.Endpoint,
   secret_key_base: secret_key_base,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
+
+config :morphic_pro, MorphicProWeb.Mailer,
+  adapter: Bamboo.MailgunAdapter,
+  api_key: mailer_api_key,
+  domain: mailer_domain
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
