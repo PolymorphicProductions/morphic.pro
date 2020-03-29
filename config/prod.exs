@@ -35,7 +35,7 @@ config :morphic_pro, MorphicPro.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 config :morphic_pro, MorphicProWeb.Endpoint,
-  url: [host: "morphic.pro"],
+  url: [host: "morphic.pro", scheme: "https", port: 443],
   http: [
     port: String.to_integer(System.get_env("HTTP_PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
