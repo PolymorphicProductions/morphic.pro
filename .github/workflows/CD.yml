@@ -107,6 +107,8 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
         run: MIX_ENV=prod mix release --version ${{ github.sha }}
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
