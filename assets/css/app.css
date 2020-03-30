@@ -7,6 +7,8 @@
 
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
+@import "~easyMDE/dist/easyMDE.min.css";
+
 
 @font-face {
   font-family: "icomoon";
@@ -14,6 +16,20 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+html, body{
+  background-color: rgb(248, 248, 248)
+}
+
+h1{
+  @apply text-5xl;
+}
+h2{
+  @apply text-3xl;
+}
+h3{
+  @apply text-xl
 }
 
 .bg-black-05 {
@@ -33,7 +49,6 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  font-weight: 700;
   position: absolute;
   left: -1.45rem;
   top: 0.71rem;
@@ -62,4 +77,29 @@
 
 .pow-form {
   height: max-content;
+}
+
+/* Posts */
+.post-body {
+  a{
+    @apply text-blue-600;
+    &:hover {
+      @apply text-blue-400;
+      text-decoration: underline;
+    }
+  }
+  code.inline {
+    @apply text-pink-500;
+  }
+  code {
+    @apply text-gray-600;
+  }
+  pre {
+    @apply p-6 border border-gray-300 rounded;
+    line-height: 28px;
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
 }

@@ -16,7 +16,8 @@ module.exports = (env, options) => ({
 
   mode: "development",
   entry: {
-    app: "./js/app.js"
+    app: "./js/app.js",
+    post_edit: "./js/post_edit.js"
   },
   output: {
     filename: "[name].bundle.js",
@@ -40,7 +41,12 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader", {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true
+          }
+        },]
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,

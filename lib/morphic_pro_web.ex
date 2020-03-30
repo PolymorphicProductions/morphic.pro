@@ -42,6 +42,8 @@ defmodule MorphicProWeb do
       import MorphicProWeb.ErrorHelpers
       import MorphicProWeb.Gettext
       alias MorphicProWeb.Router.Helpers, as: Routes
+
+      def parse_date(d), do: Timex.format!(d, "{Mshort} {D}, {YYYY}")
     end
   end
 
@@ -62,8 +64,9 @@ defmodule MorphicProWeb do
 
   def mailer_view do
     quote do
-      use Phoenix.View, root: "lib/morphic_pro_web/templates",
-                        namespace: MorphicProWeb
+      use Phoenix.View,
+        root: "lib/morphic_pro_web/templates",
+        namespace: MorphicProWeb
 
       use Phoenix.HTML
 

@@ -28,15 +28,17 @@ defmodule MorphicProWeb.Router do
   end
 
   scope "/", MorphicProWeb do
-    pipe_through :browser
+    pipe_through [:browser, :protected]
 
-    get "/", PageController, :index
+    resources "/posts", PostController, only: [:edit, :new, :create, :update, :delete]
+    post "/registration/send-confirmation-email", RegistrationController, :resend_confirmation_email
   end
 
   scope "/", MorphicProWeb do
-    pipe_through [:browser, :protected]
+    pipe_through :browser
 
-    post "/registration/send-confirmation-email", RegistrationController, :resend_confirmation_email
+    resources "/posts", PostController, only: [:index, :show]
+    get "/", PageController, :index
   end
 
   if Mix.env == :dev do

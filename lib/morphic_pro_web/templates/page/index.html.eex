@@ -1,14 +1,17 @@
-<div
-  class="bg-image"
-  style="background-image: url(<%= Routes.static_path(@conn, "/images/home.jpg") %>)"
->
+<div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/home.jpg") %>)">
   <div class="flex justify-center h-screen bg-black-05">
     <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row">
       <div class="flex flex-col items-start justify-center w-full text-center md:w-2/5 md:text-left">
-        <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-white text-center'> #{string}</h3>" end).() |> raw %>
-        <h1 class="my-4 text-5xl font-bold leading-tight text-white page-title">Your personal creative digital metamorphosis</h1>
-        <p class="mb-8 text-2xl leading-normal text-white">Sub-hero message, not too long and not too short. Make it just right!</p>
-        <button class="px-8 py-4 mx-auto my-6 font-bold text-gray-800 bg-white rounded-full shadow-lg lg:mx-0 hover:underline">Subscribe</button>
+        <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-white'> #{string}</h3>" end).() |> raw %>
+        <h1 class="my-4 font-bold leading-tight text-white page-title">Your personal creative digital
+          metamorphosis</h1>
+        <p class="mb-8 text-2xl font-thin leading-normal text-gray-500">From Web development to DevOps or Photography to
+          Design I
+          can
+          find your solotion!</p>
+        <button
+          class="px-8 py-4 mx-auto mb-6 font-bold text-gray-800 bg-white rounded-full shadow-lg lg:mx-0 hover:underline">Learn
+          More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
       </div>
     </div>
   </div>
@@ -28,11 +31,12 @@
           <span class="text-4xl">
             <i class="fab fa-js-square" style="color: #f7df1e;"></i>
             <i class="fab fa-react" style="color: #00d8ff;""></i>
-            <i class="fab fa-html5" style="color: #e34f26;"></i>
+            <i class=" fab fa-html5" style="color: #e34f26;"></i>
             <i class="fab fa-sass" style="color: rgb(187, 106, 154);"></i>
           </span>
           <h5 class="mt-2 mb-4 text-lg font-medium">Web UI/UX</h5>
-          <p class="text-gray-500">From fully interactive Flash applications to React and ES6, I can provide that rich experience and style your website needs.</p>
+          <p class="text-gray-500">From fully interactive Flash applications to React and ES6, I can provide that rich
+            experience and style your website needs.</p>
         </div>
       </div>
       <!-- Service 2 -->
@@ -46,7 +50,8 @@
           </span>
 
           <h5 class="mt-2 mb-4 text-lg font-medium">Development/DevOps</h5>
-          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir we provide solutions to your server side needs.</p>
+          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir we provide
+            solutions to your server side needs.</p>
         </div>
       </div>
       <!-- Service 3 -->
@@ -59,10 +64,10 @@
             <i class="fas fa-film"></i>
             <h5 class="mt-2 mb-4 text-lg font-medium">Video/Photo</h5>
           </span>
-          <p class="text-gray-500">Lights! Camera! Drones? From aerial videography to personal portaits and street photography I can capture that moment.</p>
+          <p class="text-gray-500">Lights! Camera! Drones? From aerial videography to personal portaits and street
+            photography I can capture that moment.</p>
         </div>
       </div>
     </div>
   </div>
 </div><!-- end container -->
-

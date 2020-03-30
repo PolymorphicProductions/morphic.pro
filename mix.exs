@@ -51,7 +51,10 @@ defmodule MorphicPro.MixProject do
       {:plug_cowboy, "~> 2.1"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:pow, "~> 1.0.19"},
-      {:bamboo, "~> 1.4"}
+      {:bamboo, "~> 1.4"},
+      {:timex, "~> 3.6.1"},
+      {:slugify, "~> 1.3.0"},
+      {:earmark, "~> 1.3.0"}
     ]
   end
 
