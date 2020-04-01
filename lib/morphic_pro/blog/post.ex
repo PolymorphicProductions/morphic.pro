@@ -2,6 +2,17 @@ defmodule MorphicPro.Blog.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @behaviour Bodyguard.Schema
+
+  def scope(query, %MorphicPro.Users.User{admin: true}, _) do
+    query
+  end
+
+  def scope(query, _, _) do
+    query
+    |> MorphicPro.Repo.where_published()
+  end
+
   @derive {Phoenix.Param, key: :slug}
 
   schema "posts" do

@@ -24,6 +24,9 @@ defmodule MorphicProWeb do
       import Plug.Conn
       import MorphicProWeb.Gettext
       alias MorphicProWeb.Router.Helpers, as: Routes
+
+      action_fallback(MorphicPro.FallbackController)
+
     end
   end
 

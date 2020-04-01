@@ -37,6 +37,8 @@ config :morphic_pro, :pow,
   messages_backend: MorphicProWeb.Pow.Messages,
   cache_store_backend: Pow.Store.Backend.MnesiaCache
 
+config :kerosene, theme: MorphicProWeb.Kerosene.HTML.Tailwind
+
 config :morphic_pro, MorphicProWeb.Mailer,
   adapter: Bamboo.LocalAdapter,
   # optional

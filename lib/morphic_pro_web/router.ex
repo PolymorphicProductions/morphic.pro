@@ -30,14 +30,14 @@ defmodule MorphicProWeb.Router do
   scope "/", MorphicProWeb do
     pipe_through [:browser, :protected]
 
-    resources "/posts", PostController, only: [:edit, :new, :create, :update, :delete]
+    resources "/posts", PostController, only: [:edit, :new, :create, :update, :delete], param: "slug"
     post "/registration/send-confirmation-email", RegistrationController, :resend_confirmation_email
   end
 
   scope "/", MorphicProWeb do
     pipe_through :browser
 
-    resources "/posts", PostController, only: [:index, :show]
+    resources "/posts", PostController, only: [:index, :show], param: "slug"
     get "/", PageController, :index
   end
 

@@ -1,11 +1,13 @@
 defmodule MorphicPro.Users.User do
   use Ecto.Schema
   use Pow.Ecto.Schema
+
   use Pow.Extension.Ecto.Schema,
     extensions: [PowResetPassword, PowEmailConfirmation]
 
   schema "users" do
     pow_user_fields()
+    field(:admin, :boolean)
 
     timestamps()
   end

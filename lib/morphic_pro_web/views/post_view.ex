@@ -1,6 +1,8 @@
 defmodule MorphicProWeb.PostView do
   use MorphicProWeb, :view
 
+  import Kerosene.HTML
+
   def parse_markdown(text) do
     case Earmark.as_html(text) do
       {:ok, html_doc, []} ->
@@ -26,4 +28,18 @@ defmodule MorphicProWeb.PostView do
       """
     }
   end
+
+  def admin_links(%{admin: true}, post) do
+    content_tag :div, class: "my-20" do
+      content_tag :div, class: "container px-3 mx-auto" do
+        [
+          link("Edit", to: Routes.post_path(MorphicProWeb.Endpoint, :edit, post), class: "mr-2"),
+          link("Delete", to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post), method: :delete, data: [confirm: "Delete Post 🗑: #{post.title} ?"])
+        ]
+      end
+    end
+
+  end
+  def admin_links(nil, post), do: nil
+
 end

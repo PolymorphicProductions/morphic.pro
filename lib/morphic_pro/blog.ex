@@ -8,6 +8,8 @@ defmodule MorphicPro.Blog do
 
   alias MorphicPro.Blog.Post
 
+  defdelegate authorize(action, user, params), to: MorphicPro.Policy
+
   @doc """
   Returns the list of posts.
 
@@ -17,8 +19,13 @@ defmodule MorphicPro.Blog do
       [%Post{}, ...]
 
   """
-  def list_posts do
-    Repo.all(Post)
+  def list_posts(params, user) do
+    Post
+    # |> from(preload: [:tags])
+    # <-- defers to MyApp.Blog.Post.scope/3
+    |> Bodyguard.scope(user)
+    |> Repo.order_by_published_at()
+    |> Repo.paginate(params)
   end
 
   @doc """
@@ -28,21 +35,21 @@ defmodule MorphicPro.Blog do
 
   ## Examples
 
-      iex> get_post!(123)
+      iex> get_post!("foo")
       %Post{}
 
-      iex> get_post!(456)
+      iex> get_post!("bar")
       ** (Ecto.NoResultsError)
 
   """
-  # def get_post!(id), do: Repo.get!(Post, id)
-  def get_post!(slug) do
-    # preload = Keyword.get(options, :preload, [])
+
+  def get_post!(slug, current_user, options \\ []) do
+    preload = Keyword.get(options, :preload, [])
 
     Post
     |> Repo.by_slug(slug)
-    # |> from(preload: ^preload)
-    # |> Bodyguard.scope(current_user)
+    |> from(preload: ^preload)
+    |> Bodyguard.scope(current_user)
     |> Repo.one!()
   end
 
@@ -83,7 +90,7 @@ defmodule MorphicPro.Blog do
   end
 
   @doc """
-  Deletes a post.
+  Deletes a Post.
 
   ## Examples
 
