@@ -30,7 +30,7 @@
       <h6 class="mt-16 text-gray-500">What I Do</h6>
       <h2 class="mb-10 text-4xl font-bold text-gray-800 page-title">I Provide Solutions to your digital needs</h2>
     </div>
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 text-center md:grid-cols-2 lg:grid-cols-3 ">
       <!-- Service 1 -->
       <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
