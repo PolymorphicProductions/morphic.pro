@@ -16,7 +16,9 @@
         </div>
 
         <p class="pt-10 text-3xl leading-tight text-center text-white font-book page-title">
-          <i class="ml-2 fas fa-arrow-circle-down"></i>
+          <a href="#body">
+            <i class="ml-2 fas fa-arrow-circle-down"></i>
+          </a>
         </p>
 
       </div>
@@ -24,6 +26,7 @@
   </div>
 </div>
 
+<a name="body"></a>
 <div class="container px-8 py-10 mx-auto my-20 bg-white post-body">
   <%= @post.body |> parse_markdown |> raw %>
 </div>

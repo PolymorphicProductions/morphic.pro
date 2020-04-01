@@ -7,27 +7,30 @@
           class="mt-12 mb-2 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
           Your personal creative<br />digital metamorphosis
         </h1>
-
         <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-thin text-1xl md:text-2xl">
           From Web development to DevOps or<br />Photography to Design I can find your solotion!</p>
-
         <div class="block mx-auto text-center md:text-left">
-          <button
-            class="px-3 py-2 mb-5 text-xs text-sm font-bold text-gray-800 bg-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
-            Learn More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
+
+          <a href="#services"><button
+              class="px-3 py-2 mb-5 text-xs text-sm font-bold text-gray-800 bg-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
+              Learn More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
+
+          </a>
         </div>
 
-
       </div>
+
     </div>
+
   </div>
 </div>
+<div id="services"></div>
 
 <!-- Services section -->
-<div class="mb-20" id="services">
+<div class="mt-24 mb-20 " id="services">
   <div class="container px-3 mx-auto">
     <div class="text-center section-title">
-      <h6 class="mt-16 text-gray-500">What I Do</h6>
+      <h6 class="text-gray-500">What I Do</h6>
       <h2 class="mb-10 text-4xl font-bold text-gray-800 page-title">I Provide Solutions to your digital needs</h2>
     </div>
     <div class="grid gap-4 text-center md:grid-cols-2 lg:grid-cols-3 ">
