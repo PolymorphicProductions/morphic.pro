@@ -3,7 +3,7 @@ defmodule MorphicPro.Repo do
     otp_app: :morphic_pro,
     adapter: Ecto.Adapters.Postgres
 
-  use Kerosene, per_page: 2
+  use Kerosene, per_page: 21
 
   import Ecto.Query
 

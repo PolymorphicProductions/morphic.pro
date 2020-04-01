@@ -81,6 +81,10 @@ h3{
 
 /* Posts */
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  
   a{
     @apply text-blue-600;
     &:hover {
@@ -92,12 +96,13 @@ h3{
     @apply text-pink-500;
   }
   code {
-    @apply text-gray-600;
+    @apply p-4 text-gray-600;
+    display: block;
+    overflow: scroll;
   }
   pre {
-    @apply p-6 border border-gray-300 rounded;
+    @apply p-6 mb-4 border border-gray-300 rounded;
     line-height: 28px;
-    margin-bottom: 20px;
   }
   p {
     margin-bottom: 20px;

@@ -1,17 +1,23 @@
 <div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/home.jpg") %>)">
-  <div class="flex justify-center h-screen bg-black-05">
-    <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row">
-      <div class="flex flex-col items-start justify-center w-full text-center md:w-2/5 md:text-left">
+  <div class="flex items-center h-screen align-middle bg-black-05">
+    <div class="container px-6 py-6 mx-auto">
+      <div class="w-full my-12 align-middle">
         <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-white'> #{string}</h3>" end).() |> raw %>
-        <h1 class="my-4 font-bold leading-tight text-white page-title">Your personal creative digital
-          metamorphosis</h1>
-        <p class="mb-8 text-2xl font-thin leading-normal text-gray-500">From Web development to DevOps or Photography to
-          Design I
-          can
-          find your solotion!</p>
-        <button
-          class="px-8 py-4 mx-auto mb-6 font-bold text-gray-800 bg-white rounded-full shadow-lg lg:mx-0 hover:underline">Learn
-          More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
+        <h1
+          class="mt-12 mb-2 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
+          Your personal creative<br />digital metamorphosis
+        </h1>
+
+        <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-thin text-1xl md:text-2xl">
+          From Web development to DevOps or<br />Photography to Design I can find your solotion!</p>
+
+        <div class="block mx-auto text-center md:text-left">
+          <button
+            class="px-3 py-2 mb-5 text-xs text-sm font-bold text-gray-800 bg-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
+            Learn More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -24,9 +30,9 @@
       <h6 class="mt-16 text-gray-500">What I Do</h6>
       <h2 class="mb-10 text-4xl font-bold text-gray-800 page-title">I Provide Solutions to your digital needs</h2>
     </div>
-    <div class="flex items-stretch text-center ">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <!-- Service 1 -->
-      <div class="w-1/3 px-4 py-2 m-2">
+      <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
           <span class="text-4xl">
             <i class="fab fa-js-square" style="color: #f7df1e;"></i>
@@ -40,7 +46,7 @@
         </div>
       </div>
       <!-- Service 2 -->
-      <div class="w-1/3 px-4 py-2 m-2">
+      <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
           <span class="text-4xl">
             <i class="fab fa-phoenix-framework" style="color: rgb(223, 95, 54);"></i>
@@ -55,7 +61,7 @@
         </div>
       </div>
       <!-- Service 3 -->
-      <div class="w-1/3 px-4 py-2 m-2">
+      <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
           <span class="text-4xl">
             <i class="fab fa-youtube" style="color: #ff0000;"></i>

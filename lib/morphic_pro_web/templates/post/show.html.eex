@@ -2,7 +2,8 @@
   <div class="flex items-center h-screen align-middle bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12 align-middle">
-        <h1 class="mt-12 mb-2 text-6xl leading-tight text-center text-white font-book page-title"><%= @post.title %>
+        <h1 class="mt-12 mb-2 text-6xl leading-tight text-center text-white font-book page-title">
+          <%= @post.title %>
         </h1>
         <p class="text-sm font-bold leading-tight text-center text-white">
           <%= parse_date @post.published_at %>
