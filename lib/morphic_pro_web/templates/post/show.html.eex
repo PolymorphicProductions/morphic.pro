@@ -2,7 +2,9 @@
   <div class="flex items-center h-screen align-middle bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12 align-middle">
-        <h1 class="mt-12 mb-2 text-6xl leading-tight text-center text-white font-book page-title">
+
+        <h1
+          class="mt-12 mb-2 text-2xl leading-tight text-center text-white md:text-4xl lg:text-5xl font-book page-title">
           <%= @post.title %>
         </h1>
         <p class="text-sm font-bold leading-tight text-center text-white">
@@ -15,7 +17,7 @@
           <span class="inline-block px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-200">#winter</span>
         </div>
 
-        <p class="pt-10 text-3xl leading-tight text-center text-white font-book page-title">
+        <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">
           <a href="#body">
             <i class="ml-2 fas fa-arrow-circle-down"></i>
           </a>
