@@ -10,11 +10,6 @@ defmodule MorphicProWeb.PostController do
     apply(__MODULE__, action_name(conn), [conn, conn.params, conn.assigns])
   end
 
-  # def index(conn, _params, %{current_user: current_user}) do
-  #   posts = Blog.list_posts()
-  #   render(conn, "index.html", posts: posts)
-  # end
-
   def index(conn, params, %{current_user: current_user}) do
     {posts, kerosene} = Blog.list_posts(params, current_user)
     render(conn, "index.html", posts: posts, kerosene: kerosene)
@@ -46,6 +41,11 @@ defmodule MorphicProWeb.PostController do
 
     post = Blog.get_post!(slug, current_user)
 
+    post =
+      Blog.get_post!(slug, current_user,
+        preload: [Blog.tags_preload()]
+      )
+
     conn
     |> assign(:nav_class, "navbar navbar-absolute navbar-fixed")
     |> render("show.html",
@@ -56,7 +56,7 @@ defmodule MorphicProWeb.PostController do
 
   def edit(conn, %{"slug" => slug}, %{current_user: current_user}) do
     with :ok <- Bodyguard.permit(Blog, :edit, current_user, nil) do
-      post = Blog.get_post!(slug, current_user) #, preload: [Blog.tags_preload()]
+      post = Blog.get_post!(slug, current_user, preload: [Blog.tags_preload()])
       changeset = Blog.change_post(post)
       render(conn, "edit.html", post: post, changeset: changeset)
     end
@@ -64,7 +64,7 @@ defmodule MorphicProWeb.PostController do
 
   def update(conn, %{"slug" => slug, "post" => post_params}, %{current_user: current_user}) do
     with :ok <- Bodyguard.permit(Blog, :update, current_user, nil) do
-      post = Blog.get_post!(slug, current_user) #, preload: [:tags]
+      post = Blog.get_post!(slug, current_user, preload: [:tags])
 
       case Blog.update_post(post, post_params) do
         {:ok, post} ->
@@ -80,7 +80,7 @@ defmodule MorphicProWeb.PostController do
 
   def delete(conn, %{"slug" => slug}, %{current_user: current_user}) do
     with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
-      post = Blog.get_post!(slug, current_user) #, preload: [:tags]
+      post = Blog.get_post!(slug, current_user, preload: [:tags])
       {:ok, _post} = Blog.delete_post(post)
 
       conn

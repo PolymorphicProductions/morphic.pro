@@ -11,10 +11,9 @@
           <%= parse_date @post.published_at %>
         </p>
 
+
         <div class="px-6 py-4 text-center ">
-          <span class="inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200">#photography</span>
-          <span class="inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200">#travel</span>
-          <span class="inline-block px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-200">#winter</span>
+          <%= parse_tags(@post.tags) %>
         </div>
 
         <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">

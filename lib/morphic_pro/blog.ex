@@ -6,9 +6,27 @@ defmodule MorphicPro.Blog do
   import Ecto.Query, warn: false
   alias MorphicPro.Repo
 
-  alias MorphicPro.Blog.Post
+  alias __MODULE__.{Post, Tag}
 
   defdelegate authorize(action, user, params), to: MorphicPro.Policy
+
+  @doc """
+  Returns the list of lastest published posts.
+  Limited to 4 latest
+
+  ## Examples
+
+      iex> list_latest_posts()
+      [%Post{}, ...]
+
+  """
+  def list_latest_posts() do
+    Post
+    |> from(limit: 4, preload: [:tags])
+    |> Repo.where_published()
+    |> Repo.order_by_published_at()
+    |> Repo.all()
+  end
 
   @doc """
   Returns the list of posts.
@@ -21,7 +39,7 @@ defmodule MorphicPro.Blog do
   """
   def list_posts(params, user) do
     Post
-    # |> from(preload: [:tags])
+    |> from(preload: [:tags])
     # <-- defers to MyApp.Blog.Post.scope/3
     |> Bodyguard.scope(user)
     |> Repo.order_by_published_at()
@@ -116,5 +134,77 @@ defmodule MorphicPro.Blog do
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
+  end
+
+
+
+  def tags_preload do
+    :tags
+  end
+
+  def approved_comments_preload do
+    {:comments, {Comment |> Repo.approved() |> Repo.order_by_oldest(), :user}}
+  end
+
+  @doc """
+  Gets a single tag and all of its pics.
+
+  Raises `Ecto.NoResultsError` if the Tag does not exist.
+
+  ## Examples
+
+      iex> get_tag_by_slug!(foobar)
+      %Tag{ pics: [...] }
+
+      iex> get_comment!(badtag)
+      ** (Ecto.NoResultsError)
+
+  """
+  # def get_tag!(tag, params \\ %{}) do
+  #   down_tag = String.downcase(tag)
+
+  #   total_count =
+  #     from(t in "tags",
+  #       join: pt in "pic_tags",
+  #       on: pt.tag_id == t.id,
+  #       where: t.name == ^down_tag,
+  #       select: count()
+  #     )
+  #     |> Repo.one()
+
+  #   {pics_query, k} =
+  #     from(p in Pic, order_by: [desc: :inserted_at])
+  #     |> Repo.paginate(params, total_count: total_count) #FIXME , lazy: true
+
+  #   tag =
+  #     from(t in Tag, where: t.name == ^down_tag, preload: [pics: ^pics_query])
+  #     |> Repo.one!()
+
+  #   {tag, k}
+  # end
+
+  def get_post_tag!(tag, params \\ %{}) do
+    total_count =
+      from(t in "tags",
+        join: pt in "post_tags",
+        on: pt.tag_id == t.id,
+        where: t.name == ^tag,
+        select: count()
+      )
+      |> Repo.one()
+
+    {posts_query, k} =
+      from(p in Post, order_by: [desc: :inserted_at], preload: [:tags])
+      |> Repo.paginate(params, total_count: total_count, lazy: true)
+
+    tag =
+      from(t in Tag, where: t.name == ^tag, preload: [posts: ^posts_query])
+      |> Repo.one!()
+
+    {tag, k}
+  end
+
+  def tags_preload do
+    :tags
   end
 end

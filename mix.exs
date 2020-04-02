@@ -56,7 +56,9 @@ defmodule MorphicPro.MixProject do
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.3.0"},
       {:bodyguard, "~> 2.4.0"},
-      {:kerosene, github: "joshchernoff/kerosene"}
+      #{:kerosene, github: "joshchernoff/kerosene"}
+      {:kerosene, github: "PolymorphicProductions/kerosene"},
+
     ]
   end
 

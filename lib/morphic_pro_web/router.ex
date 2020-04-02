@@ -37,6 +37,7 @@ defmodule MorphicProWeb.Router do
   scope "/", MorphicProWeb do
     pipe_through :browser
 
+    get("/posts/tag/:tag", TagController, :show_post, as: :post_tag)
     resources "/posts", PostController, only: [:index, :show], param: "slug"
     get "/", PageController, :index
   end

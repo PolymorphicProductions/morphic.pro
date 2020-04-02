@@ -3,16 +3,6 @@ defmodule MorphicProWeb.PostView do
 
   import Kerosene.HTML
 
-  def parse_markdown(text) do
-    case Earmark.as_html(text) do
-      {:ok, html_doc, []} ->
-        html_doc
-
-      {:error, _html_doc, error_messages} ->
-        error_messages
-    end
-  end
-
   def render("script.new.html", _assigns), do: render("script.edit.html", %{})
 
   def render("script.edit.html", _assigns) do
@@ -41,5 +31,11 @@ defmodule MorphicProWeb.PostView do
 
   end
   def admin_links(nil, post), do: nil
+
+  def parse_tags(tags) do
+    Enum.map(tags, fn tag ->
+      content_tag(:span, link("##{tag.name}", to: Routes.post_tag_path(MorphicProWeb.Endpoint, :show_post, tag.name), class: "inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200"))
+    end)
+  end
 
 end

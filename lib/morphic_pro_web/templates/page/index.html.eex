@@ -80,3 +80,45 @@
     </div>
   </div>
 </div><!-- end container -->
+
+
+
+<!-- Latest posts section -->
+<div class="mt-24 mb-20 " id="services">
+  <div class="container px-4 py-10 mx-auto">
+
+    <div class="text-center section-title">
+      <h2 class="mb-10 font-bold text-gray-800 text-1xl page-title">
+        <%= link "Latest Posts", to: Routes.post_path(@conn, :index) %></h2>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+
+      <%= for post <- @posts do %>
+      <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
+        <%= link to: Routes.post_path(@conn, :show, post) do %>
+        <img class="w-full" src="/images/card-top.jpg" alt="Sunset in the mountains">
+        <% end %>
+
+        <div class="px-6 py-4">
+          <div class="mb-2 text-xs"><%= parse_date post.published_at %></div>
+          <div class="mb-2 text-lg font-bold">
+            <%= link post.title, to: Routes.post_path(@conn, :show, post), class: "hover:text-gray-600" %>
+          </div>
+        </div>
+
+        <div class="px-6 pb-4">
+          <%= link to: Routes.post_path(@conn, :show, post), class: "bg-gray-600 hover:bg-gray-800 text-xs text-white font-bold py-2 px-4 text-gray-100" do %>
+          <span class="pr-2">READ MORE</span> <i class="fas fa-arrow-circle-right"></i>
+          <% end %>
+        </div>
+
+        <div class="px-6 py-4">
+          <%= parse_tags(post.tags) %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

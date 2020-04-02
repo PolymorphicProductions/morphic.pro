@@ -47,6 +47,16 @@ defmodule MorphicProWeb do
       alias MorphicProWeb.Router.Helpers, as: Routes
 
       def parse_date(d), do: Timex.format!(d, "{Mshort} {D}, {YYYY}")
+
+      def parse_markdown(text) do
+        case Earmark.as_html(text) do
+          {:ok, html_doc, []} ->
+            html_doc
+
+          {:error, _html_doc, error_messages} ->
+            error_messages
+        end
+      end
     end
   end
 

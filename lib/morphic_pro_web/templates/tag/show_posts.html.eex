@@ -12,7 +12,7 @@
 <div class="container px-4 py-10 mx-auto">
   <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
-    <%= for post <- @posts do %>
+    <%= for post <- @tag.posts |> IO.inspect do %>
     <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
       <%= link to: Routes.post_path(@conn, :show, post) do %>
       <img class="w-full" src="/images/card-top.jpg" alt="Sunset in the mountains">
@@ -35,7 +35,7 @@
       </div>
 
       <div class="px-6 py-4">
-        <%= parse_tags(post.tags) %>
+        <%= parse_tags(post.tags_string) %>
       </div>
     </div>
     <% end %>

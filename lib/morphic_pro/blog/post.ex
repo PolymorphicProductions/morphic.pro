@@ -2,6 +2,8 @@ defmodule MorphicPro.Blog.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias MorphicPro.Blog.{Tagging, Tag}
+
   @behaviour Bodyguard.Schema
 
   def scope(query, %MorphicPro.Users.User{admin: true}, _) do
@@ -23,6 +25,9 @@ defmodule MorphicPro.Blog.Post do
     field :published_at_local, :string
     field :slug, :string
     field :title, :string
+    field :tag_list, {:array, :string}, virtual: true
+    many_to_many(:tags, Tag, join_through: "post_tags", on_replace: :delete)
+    field :tags_string, :string
 
     timestamps()
   end
@@ -32,7 +37,8 @@ defmodule MorphicPro.Blog.Post do
     :excerpt,
     :published_at_local,
     :title,
-    :draft
+    :draft,
+    :tags_string,
   ]
 
   @spec changeset(
@@ -52,6 +58,9 @@ defmodule MorphicPro.Blog.Post do
     |> validate_published_at()
     |> put_published_at()
     |> put_slug()
+    |> parse_tags_list()
+    |> parse_tags_assoc()
+    |> unique_constraint(:slug, name: :posts_slug_index)
   end
 
   defp validate_published_at(
@@ -100,4 +109,24 @@ defmodule MorphicPro.Blog.Post do
   end
 
   defp put_slug(cs), do: cs
+
+  defp parse_tags_list(%{valid?: true, changes: %{tags_string: tags_string}} = changeset) do
+    tag_list = tags_string |> String.split(", ") |> Enum.map(fn tag -> tag |> Slug.slugify() end)
+    slugified_tags_string = tag_list |> Enum.join(", ")
+
+    changeset
+    |> put_change(:tags_string, slugified_tags_string)
+    |> put_change(:tag_list, tag_list)
+  end
+
+  defp parse_tags_list(changeset), do: changeset
+
+  defp parse_tags_assoc(
+         %Ecto.Changeset{valid?: true, changes: %{tag_list: _tags_list}} = changeset
+       ) do
+    changeset
+    |> Tagging.changeset(MorphicPro.Blog.Tag, :tags, :tag_list)
+  end
+
+  defp parse_tags_assoc(changeset), do: changeset
 end
