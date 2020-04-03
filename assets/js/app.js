@@ -16,14 +16,6 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
-// import * as EasyMDE from "easymde";
-// const easymdeBody = new EasyMDE({
-//   element: document.getElementById("post_body")
-// });
-// const easymdeExcerpt = new EasyMDE({
-//   element: document.getElementById("post_excerpt")
-// });
-
 let isNavToggled = false;
 let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
 
