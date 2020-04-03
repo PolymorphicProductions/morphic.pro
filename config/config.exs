@@ -34,14 +34,17 @@ config :morphic_pro, :pow,
   mailer_backend: MorphicProWeb.Pow.Mailer,
   extensions: [PowResetPassword, PowEmailConfirmation],
   controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
-  messages_backend: MorphicProWeb.Pow.Messages
+  messages_backend: MorphicProWeb.Pow.Messages,
+  cache_store_backend: Pow.Store.Backend.MnesiaCache
+
+config :kerosene, theme: MorphicProWeb.Kerosene.HTML.Tailwind, per_page: 21
 
 config :morphic_pro, MorphicProWeb.Mailer,
   adapter: Bamboo.LocalAdapter,
-  open_email_in_browser_url: "https://localhost:4001/sent_emails" # optional
+  # optional
+  open_email_in_browser_url: "https://localhost:4001/sent_emails"
 
-
-#config :mnesia, :dir, '../'
+# config :mnesia, :dir, '../'
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

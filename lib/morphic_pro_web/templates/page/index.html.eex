@@ -1,42 +1,55 @@
-<div
-  class="bg-image"
-  style="background-image: url(<%= Routes.static_path(@conn, "/images/home.jpg") %>)"
->
-  <div class="flex justify-center h-screen bg-black-05">
-    <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row">
-      <div class="flex flex-col items-start justify-center w-full text-center md:w-2/5 md:text-left">
-        <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-white text-center'> #{string}</h3>" end).() |> raw %>
-        <h1 class="my-4 text-5xl font-bold leading-tight text-white page-title">Your personal creative digital metamorphosis</h1>
-        <p class="mb-8 text-2xl leading-normal text-white">Sub-hero message, not too long and not too short. Make it just right!</p>
-        <button class="px-8 py-4 mx-auto my-6 font-bold text-gray-800 bg-white rounded-full shadow-lg lg:mx-0 hover:underline">Subscribe</button>
+<div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/home.jpg") %>)">
+  <div class="flex items-center h-screen align-middle bg-black-05">
+    <div class="container px-6 py-6 mx-auto">
+      <div class="w-full my-12 align-middle">
+        <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-white'> #{string}</h3>" end).() |> raw %>
+        <h1
+          class="mt-12 mb-2 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
+          Your personal creative<br />digital metamorphosis
+        </h1>
+        <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-thin text-1xl md:text-2xl">
+          From Web development to DevOps or<br />Photography to Design I can find your solotion!</p>
+        <div class="block mx-auto text-center md:text-left">
+
+          <a href="#services"><button
+              class="px-3 py-2 mb-5 text-xs text-sm font-bold text-gray-800 bg-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
+              Learn More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
+
+          </a>
+        </div>
+
       </div>
+
     </div>
+
   </div>
 </div>
+<div id="services"></div>
 
 <!-- Services section -->
-<div class="mb-20" id="services">
+<div class="mt-24 mb-20 " id="services">
   <div class="container px-3 mx-auto">
     <div class="text-center section-title">
-      <h6 class="mt-16 text-gray-500">What I Do</h6>
+      <h6 class="text-gray-500">What I Do</h6>
       <h2 class="mb-10 text-4xl font-bold text-gray-800 page-title">I Provide Solutions to your digital needs</h2>
     </div>
-    <div class="flex items-stretch text-center ">
+    <div class="grid gap-4 text-center md:grid-cols-2 lg:grid-cols-3 ">
       <!-- Service 1 -->
-      <div class="w-1/3 px-4 py-2 m-2">
+      <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
           <span class="text-4xl">
             <i class="fab fa-js-square" style="color: #f7df1e;"></i>
             <i class="fab fa-react" style="color: #00d8ff;""></i>
-            <i class="fab fa-html5" style="color: #e34f26;"></i>
+            <i class=" fab fa-html5" style="color: #e34f26;"></i>
             <i class="fab fa-sass" style="color: rgb(187, 106, 154);"></i>
           </span>
           <h5 class="mt-2 mb-4 text-lg font-medium">Web UI/UX</h5>
-          <p class="text-gray-500">From fully interactive Flash applications to React and ES6, I can provide that rich experience and style your website needs.</p>
+          <p class="text-gray-500">From fully interactive Flash applications to React and ES6, I can provide that rich
+            experience and style your website needs.</p>
         </div>
       </div>
       <!-- Service 2 -->
-      <div class="w-1/3 px-4 py-2 m-2">
+      <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
           <span class="text-4xl">
             <i class="fab fa-phoenix-framework" style="color: rgb(223, 95, 54);"></i>
@@ -46,11 +59,12 @@
           </span>
 
           <h5 class="mt-2 mb-4 text-lg font-medium">Development/DevOps</h5>
-          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir we provide solutions to your server side needs.</p>
+          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir we provide
+            solutions to your server side needs.</p>
         </div>
       </div>
       <!-- Service 3 -->
-      <div class="w-1/3 px-4 py-2 m-2">
+      <div class="px-4 py-2 m-2">
         <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
           <span class="text-4xl">
             <i class="fab fa-youtube" style="color: #ff0000;"></i>
@@ -59,10 +73,52 @@
             <i class="fas fa-film"></i>
             <h5 class="mt-2 mb-4 text-lg font-medium">Video/Photo</h5>
           </span>
-          <p class="text-gray-500">Lights! Camera! Drones? From aerial videography to personal portaits and street photography I can capture that moment.</p>
+          <p class="text-gray-500">Lights! Camera! Drones? From aerial videography to personal portaits and street
+            photography I can capture that moment.</p>
         </div>
       </div>
     </div>
   </div>
 </div><!-- end container -->
 
+
+
+<!-- Latest posts section -->
+<div class="mt-24 mb-20 " id="services">
+  <div class="container px-4 py-10 mx-auto">
+
+    <div class="text-center section-title">
+      <h2 class="mb-10 font-bold text-gray-800 text-1xl page-title">
+        <%= link "Latest Posts", to: Routes.post_path(@conn, :index) %></h2>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+
+      <%= for post <- @posts do %>
+      <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
+        <%= link to: Routes.post_path(@conn, :show, post) do %>
+        <img class="w-full" src="/images/card-top.jpg" alt="Sunset in the mountains">
+        <% end %>
+
+        <div class="px-6 py-4">
+          <div class="mb-2 text-xs"><%= parse_date post.published_at %></div>
+          <div class="mb-2 text-lg font-bold">
+            <%= link post.title, to: Routes.post_path(@conn, :show, post), class: "hover:text-gray-600" %>
+          </div>
+        </div>
+
+        <div class="px-6 pb-4">
+          <%= link to: Routes.post_path(@conn, :show, post), class: "bg-gray-600 hover:bg-gray-800 text-xs text-white font-bold py-2 px-4 text-gray-100" do %>
+          <span class="pr-2">READ MORE</span> <i class="fas fa-arrow-circle-right"></i>
+          <% end %>
+        </div>
+
+        <div class="px-6 py-4">
+          <%= parse_tags(post.tags) %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

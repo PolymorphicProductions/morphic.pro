@@ -16,11 +16,14 @@ module.exports = (env, options) => ({
 
   mode: "development",
   entry: {
-    app: "./js/app.js"
+    app: "./js/app.js",
+    post_edit: "./js/post_edit.js"
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "../priv/static/js")
+    path: path.resolve(__dirname, "../priv/static/js"),
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/js/',
     // Do I need a public path?
   },
   optimization: {
@@ -40,7 +43,12 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader", {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true
+          }
+        },]
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
@@ -61,8 +69,8 @@ module.exports = (env, options) => ({
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
-    new Jarvis({
-      port: 1337 // optional: set a port
-    })
+    // new Jarvis({
+    //   port: 1337 // optional: set a port
+    // })
   ]
 });

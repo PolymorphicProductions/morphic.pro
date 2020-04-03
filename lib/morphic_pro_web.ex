@@ -24,6 +24,9 @@ defmodule MorphicProWeb do
       import Plug.Conn
       import MorphicProWeb.Gettext
       alias MorphicProWeb.Router.Helpers, as: Routes
+
+      action_fallback(MorphicPro.FallbackController)
+
     end
   end
 
@@ -42,6 +45,18 @@ defmodule MorphicProWeb do
       import MorphicProWeb.ErrorHelpers
       import MorphicProWeb.Gettext
       alias MorphicProWeb.Router.Helpers, as: Routes
+
+      def parse_date(d), do: Timex.format!(d, "{Mshort} {D}, {YYYY}")
+
+      def parse_markdown(text) do
+        case Earmark.as_html(text) do
+          {:ok, html_doc, []} ->
+            html_doc
+
+          {:error, _html_doc, error_messages} ->
+            error_messages
+        end
+      end
     end
   end
 
@@ -62,8 +77,9 @@ defmodule MorphicProWeb do
 
   def mailer_view do
     quote do
-      use Phoenix.View, root: "lib/morphic_pro_web/templates",
-                        namespace: MorphicProWeb
+      use Phoenix.View,
+        root: "lib/morphic_pro_web/templates",
+        namespace: MorphicProWeb
 
       use Phoenix.HTML
 

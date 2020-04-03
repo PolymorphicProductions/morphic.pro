@@ -7,9 +7,11 @@
     "watch": "webpack --config webpack.dev.config.js --watch --colors"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@silvia-odwyer/photon": "^0.2.0",
+    "easymde": "^2.9.0",
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html",
-    "@fortawesome/fontawesome-free": "^5.12.1"
+    "phoenix_html": "file:../deps/phoenix_html"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

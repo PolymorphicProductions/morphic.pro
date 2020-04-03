@@ -1,0 +1,35 @@
+<div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/login3.jpg") %>)">
+  <div class="flex items-center h-screen align-middle bg-black-05">
+    <div class="container px-3 py-6 mx-auto">
+      <div class="w-full my-12 align-middle">
+
+        <h1
+          class="mt-12 mb-2 text-2xl leading-tight text-center text-white md:text-4xl lg:text-5xl font-book page-title">
+          <%= @post.title %>
+        </h1>
+        <p class="text-sm font-bold leading-tight text-center text-white">
+          <%= parse_date @post.published_at %>
+        </p>
+
+
+        <div class="px-6 py-4 text-center ">
+          <%= parse_tags(@post.tags) %>
+        </div>
+
+        <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">
+          <a href="#body">
+            <i class="ml-2 fas fa-arrow-circle-down"></i>
+          </a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<a name="body"></a>
+<div class="container px-8 py-10 mx-auto my-20 bg-white post-body">
+  <%= @post.body |> parse_markdown |> raw %>
+</div>
+
+<%= admin_links @current_user, @post %>

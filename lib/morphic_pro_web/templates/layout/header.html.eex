@@ -1,65 +1,43 @@
 <nav
-  class="fixed top-0 left-0 z-10 flex flex-wrap items-center justify-between w-full px-2 py-3 text-white transition-colors duration-700 navbar-fixed navbar-expand-lg"
->
-  <div
-    class="container flex flex-wrap items-center justify-between px-4 mx-auto"
-  >
-    <div
-      class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start"
-    >
-      <a
-        class="relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap "
-        href="/"
-      >
+  class="fixed top-0 left-0 z-10 flex flex-wrap items-center justify-between w-full px-2 py-3 text-white transitions duration-700 navbar-fixed navbar-expand-lg <%= @conn.assigns[:nav_class] %>">
+  <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <div class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start">
+      <a class="relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap " href="/">
         <span class="pr-1 display-block icon-shape logo"></span>
         Morphic.Pro
       </a>
       <button
         class="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
-        type="button"
-        onclick="window.toggleNavbar('collapse-navbar')"
-      >
+        type="button" onclick="window.toggleNavbar('collapse-navbar')">
         <i class="fas fa-bars"></i>
       </button>
     </div>
     <div class="items-center flex-grow hidden lg:flex" id="collapse-navbar">
       <ul class="flex flex-col list-none lg:flex-row lg:ml-auto">
         <li class="nav-item">
-          <a
-            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50"
-            href="#"
-          >
-            <i class="text-lg fas fa-book-open leading-lg"></i
-            ><span class="ml-2">Posts</span>
+          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50"
+            href="<%= Routes.post_path(@conn, :index) %>">
+            <i class="text-lg fas fa-book-open leading-lg"></i><span class="ml-2">Posts</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+            href="#">
+            <i class="text-lg fas fa-camera leading-lg"></i><span class="ml-2">Snaps</span>
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="#"
-          >
-            <i class="text-lg fas fa-camera leading-lg"></i
-            ><span class="ml-2">Snaps</span>
+          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+            href="#">
+            <i class="text-lg fas fa-envelope leading-lg"></i><span class="ml-2">Contact</span>
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="#"
-          >
-            <i class="text-lg fas fa-envelope leading-lg"></i
-            ><span class="ml-2">Contact</span>
+          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+            href="#">
+            <i class="text-lg fas fa-address-card leading-lg"></i><span class="ml-2">About</span>
           </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="#"
-          >
-            <i class="text-lg fas fa-address-card leading-lg"></i
-            ><span class="ml-2">About</span>
-          </a>
-        </li>
+        </li> -->
         <%= if Pow.Plug.current_user(@conn) do %>
         <li class="nav-item">
           <%= link to: Routes.pow_session_path(@conn, :delete), method: :delete,
@@ -83,8 +61,7 @@
           <%= link to: Routes.pow_session_path(@conn, :new), class: "flex
           items-center px-3 py-2 text-xs font-normal leading-snug uppercase
           transition-opacity duration-1000 hover:opacity-50" do %>
-          <i class="text-lg fas fa-sign-in-alt leading-lg"></i
-          ><span class="ml-2">Sign In</span>
+          <i class="text-lg fas fa-sign-in-alt leading-lg"></i><span class="ml-2">Sign In</span>
           <% end %>
         </li>
 
