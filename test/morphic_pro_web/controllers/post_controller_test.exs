@@ -1,25 +1,38 @@
 defmodule MorphicProWeb.PostControllerTest do
   use MorphicProWeb.ConnCase
 
-  alias MorphicPro.Blog
-
-  @create_attrs %{body: "some body", draft: true, excerpt: "some excerpt", published_at: ~D[2010-04-17], published_at_local: ~D[2010-04-17], slug: "some slug", title: "some title"}
-  @update_attrs %{body: "some updated body", draft: false, excerpt: "some updated excerpt", published_at: ~D[2011-05-18], published_at_local: ~D[2011-05-18], slug: "some updated slug", title: "some updated title"}
-  @invalid_attrs %{body: nil, draft: nil, excerpt: nil, published_at: nil, published_at_local: nil, slug: nil, title: nil}
-
-  def fixture(:post) do
-    {:ok, post} = Blog.create_post(@create_attrs)
-    post
-  end
+  import MorphicPro.Factory
 
   describe "index" do
-    test "lists all posts", %{conn: conn} do
+    test "lists some posts while not logged in ", %{conn: conn} do
+      insert(:post, title: "See me")
+      insert(:post, title: "Dont see me", draft: true, published_at: Timex.today() |> Timex.shift(days: 1))
       conn = get(conn, Routes.post_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Posts"
+      assert html_response(conn, 200) =~ "See me"
+      refute html_response(conn, 200) =~ "Dont see me"
     end
+
+    test "lists some posts as non admin ", %{conn: conn} do
+      insert(:post, title: "See me")
+      insert(:post, title: "Dont see me", draft: true, published_at: Timex.today() |> Timex.shift(days: 1))
+      conn = get(conn, Routes.post_path(conn, :index))
+      assert html_response(conn, 200) =~ "See me"
+      refute html_response(conn, 200) =~ "Dont see me"
+    end
+
+    test "lists all posts as admin", %{conn: conn} do
+      {:ok, [conn: conn]}= login_admin(%{conn: conn})
+      insert(:post, title: "See me")
+      insert(:post, title: "Me too", draft: true, published_at: Timex.today() |> Timex.shift(days: 1))
+      conn = get(conn, Routes.post_path(conn, :index))
+      assert html_response(conn, 200) =~ "See me"
+      assert html_response(conn, 200) =~ "Me too"
+    end
+
   end
 
   describe "new post" do
+    setup [:login_admin]
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.post_path(conn, :new))
       assert html_response(conn, 200) =~ "New Post"
@@ -27,50 +40,54 @@ defmodule MorphicProWeb.PostControllerTest do
   end
 
   describe "create post" do
+    setup [:login_admin]
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.post_path(conn, :create), post: @create_attrs)
+      %{title: title} = post_params = params_for(:post)
+      conn = post(conn, Routes.post_path(conn, :create), post: post_params)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.post_path(conn, :show, id)
+      assert %{slug: slug} = redirected_params(conn)
+      assert redirected_to(conn) == Routes.post_path(conn, :show, slug)
 
-      conn = get(conn, Routes.post_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Post"
+      conn = get(conn, Routes.post_path(conn, :show, slug))
+      assert html_response(conn, 200) =~ title
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.post_path(conn, :create), post: @invalid_attrs)
+      conn = post(conn, Routes.post_path(conn, :create), post: %{})
       assert html_response(conn, 200) =~ "New Post"
     end
   end
 
   describe "edit post" do
-    setup [:create_post]
+    setup [:create_post, :login_admin]
 
-    test "renders form for editing chosen post", %{conn: conn, post: post} do
+    test "renders form for editing chosen post", %{conn: conn, post: post } do
       conn = get(conn, Routes.post_path(conn, :edit, post))
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
 
   describe "update post" do
-    setup [:create_post]
+    setup [:create_post, :login_admin]
 
     test "redirects when data is valid", %{conn: conn, post: post} do
-      conn = put(conn, Routes.post_path(conn, :update, post), post: @update_attrs)
-      assert redirected_to(conn) == Routes.post_path(conn, :show, post)
+      %{title: title} = update_post_params = params_for(:post)
+      conn = put(conn, Routes.post_path(conn, :update, post), post: update_post_params)
+      assert %{slug: slug} = redirected_params(conn)
+      assert redirected_to(conn) == Routes.post_path(conn, :show, slug)
 
-      conn = get(conn, Routes.post_path(conn, :show, post))
-      assert html_response(conn, 200) =~ "some updated body"
+      conn = get(conn, Routes.post_path(conn, :show, slug))
+      assert html_response(conn, 200) =~ title
     end
 
     test "renders errors when data is invalid", %{conn: conn, post: post} do
-      conn = put(conn, Routes.post_path(conn, :update, post), post: @invalid_attrs)
+      conn = put(conn, Routes.post_path(conn, :update, post), post: %{title: nil})
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
 
   describe "delete post" do
-    setup [:create_post]
+    setup [:create_post, :login_admin]
 
     test "deletes chosen post", %{conn: conn, post: post} do
       conn = delete(conn, Routes.post_path(conn, :delete, post))
@@ -81,8 +98,5 @@ defmodule MorphicProWeb.PostControllerTest do
     end
   end
 
-  defp create_post(_) do
-    post = fixture(:post)
-    {:ok, post: post}
-  end
+  defp create_post(_), do: {:ok, post: insert(:post)}
 end

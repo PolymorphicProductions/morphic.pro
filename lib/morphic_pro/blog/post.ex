@@ -26,7 +26,7 @@ defmodule MorphicPro.Blog.Post do
     field :slug, :string
     field :title, :string
     field :tag_list, {:array, :string}, virtual: true
-    many_to_many(:tags, Tag, join_through: "post_tags", on_replace: :delete)
+    many_to_many(:tags, Tag, join_through: "post_tags", on_delete: :delete_all, on_replace: :delete)
     field :tags_string, :string
 
     timestamps()

@@ -129,14 +129,11 @@ defmodule MorphicPro.BlogTest do
     # TODO: figure out if I need to create a transaction
     # and manually delete join before I delete the post
     test "delete_post/1" do
-      post = insert(:post) |> unpreload(:tags, :many) |> IO.inspect
+      post = insert(:post) |> unpreload(:tags, :many)
 
       {:ok, deleted_post} = Blog.delete_post(post)
-      assert deleted_post == post
-
-      assert_raise Ecto.NoResultsError, fn ->
-        Post |> Repo.find(deleted_post.id)
-      end
+      assert deleted_post.id == post.id
+      assert MorphicPro.Blog.Post |> MorphicPro.Repo.get(post.id) == nil
     end
 
     # test "change_post/1" do

@@ -16,13 +16,14 @@ defmodule MorphicProWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  alias MorphicPro.Users.User
 
   using do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias MorphicProWeb.Router.Helpers, as: Routes
-
+      import MorphicProWeb.ConnCase
       # The default endpoint for testing
       @endpoint MorphicProWeb.Endpoint
     end
@@ -36,5 +37,11 @@ defmodule MorphicProWeb.ConnCase do
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  def login_admin(%{conn: conn}) do
+    user = %User{email: "test@example.com", admin: true}
+    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :morphic_pro)
+    {:ok, conn: conn}
   end
 end
