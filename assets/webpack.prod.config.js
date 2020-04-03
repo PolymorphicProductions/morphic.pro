@@ -21,11 +21,14 @@ module.exports = (env, options) => ({
     }
   },
   entry: {
-    app: "./js/app.js"
+    app: "./js/app.js",
+    post_edit: "./js/post_edit.js"
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "../priv/static/js")
+    path: path.resolve(__dirname, "../priv/static/js"),
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/js/',
     // Do I need a public path?
   },
   module: {

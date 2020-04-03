@@ -28,7 +28,6 @@ defmodule MorphicProWeb.PostControllerTest do
       assert html_response(conn, 200) =~ "See me"
       assert html_response(conn, 200) =~ "Me too"
     end
-
   end
 
   describe "new post" do

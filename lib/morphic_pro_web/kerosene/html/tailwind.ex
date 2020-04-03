@@ -12,10 +12,10 @@ defmodule MorphicProWeb.Kerosene.HTML.Tailwind do
     end
   end
 
-  defp build_html_class(true), do: "bg-gray-300"
-  defp build_html_class(false), do: ""
-
   defp build_html_class(additional_class \\ "") do
     String.trim("text-center pagination #{additional_class}")
   end
+  defp build_html_class(true), do: "bg-gray-300"
+  defp build_html_class(false), do: ""
+
 end
