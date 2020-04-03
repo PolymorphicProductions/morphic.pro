@@ -20,7 +20,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     steps:
       - uses: actions/checkout@v2
       - name: Cache mix modules
@@ -45,7 +44,10 @@ jobs:
           mix local.hex --force
           mix deps.get
       - name: Run Tests
-        run: mix test
+        env:
+          MIX_ENV: test
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mix coveralls.github
 
   Buid-Release:
     needs: Test

@@ -16,7 +16,9 @@ defmodule MorphicPro.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: ["coveralls.html": :test]
     ]
   end
 
@@ -59,7 +61,8 @@ defmodule MorphicPro.MixProject do
       # {:kerosene, github: "joshchernoff/kerosene"}
       {:kerosene, github: "PolymorphicProductions/kerosene"},
       {:ex_machina, "~> 2.4.0", only: :test},
-      {:faker, "~> 0.13.0", only: :test}
+      {:faker, "~> 0.13.0", only: :test},
+      {:excoveralls, "0.12.3", only: [:test, :dev]},
     ]
   end
 
