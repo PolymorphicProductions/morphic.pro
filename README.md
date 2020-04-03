@@ -1,6 +1,6 @@
 # MorphicPro
 
-![CI](https://github.com/joshchernoff/morphic.pro/workflows/CI/badge.svg) ![CD](https://github.com/joshchernoff/morphic.pro/workflows/CD/badge.svg)
+![CI](https://github.com/joshchernoff/morphic.pro/workflows/CI/badge.svg) ![CD](https://github.com/joshchernoff/morphic.pro/workflows/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/joshchernoff/polymorphic_productions_fe/badge.svg?branch=master)](https://coveralls.io/github/joshchernoff/polymorphic_productions_fe?branch=master)
 
 To start your Phoenix server:
 
