@@ -80,6 +80,31 @@ docReady(() => {
     navbarFixed.classList.add("bg-white", "text-gray-700");
   }
 })
+
+import("@silvia-odwyer/photon").then(photon => {
+  console.log("WTF")
+
+  window.filterImage = () => {
+    // Create a canvas and get a 2D context from the canvas
+    var canvas = document.getElementById("test1");
+    var ctx = canvas.getContext("2d");
+
+    // Draw the image element onto the canvas
+    //ctx.drawImage(newimg, 0, 0);
+
+    // Convert the ImageData found in the canvas to a PhotonImage (so that it can communicate with the core Rust library)
+    let image = photon.open_image(canvas, ctx);
+    // let img = photon:: open_image("/images/login3.jpg");
+    // Filter the image, the PhotonImage's raw pixels are modified
+    photon.filter(image, "golden");
+    // photon.resize(image, 100, 100, 3)
+
+    debugger
+    // Place the modified image back on the canvas
+    photon.putImageData(canvas, ctx, image);
+  }
+})
+
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:

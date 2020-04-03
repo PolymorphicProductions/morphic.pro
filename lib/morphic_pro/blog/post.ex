@@ -6,7 +6,7 @@ defmodule MorphicPro.Blog.Post do
 
   @behaviour Bodyguard.Schema
 
-  def scope(query, %MorphicPro.Users.User{admin: true}, _) do
+  def(scope(query, %MorphicPro.Users.User{admin: true}, _)) do
     query
   end
 
@@ -38,7 +38,7 @@ defmodule MorphicPro.Blog.Post do
     :published_at_local,
     :title,
     :draft,
-    :tags_string,
+    :tags_string
   ]
 
   @spec changeset(
@@ -54,12 +54,12 @@ defmodule MorphicPro.Blog.Post do
       :published_at_local,
       ~r/^\d{1,2}\/\d{1,2}\/\d{4}$/
     )
-    |> IO.inspect()
     |> validate_published_at()
     |> put_published_at()
     |> put_slug()
     |> parse_tags_list()
     |> parse_tags_assoc()
+    |> unique_constraint(:name, name: :posts_slug_index)
     |> unique_constraint(:slug, name: :posts_slug_index)
   end
 

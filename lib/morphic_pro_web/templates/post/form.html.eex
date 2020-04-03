@@ -49,3 +49,32 @@
   <%= submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
 </div>
 <% end %>
+
+<!-- window.filterImage -->
+<canvas id="test1"></canvas>
+
+<script>
+  function Test1() {
+    var ctx = document.getElementById('test1');
+    if (ctx.getContext) {
+
+      ctx = ctx.getContext('2d');
+
+      //Loading of the home test image - img1
+      var img1 = new Image();
+
+      //drawing of the test image - img1
+      img1.onload = function () {
+        ctx.canvas.width = img1.width;
+        ctx.canvas.height = img1.height;
+        //draw background image
+        ctx.drawImage(img1, 0, 0);
+        //draw a box over the top
+        //ctx.fillRect(0, 0, 500, 500);
+        window.filterImage()
+      };
+      img1.src = '/images/login3.jpg';
+
+    }
+  }
+</script>

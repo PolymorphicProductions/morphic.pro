@@ -37,26 +37,20 @@ defmodule MorphicProWeb.PostController do
   end
 
   def show(conn, %{"slug" => slug}, %{current_user: current_user}) do
-    #changeset = Blog.change_comment(%Comment{})
-
-    post = Blog.get_post!(slug, current_user)
-
-    post =
-      Blog.get_post!(slug, current_user,
-        preload: [Blog.tags_preload()]
-      )
+    # changeset = Blog.change_comment(%Comment{})
+    post = Blog.get_post!(slug, current_user, preload: [:tags])
 
     conn
     |> assign(:nav_class, "navbar navbar-absolute navbar-fixed")
     |> render("show.html",
       post: post
-      #changeset: changeset
+      # changeset: changeset
     )
   end
 
   def edit(conn, %{"slug" => slug}, %{current_user: current_user}) do
     with :ok <- Bodyguard.permit(Blog, :edit, current_user, nil) do
-      post = Blog.get_post!(slug, current_user, preload: [Blog.tags_preload()])
+      post = Blog.get_post!(slug, current_user, preload: [:tags])
       changeset = Blog.change_post(post)
       render(conn, "edit.html", post: post, changeset: changeset)
     end

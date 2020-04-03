@@ -40,7 +40,6 @@ defmodule MorphicPro.Blog do
   def list_posts(params, user) do
     Post
     |> from(preload: [:tags])
-    # <-- defers to MyApp.Blog.Post.scope/3
     |> Bodyguard.scope(user)
     |> Repo.order_by_published_at()
     |> Repo.paginate(params)
@@ -136,16 +135,6 @@ defmodule MorphicPro.Blog do
     Post.changeset(post, %{})
   end
 
-
-
-  def tags_preload do
-    :tags
-  end
-
-  def approved_comments_preload do
-    {:comments, {Comment |> Repo.approved() |> Repo.order_by_oldest(), :user}}
-  end
-
   @doc """
   Gets a single tag and all of its pics.
 
@@ -160,6 +149,7 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
+
   # def get_tag!(tag, params \\ %{}) do
   #   down_tag = String.downcase(tag)
 
@@ -183,7 +173,7 @@ defmodule MorphicPro.Blog do
   #   {tag, k}
   # end
 
-  def get_post_tag!(tag, params \\ %{}) do
+  def get_post_for_tag!(tag, params \\ %{}) do
     total_count =
       from(t in "tags",
         join: pt in "post_tags",
@@ -202,9 +192,5 @@ defmodule MorphicPro.Blog do
       |> Repo.one!()
 
     {tag, k}
-  end
-
-  def tags_preload do
-    :tags
   end
 end

@@ -21,7 +21,9 @@ module.exports = (env, options) => ({
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "../priv/static/js")
+    path: path.resolve(__dirname, "../priv/static/js"),
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/js/',
     // Do I need a public path?
   },
   optimization: {
@@ -67,8 +69,8 @@ module.exports = (env, options) => ({
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
-    new Jarvis({
-      port: 1337 // optional: set a port
-    })
+    // new Jarvis({
+    //   port: 1337 // optional: set a port
+    // })
   ]
 });

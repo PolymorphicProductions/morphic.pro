@@ -11,7 +11,7 @@ defmodule MorphicProWeb.TagController do
   # end
 
   def show_post(conn, %{"tag" => tag} = params) do
-    {tag, kerosene} = Blog.get_post_tag!(tag, params)
+    {tag, kerosene} = Blog.get_post_for_tag!(tag, params)
     render(conn, "show_posts.html", tag: tag, kerosene: kerosene)
   end
 end
