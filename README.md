@@ -1,6 +1,6 @@
 # MorphicPro
 
-![CI](https://github.com/PolymorphicProductions/morphic.pro/workflows/CI/badge.svg) ![CD](https://github.com/PolymorphicProductions/morphic.pro/workflows/CD/badge.svg)
+![CI](https://github.com/joshchernoff/morphic.pro/workflows/CI/badge.svg) ![CD](https://github.com/joshchernoff/morphic.pro/workflows/CD/badge.svg)
 
 To start your Phoenix server:
 
