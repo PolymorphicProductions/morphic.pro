@@ -41,7 +41,7 @@ defmodule MorphicPro.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.15"},
+      {:phoenix, "~> 1.4.16"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.1"},
@@ -63,6 +63,7 @@ defmodule MorphicPro.MixProject do
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.13.0", only: :test},
       {:excoveralls, "0.12.3", only: [:test, :dev]},
+      {:credo, "1.3.0", only: [:dev, :test], runtime: false}
     ]
   end
 
