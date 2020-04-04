@@ -1,0 +1,11 @@
+{
+  "skip_files": [
+    "deps",
+    "lib/morphic_pro_web.ex",
+    "lib/morphic_pro/application.ex",
+    "lib/morphic_pro/release.ex"
+  ],
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true
+  }
+}
