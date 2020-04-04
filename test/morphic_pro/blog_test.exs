@@ -143,10 +143,10 @@ defmodule MorphicPro.BlogTest do
     end
 
     test "get_post_for_tag!/2 looks up a tag and gets all the posts for it " do
-      %{tags: [%{name: tag_name} = tag | t]} = post = insert(:post)
+      %{tags: [%{name: tag_name} = tag | _t]} = post = insert(:post)
       {%{posts: [found_post]} = found_tag, _} = Blog.get_post_for_tag!(tag_name)
 
-      assert found_tag == tag
+      assert found_tag |> unpreload(:posts, :many) == tag
       assert found_post == post
     end
   end
