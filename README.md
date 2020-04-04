@@ -1,6 +1,6 @@
 # MorphicPro
 
-![CI](https://github.com/joshchernoff/morphic.pro/workflows/CI/badge.svg) ![CD](https://github.com/joshchernoff/morphic.pro/workflows/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/joshchernoff/morphic.pro/badge.svg?branch=master)](https://coveralls.io/github/joshchernoff/morphic.pro?branch=master)
+![CI](https://github.com/joshchernoff/morphic.pro/workflows/CI/badge.svg) ![CD](https://github.com/joshchernoff/morphic.pro/workflows/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/joshchernoff/morphic.pro/badge.svg?branch=master)](https://coveralls.io/github/joshchernoff/morphic.pro?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/931deebcbecb482db6e3aabd6c325df5)](https://app.codacy.com/manual/joshchernoff/morphic.pro?utm_source=github.com&utm_medium=referral&utm_content=joshchernoff/morphic.pro&utm_campaign=Badge_Grade_Dashboard)
 
 To start your Phoenix server:
 
