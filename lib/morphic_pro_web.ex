@@ -43,7 +43,7 @@ defmodule MorphicProWeb do
 
       import MorphicProWeb.ErrorHelpers
       import MorphicProWeb.Gettext
-      import Kerosene.HTML
+      import Dissolver.HTML
 
       alias MorphicProWeb.Router.Helpers, as: Routes
 

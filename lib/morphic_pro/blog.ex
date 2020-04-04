@@ -42,7 +42,7 @@ defmodule MorphicPro.Blog do
     |> from(preload: [:tags])
     |> Bodyguard.scope(user)
     |> Repo.order_by_published_at()
-    |> Repo.paginate(params)
+    |> Dissolver.paginate(params)
   end
 
   @doc """
@@ -149,22 +149,22 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post_for_tag!(tag, params \\ %{}) do
+  def get_post_for_tag!(tag_name, params \\ %{}) do
     total_count =
       from(t in "tags",
         join: pt in "post_tags",
         on: pt.tag_id == t.id,
-        where: t.name == ^tag,
+        where: t.name == ^tag_name,
         select: count()
       )
       |> Repo.one()
 
     {posts_query, k} =
       from(p in Post, order_by: [desc: :inserted_at], preload: [:tags])
-      |> Repo.paginate(params, total_count: total_count, lazy: true)
+      |> Dissolver.paginate(params, total_count: total_count, lazy: true)
 
     tag =
-      from(t in Tag, where: t.name == ^tag, preload: [posts: ^posts_query])
+      from(t in Tag, where: t.name == ^tag_name, preload: [posts: ^posts_query])
       |> Repo.one!()
 
     {tag, k}

@@ -22,17 +22,16 @@ defmodule MorphicProWeb.PostView do
       content_tag :div, class: "container px-3 mx-auto" do
         [
           link("Edit", to: Routes.post_path(MorphicProWeb.Endpoint, :edit, post), class: "mr-2"),
-          link("Delete",
-            to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post),
+          link("Delete", to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post),
             method: :delete,
-            data: [confirm: "Delete Post 🗑: #{post.title} ?"
-          ])
+            data: [confirm: "Delete Post 🗑: #{post.title} ?"]
+          )
         ]
       end
     end
   end
 
-  def admin_links(nil, post), do: nil
+  def admin_links(nil, _post), do: nil
 
   def parse_tags(tags) do
     Enum.map(tags, fn tag ->

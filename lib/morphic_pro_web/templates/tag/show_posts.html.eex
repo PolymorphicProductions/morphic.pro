@@ -43,5 +43,5 @@
 </div>
 
 <div class="container px-4 py-10 mx-auto">
-  <%= paginate @conn, @kerosene %>
+  <%= paginate @conn, @dissolver %>
 </div>

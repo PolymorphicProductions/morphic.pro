@@ -11,8 +11,8 @@ defmodule MorphicProWeb.PostController do
   end
 
   def index(conn, params, %{current_user: current_user}) do
-    {posts, kerosene} = Blog.list_posts(params, current_user)
-    render(conn, "index.html", posts: posts, kerosene: kerosene)
+    {posts, dissolver} = Blog.list_posts(params, current_user)
+    render(conn, "index.html", posts: posts, dissolver: dissolver)
   end
 
   def new(conn, _params, %{current_user: current_user}) do

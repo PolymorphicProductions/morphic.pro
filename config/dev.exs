@@ -28,8 +28,8 @@ config :morphic_pro, MorphicProWeb.Endpoint,
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
-      "--config", 
-      "webpack.dev.config.js", 
+      "--config",
+      "webpack.dev.config.js",
       "--watch-stdin",
       "--colors",
       cd: Path.expand("../assets", __DIR__)
@@ -80,3 +80,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :dissolver, per_page: 3
