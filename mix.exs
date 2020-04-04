@@ -18,7 +18,7 @@ defmodule MorphicPro.MixProject do
       aliases: aliases(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: ["coveralls.html": :test]
+      preferred_cli_env: [t: :test, "coveralls.html": :test]
     ]
   end
 
@@ -77,7 +77,8 @@ defmodule MorphicPro.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "coveralls.html", "credo --strict"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      t: ["ecto.create --quiet", "ecto.migrate", "coveralls.html", "credo --strict"]
     ]
   end
 end

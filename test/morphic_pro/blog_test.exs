@@ -136,10 +136,18 @@ defmodule MorphicPro.BlogTest do
       assert MorphicPro.Blog.Post |> MorphicPro.Repo.get(post.id) == nil
     end
 
-    # test "change_post/1" do
-    # end
+    test "change_post/1 returns a ecto changeset given you provide a Post struct" do
+      post = insert(:post)
+      %Ecto.Changeset{} = cs = Blog.change_post(post)
+      assert cs.data == post
+    end
 
-    # test "get_post_for_tag!/2" do
-    # end
+    test "get_post_for_tag!/2 looks up a tag and gets all the posts for it " do
+      %{tags: [%{name: tag_name} = tag | t]} = post = insert(:post)
+      {%{posts: [found_post]} = found_tag, _} = Blog.get_post_for_tag!(tag_name)
+
+      assert found_tag == tag
+      assert found_post == post
+    end
   end
 end

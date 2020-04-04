@@ -149,12 +149,12 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post_for_tag!(tag, params \\ %{}) do
+  def get_post_for_tag!(tag_name, params \\ %{}) do
     total_count =
       from(t in "tags",
         join: pt in "post_tags",
         on: pt.tag_id == t.id,
-        where: t.name == ^tag,
+        where: t.name == ^tag_name,
         select: count()
       )
       |> Repo.one()
@@ -164,7 +164,7 @@ defmodule MorphicPro.Blog do
       |> Repo.paginate(params, total_count: total_count, lazy: true)
 
     tag =
-      from(t in Tag, where: t.name == ^tag, preload: [posts: ^posts_query])
+      from(t in Tag, where: t.name == ^tag_name, preload: [posts: ^posts_query])
       |> Repo.one!()
 
     {tag, k}
