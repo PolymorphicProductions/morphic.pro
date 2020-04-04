@@ -1,4 +1,8 @@
 defmodule MorphicPro.Policy do
+  @moduledoc """
+    This module is the main policy for authroization in morphic.pro
+  """
+
   @behaviour Bodyguard.Policy
 
   def authorize(_action, %{admin: true}, _params), do: true

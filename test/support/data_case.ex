@@ -15,6 +15,8 @@ defmodule MorphicPro.DataCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.{Adapters.SQL.Sandbox, Association.NotLoaded, Changeset}
+  alias MorphicPro.Repo
 
   using do
     quote do
@@ -28,10 +30,10 @@ defmodule MorphicPro.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MorphicPro.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(MorphicPro.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
 
     :ok
@@ -46,7 +48,7 @@ defmodule MorphicPro.DataCase do
 
   """
   def errors_on(changeset) do
-    Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
+    Changeset.traverse_errors(changeset, fn {message, opts} ->
       Regex.replace(~r"%{(\w+)}", message, fn _, key ->
         opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
       end)
@@ -54,12 +56,13 @@ defmodule MorphicPro.DataCase do
   end
 
   def unpreload(struct, field, cardinality \\ :one) do
-    %{struct |
-      field => %Ecto.Association.NotLoaded{
-        __field__: field,
-        __owner__: struct.__struct__,
-        __cardinality__: cardinality
-      }
+    %{
+      struct
+      | field => %NotLoaded{
+          __field__: field,
+          __owner__: struct.__struct__,
+          __cardinality__: cardinality
+        }
     }
   end
 end

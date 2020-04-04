@@ -1,4 +1,6 @@
 defmodule MorphicPro.Blog.Tag do
+  @moduledoc false
+
   use Ecto.Schema
 
   schema "tags" do

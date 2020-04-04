@@ -1,8 +1,6 @@
 defmodule MorphicProWeb.PostView do
   use MorphicProWeb, :view
 
-  import Kerosene.HTML
-
   def render("script.new.html", _assigns), do: render("script.edit.html", %{})
 
   def render("script.edit.html", _assigns) do
@@ -24,18 +22,27 @@ defmodule MorphicProWeb.PostView do
       content_tag :div, class: "container px-3 mx-auto" do
         [
           link("Edit", to: Routes.post_path(MorphicProWeb.Endpoint, :edit, post), class: "mr-2"),
-          link("Delete", to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post), method: :delete, data: [confirm: "Delete Post 🗑: #{post.title} ?"])
+          link("Delete",
+            to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post),
+            method: :delete,
+            data: [confirm: "Delete Post 🗑: #{post.title} ?"
+          ])
         ]
       end
     end
-
   end
+
   def admin_links(nil, post), do: nil
 
   def parse_tags(tags) do
     Enum.map(tags, fn tag ->
-      content_tag(:span, link("##{tag.name}", to: Routes.post_tag_path(MorphicProWeb.Endpoint, :show_post, tag.name), class: "inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200"))
+      content_tag(
+        :span,
+        link("##{tag.name}",
+          to: Routes.post_tag_path(MorphicProWeb.Endpoint, :show_post, tag.name),
+          class: "inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200"
+        )
+      )
     end)
   end
-
 end

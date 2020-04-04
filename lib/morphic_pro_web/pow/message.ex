@@ -1,5 +1,9 @@
 defmodule MorphicProWeb.Pow.Messages do
+  @moduledoc """
+    Custom Gettext stuff
+  """
   use Pow.Phoenix.Messages
+
   use Pow.Extension.Phoenix.Messages,
     extensions: [PowResetPassword, PowEmailConfirmation]
 
@@ -33,7 +37,10 @@ defmodule MorphicProWeb.Pow.Messages do
   Message for when user couldn't be signed in.
   """
   def invalid_credentials(_conn),
-    do: gettext("The provided login details did not work. Please verify your credentials, and try again.")
+    do:
+      gettext(
+        "The provided login details did not work. Please verify your credentials, and try again."
+      )
 
   @doc """
   Message for when user has signed up successfully.
@@ -49,7 +56,8 @@ defmodule MorphicProWeb.Pow.Messages do
   @doc """
   Message for when user has deleted their account successfully.
   """
-  def user_has_been_deleted(_conn), do: gettext("Your account has been deleted. Sorry to see you go!")
+  def user_has_been_deleted(_conn),
+    do: gettext("Your account has been deleted. Sorry to see you go!")
 
   @doc """
   Message for when account could not be deleted.

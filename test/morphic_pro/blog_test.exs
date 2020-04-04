@@ -45,7 +45,9 @@ defmodule MorphicPro.BlogTest do
       insert(:post, published_at: Timex.today(), draft: true, tags: [])
       insert(:post, published_at: Timex.today() |> Timex.shift(days: -1), tags: [])
 
-      {list_posts, %{per_page: 2, total_count: 4, total_pages: 2}} = Blog.list_posts(%{}, %User{admin: true})
+      {list_posts, %{per_page: 2, total_count: 4, total_pages: 2}} =
+        Blog.list_posts(%{}, %User{admin: true})
+
       assert list_posts == [post1, post2]
     end
 
@@ -126,8 +128,6 @@ defmodule MorphicPro.BlogTest do
       assert updated_post.draft == post_params.draft
     end
 
-    # TODO: figure out if I need to create a transaction
-    # and manually delete join before I delete the post
     test "delete_post/1" do
       post = insert(:post) |> unpreload(:tags, :many)
 

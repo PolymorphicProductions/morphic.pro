@@ -1,4 +1,9 @@
 defmodule MorphicPro.Release do
+  @moduledoc """
+    This module is meant to only be ran on a remote server where mix is not avalible.
+    It is used for running ecto migrations.
+  """
+
   @app :morphic_pro
 
   def migrate do

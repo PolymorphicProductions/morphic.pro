@@ -1,4 +1,6 @@
 defmodule MorphicPro.Blog.Tagging do
+  @moduledoc false
+
   import Ecto.Query
 
   alias Ecto.Changeset

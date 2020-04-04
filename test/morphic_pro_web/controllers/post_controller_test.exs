@@ -6,7 +6,13 @@ defmodule MorphicProWeb.PostControllerTest do
   describe "index" do
     test "lists some posts while not logged in ", %{conn: conn} do
       insert(:post, title: "See me")
-      insert(:post, title: "Dont see me", draft: true, published_at: Timex.today() |> Timex.shift(days: 1))
+
+      insert(:post,
+        title: "Dont see me",
+        draft: true,
+        published_at: Timex.today() |> Timex.shift(days: 1)
+      )
+
       conn = get(conn, Routes.post_path(conn, :index))
       assert html_response(conn, 200) =~ "See me"
       refute html_response(conn, 200) =~ "Dont see me"
@@ -14,16 +20,28 @@ defmodule MorphicProWeb.PostControllerTest do
 
     test "lists some posts as non admin ", %{conn: conn} do
       insert(:post, title: "See me")
-      insert(:post, title: "Dont see me", draft: true, published_at: Timex.today() |> Timex.shift(days: 1))
+
+      insert(:post,
+        title: "Dont see me",
+        draft: true,
+        published_at: Timex.today() |> Timex.shift(days: 1)
+      )
+
       conn = get(conn, Routes.post_path(conn, :index))
       assert html_response(conn, 200) =~ "See me"
       refute html_response(conn, 200) =~ "Dont see me"
     end
 
     test "lists all posts as admin", %{conn: conn} do
-      {:ok, [conn: conn]}= login_admin(%{conn: conn})
+      {:ok, [conn: conn]} = login_admin(%{conn: conn})
       insert(:post, title: "See me")
-      insert(:post, title: "Me too", draft: true, published_at: Timex.today() |> Timex.shift(days: 1))
+
+      insert(:post,
+        title: "Me too",
+        draft: true,
+        published_at: Timex.today() |> Timex.shift(days: 1)
+      )
+
       conn = get(conn, Routes.post_path(conn, :index))
       assert html_response(conn, 200) =~ "See me"
       assert html_response(conn, 200) =~ "Me too"
@@ -32,6 +50,7 @@ defmodule MorphicProWeb.PostControllerTest do
 
   describe "new post" do
     setup [:login_admin]
+
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.post_path(conn, :new))
       assert html_response(conn, 200) =~ "New Post"
@@ -40,6 +59,7 @@ defmodule MorphicProWeb.PostControllerTest do
 
   describe "create post" do
     setup [:login_admin]
+
     test "redirects to show when data is valid", %{conn: conn} do
       %{title: title} = post_params = params_for(:post)
       conn = post(conn, Routes.post_path(conn, :create), post: post_params)
@@ -60,7 +80,7 @@ defmodule MorphicProWeb.PostControllerTest do
   describe "edit post" do
     setup [:create_post, :login_admin]
 
-    test "renders form for editing chosen post", %{conn: conn, post: post } do
+    test "renders form for editing chosen post", %{conn: conn, post: post} do
       conn = get(conn, Routes.post_path(conn, :edit, post))
       assert html_response(conn, 200) =~ "Edit Post"
     end
@@ -91,6 +111,7 @@ defmodule MorphicProWeb.PostControllerTest do
     test "deletes chosen post", %{conn: conn, post: post} do
       conn = delete(conn, Routes.post_path(conn, :delete, post))
       assert redirected_to(conn) == Routes.post_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.post_path(conn, :show, post))
       end

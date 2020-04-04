@@ -20,7 +20,7 @@ defmodule MorphicPro.Blog do
       [%Post{}, ...]
 
   """
-  def list_latest_posts() do
+  def list_latest_posts do
     Post
     |> from(limit: 4, preload: [:tags])
     |> Repo.where_published()
@@ -149,30 +149,6 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
-
-  # def get_tag!(tag, params \\ %{}) do
-  #   down_tag = String.downcase(tag)
-
-  #   total_count =
-  #     from(t in "tags",
-  #       join: pt in "pic_tags",
-  #       on: pt.tag_id == t.id,
-  #       where: t.name == ^down_tag,
-  #       select: count()
-  #     )
-  #     |> Repo.one()
-
-  #   {pics_query, k} =
-  #     from(p in Pic, order_by: [desc: :inserted_at])
-  #     |> Repo.paginate(params, total_count: total_count) #FIXME , lazy: true
-
-  #   tag =
-  #     from(t in Tag, where: t.name == ^down_tag, preload: [pics: ^pics_query])
-  #     |> Repo.one!()
-
-  #   {tag, k}
-  # end
-
   def get_post_for_tag!(tag, params \\ %{}) do
     total_count =
       from(t in "tags",

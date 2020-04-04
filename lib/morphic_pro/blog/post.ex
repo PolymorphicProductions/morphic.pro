@@ -1,8 +1,10 @@
 defmodule MorphicPro.Blog.Post do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias MorphicPro.Blog.{Tagging, Tag}
+  alias MorphicPro.Blog.{Tag, Tagging}
 
   @behaviour Bodyguard.Schema
 
@@ -26,7 +28,13 @@ defmodule MorphicPro.Blog.Post do
     field :slug, :string
     field :title, :string
     field :tag_list, {:array, :string}, virtual: true
-    many_to_many(:tags, Tag, join_through: "post_tags", on_delete: :delete_all, on_replace: :delete)
+
+    many_to_many(:tags, Tag,
+      join_through: "post_tags",
+      on_delete: :delete_all,
+      on_replace: :delete
+    )
+
     field :tags_string, :string
 
     timestamps()

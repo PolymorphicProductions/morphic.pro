@@ -10,10 +10,6 @@ defmodule MorphicProWeb.Endpoint do
     signing_salt: "b80VM/DD"
   ]
 
-  socket "/socket", MorphicProWeb.UserSocket,
-    websocket: true,
-    longpoll: false
-
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -24,7 +20,6 @@ defmodule MorphicProWeb.Endpoint do
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt),
     content_types: %{"02ee66ae5fb312b3f788.module.wasm" => "application/wasm"}
-
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

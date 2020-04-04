@@ -26,7 +26,6 @@ defmodule MorphicProWeb do
       alias MorphicProWeb.Router.Helpers, as: Routes
 
       action_fallback(MorphicPro.FallbackController)
-
     end
   end
 
@@ -44,6 +43,8 @@ defmodule MorphicProWeb do
 
       import MorphicProWeb.ErrorHelpers
       import MorphicProWeb.Gettext
+      import Kerosene.HTML
+
       alias MorphicProWeb.Router.Helpers, as: Routes
 
       def parse_date(d), do: Timex.format!(d, "{Mshort} {D}, {YYYY}")

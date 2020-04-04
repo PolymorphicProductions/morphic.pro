@@ -16,7 +16,9 @@ defmodule MorphicProWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
-  alias MorphicPro.Users.User
+
+  alias Ecto.Adapters.SQL.Sandbox
+  alias MorphicPro.{Repo, Users.User}
 
   using do
     quote do
@@ -30,10 +32,10 @@ defmodule MorphicProWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MorphicPro.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(MorphicPro.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

@@ -17,7 +17,7 @@ defmodule MorphicProWeb.PostController do
 
   def new(conn, _params, %{current_user: current_user}) do
     with :ok <- Bodyguard.permit(Blog, :create_post, current_user, nil),
-         changeset = Blog.change_post(%Post{}) do
+         changeset <- Blog.change_post(%Post{}) do
       render(conn, "new.html", changeset: changeset)
     end
   end
