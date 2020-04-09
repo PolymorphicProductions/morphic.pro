@@ -20,7 +20,7 @@ defmodule MorphicPro.Blog do
       [%Post{}, ...]
 
   """
-  def list_latest_posts() do
+  def list_latest_posts do
     Post
     |> from(limit: 4, preload: [:tags])
     |> Repo.where_published()
@@ -42,7 +42,7 @@ defmodule MorphicPro.Blog do
     |> from(preload: [:tags])
     |> Bodyguard.scope(user)
     |> Repo.order_by_published_at()
-    |> Repo.paginate(params)
+    |> Dissolver.paginate(params)
   end
 
   @doc """
@@ -149,46 +149,22 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
-
-  # def get_tag!(tag, params \\ %{}) do
-  #   down_tag = String.downcase(tag)
-
-  #   total_count =
-  #     from(t in "tags",
-  #       join: pt in "pic_tags",
-  #       on: pt.tag_id == t.id,
-  #       where: t.name == ^down_tag,
-  #       select: count()
-  #     )
-  #     |> Repo.one()
-
-  #   {pics_query, k} =
-  #     from(p in Pic, order_by: [desc: :inserted_at])
-  #     |> Repo.paginate(params, total_count: total_count) #FIXME , lazy: true
-
-  #   tag =
-  #     from(t in Tag, where: t.name == ^down_tag, preload: [pics: ^pics_query])
-  #     |> Repo.one!()
-
-  #   {tag, k}
-  # end
-
-  def get_post_for_tag!(tag, params \\ %{}) do
+  def get_post_for_tag!(tag_name, params \\ %{}) do
     total_count =
       from(t in "tags",
         join: pt in "post_tags",
         on: pt.tag_id == t.id,
-        where: t.name == ^tag,
+        where: t.name == ^tag_name,
         select: count()
       )
       |> Repo.one()
 
     {posts_query, k} =
       from(p in Post, order_by: [desc: :inserted_at], preload: [:tags])
-      |> Repo.paginate(params, total_count: total_count, lazy: true)
+      |> Dissolver.paginate(params, total_count: total_count, lazy: true)
 
     tag =
-      from(t in Tag, where: t.name == ^tag, preload: [posts: ^posts_query])
+      from(t in Tag, where: t.name == ^tag_name, preload: [posts: ^posts_query])
       |> Repo.one!()
 
     {tag, k}

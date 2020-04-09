@@ -3,8 +3,6 @@ defmodule MorphicPro.Repo do
     otp_app: :morphic_pro,
     adapter: Ecto.Adapters.Postgres
 
-  use Kerosene
-
   import Ecto.Query
 
   def approved(query) do

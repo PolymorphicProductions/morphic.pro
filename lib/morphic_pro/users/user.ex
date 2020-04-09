@@ -1,4 +1,6 @@
 defmodule MorphicPro.Users.User do
+  @moduledoc false
+
   use Ecto.Schema
   use Pow.Ecto.Schema
 

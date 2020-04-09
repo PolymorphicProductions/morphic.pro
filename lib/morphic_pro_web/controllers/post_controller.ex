@@ -11,13 +11,13 @@ defmodule MorphicProWeb.PostController do
   end
 
   def index(conn, params, %{current_user: current_user}) do
-    {posts, kerosene} = Blog.list_posts(params, current_user)
-    render(conn, "index.html", posts: posts, kerosene: kerosene)
+    {posts, dissolver} = Blog.list_posts(params, current_user)
+    render(conn, "index.html", posts: posts, dissolver: dissolver)
   end
 
   def new(conn, _params, %{current_user: current_user}) do
     with :ok <- Bodyguard.permit(Blog, :create_post, current_user, nil),
-         changeset = Blog.change_post(%Post{}) do
+         changeset <- Blog.change_post(%Post{}) do
       render(conn, "new.html", changeset: changeset)
     end
   end

@@ -1,16 +1,21 @@
 defmodule MorphicPro.Factory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: MorphicPro.Repo
 
+  alias Faker.{Commerce, Lorem, Name}
   alias MorphicPro.Blog.{Post, Tag}
 
   # Only use as a source for params
   # Will not produce a valid struct
   @spec random_post_factory :: MorphicPro.Blog.Post.t()
   def random_post_factory do
-    title = Faker.Name.title()
-    tags = build_list(3, :tag)
-          |> Enum.map(fn tag -> tag.name end)
-          |> Enum.join(", ")
+    title = Name.title()
+
+    tags =
+      build_list(3, :tag)
+      |> Enum.map(fn tag -> tag.name end)
+      |> Enum.join(", ")
 
     date =
       Faker.Date.between(
@@ -21,16 +26,16 @@ defmodule MorphicPro.Factory do
     %Post{
       title: title,
       slug: Slug.slugify(title),
-      body: Faker.Lorem.paragraph(),
-      excerpt: Faker.Lorem.paragraph(),
+      body: Lorem.paragraph(),
+      excerpt: Lorem.paragraph(),
       draft: Enum.random([true, false]),
       tags_string: tags,
       published_at_local: Timex.format!(date, "%m/%d/%Y", :strftime)
     }
   end
 
-  def post_factory() do
-    title = Faker.Name.title()
+  def post_factory do
+    title = Name.title()
     date = Timex.today()
     tags = build_list(3, :tag)
 
@@ -43,8 +48,8 @@ defmodule MorphicPro.Factory do
     %Post{
       title: title,
       slug: Slug.slugify(title),
-      body: Faker.Lorem.paragraph(),
-      excerpt: Faker.Lorem.paragraph(),
+      body: Lorem.paragraph(),
+      excerpt: Lorem.paragraph(),
       draft: false,
       tags_string: tags_string,
       published_at: date,
@@ -53,9 +58,9 @@ defmodule MorphicPro.Factory do
     }
   end
 
-  def tag_factory() do
+  def tag_factory do
     %Tag{
-      name: sequence(:name, &"#{Faker.Commerce.En.product_name_product()}#{&1})")
+      name: sequence(:name, &"#{Commerce.En.product_name_product()}#{&1})")
     }
   end
 end

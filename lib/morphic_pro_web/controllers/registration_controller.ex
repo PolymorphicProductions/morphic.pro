@@ -1,8 +1,9 @@
 defmodule MorphicProWeb.RegistrationController do
   use MorphicProWeb, :controller
+  alias PowEmailConfirmation.{Phoenix, Plug}
 
   def resend_confirmation_email(conn, _params) do
-    case PowEmailConfirmation.Plug.pending_email_change?(conn) do
+    case Plug.pending_email_change?(conn) do
       true ->
         send_confirmation_email(conn)
 
@@ -20,6 +21,6 @@ defmodule MorphicProWeb.RegistrationController do
   defp send_confirmation_email(conn) do
     user = Pow.Plug.current_user(conn)
 
-    PowEmailConfirmation.Phoenix.ControllerCallbacks.send_confirmation_email(user, conn)
+    Phoenix.ControllerCallbacks.send_confirmation_email(user, conn)
   end
 end

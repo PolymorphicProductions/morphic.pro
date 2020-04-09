@@ -17,4 +17,4 @@ config :morphic_pro, MorphicProWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :kerosene, theme: MorphicProWeb.Kerosene.HTML.Tailwind, per_page: 2
+config :dissolver, theme: Dissolver.HTML.Tailwind, per_page: 2
