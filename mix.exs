@@ -58,7 +58,7 @@ defmodule MorphicPro.MixProject do
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.3.0"},
       {:bodyguard, "~> 2.4.0"},
-      {:dissolver, github: "joshchernoff/dissolver", branch: :release_1},
+      {:dissolver, github: "MorphicPro/dissolver"},
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.13.0", only: :test},
       {:excoveralls, "0.12.3", only: [:test, :dev]},
