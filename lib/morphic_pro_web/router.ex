@@ -1,6 +1,7 @@
 defmodule MorphicProWeb.Router do
   use MorphicProWeb, :router
   use Pow.Phoenix.Router
+
   use Pow.Extension.Phoenix.Router,
     extensions: [PowResetPassword, PowEmailConfirmation]
 
@@ -17,9 +18,9 @@ defmodule MorphicProWeb.Router do
       error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
-  # pipeline :api do
-  #   plug :accepts, ["json"]
-  # end
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
 
   scope "/" do
     pipe_through :browser
@@ -30,8 +31,13 @@ defmodule MorphicProWeb.Router do
   scope "/", MorphicProWeb do
     pipe_through [:browser, :protected]
 
-    resources "/posts", PostController, only: [:edit, :new, :create, :update, :delete], param: "slug"
-    post "/registration/send-confirmation-email", RegistrationController, :resend_confirmation_email
+    resources "/posts", PostController,
+      only: [:edit, :new, :create, :update, :delete],
+      param: "slug"
+
+    post "/registration/send-confirmation-email",
+         RegistrationController,
+         :resend_confirmation_email
   end
 
   scope "/", MorphicProWeb do
@@ -42,12 +48,14 @@ defmodule MorphicProWeb.Router do
     get "/", PageController, :index
   end
 
-  if Mix.env == :dev do
+  if Mix.env() == :dev do
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MorphicProWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", MorphicProWeb do
+    pipe_through [:api, :protected]
+
+    put "/gen_presigned_url", PresignedUrlController, :gen_presigned_url
+  end
 end

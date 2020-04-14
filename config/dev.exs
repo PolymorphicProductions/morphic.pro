@@ -1,5 +1,8 @@
 use Mix.Config
 
+access_key_id = System.get_env("AWS_ACCESS_KEY_ID")
+secret_access_key = System.get_env("AWS_SECRET_ACCESS_KEY")
+
 # Configure your database
 config :morphic_pro, MorphicPro.Repo,
   username: "postgres",
@@ -82,3 +85,7 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :dissolver, per_page: 3
+
+config :ex_aws,
+  access_key_id: access_key_id,
+  secret_access_key: secret_access_key

@@ -30,7 +30,9 @@ defmodule MorphicPro.Factory do
       excerpt: Lorem.paragraph(),
       draft: Enum.random([true, false]),
       tags_string: tags,
-      published_at_local: Timex.format!(date, "%m/%d/%Y", :strftime)
+      published_at_local: Timex.format!(date, "%m/%d/%Y", :strftime),
+      large_img: "large_img.jpg",
+      thumb_img: "thumb_img.jpg"
     }
   end
 
@@ -54,7 +56,9 @@ defmodule MorphicPro.Factory do
       tags_string: tags_string,
       published_at: date,
       published_at_local: Timex.format!(date, "%m/%d/%Y", :strftime),
-      tags: tags
+      tags: tags,
+      large_img: "large_img.jpg",
+      thumb_img: "thumb_img.jpg"
     }
   end
 

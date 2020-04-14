@@ -15,7 +15,7 @@
     <%= for post <- @posts do %>
     <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
       <%= link to: Routes.post_path(@conn, :show, post) do %>
-      <img class="w-full" src="/images/card-top.jpg" alt="Sunset in the mountains">
+      <img class="w-full" src="<%= post.thumb_img %>" alt="Sunset in the mountains">
       <% end %>
 
       <div class="px-6 py-4">

@@ -1,4 +1,4 @@
-<div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/login3.jpg") %>)">
+<div class="bg-image" style="background-image: url(<%= @post.large_img %>)">
   <div class="flex items-center h-screen align-middle bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12 align-middle">
