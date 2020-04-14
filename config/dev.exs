@@ -1,16 +1,7 @@
 use Mix.Config
 
-access_key_id =
-  System.get_env("AWS_ACCESS_KEY_ID") ||
-    raise """
-    environment variable AWS_ACCESS_KEY_ID is missing.
-    """
-
-secret_access_key =
-  System.get_env("AWS_SECRET_ACCESS_KEY") ||
-    raise """
-    environment variable AWS_SECRET_ACCESS_KEY is missing.
-    """
+access_key_id = System.get_env("AWS_ACCESS_KEY_ID")
+secret_access_key = System.get_env("AWS_SECRET_ACCESS_KEY")
 
 # Configure your database
 config :morphic_pro, MorphicPro.Repo,
