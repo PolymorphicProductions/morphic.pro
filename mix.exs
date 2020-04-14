@@ -62,7 +62,11 @@ defmodule MorphicPro.MixProject do
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.13.0", only: :test},
       {:excoveralls, "0.12.3", only: [:test, :dev]},
-      {:credo, "1.3.0", only: [:dev, :test], runtime: false}
+      {:credo, "1.3.0", only: [:dev, :test], runtime: false},
+      {:ex_aws, "~> 2.1"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:hackney, "~> 1.9"},
+      {:sweet_xml, "~> 0.6"}
     ]
   end
 

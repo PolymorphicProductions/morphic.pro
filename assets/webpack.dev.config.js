@@ -62,6 +62,19 @@ module.exports = (env, options) => ({
           }
         }
       }
+      // ,
+      // {
+      //   test: /\.wasm$/,
+      //   use: {
+      //     loader: "file-loader",
+      //     options: {
+      //       name(file) {
+      //         return "[name]_[hash].[ext]";
+      //       },
+      //       outputPath: "../wasm/"
+      //     }
+      //   }
+      // }
     ]
   },
   devtool: "inline-source-map",

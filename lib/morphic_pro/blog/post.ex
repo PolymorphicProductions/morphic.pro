@@ -28,6 +28,8 @@ defmodule MorphicPro.Blog.Post do
     field :slug, :string
     field :title, :string
     field :tag_list, {:array, :string}, virtual: true
+    field :large_img, :string
+    field :thumb_img, :string
 
     many_to_many(:tags, Tag,
       join_through: "post_tags",
@@ -46,7 +48,9 @@ defmodule MorphicPro.Blog.Post do
     :published_at_local,
     :title,
     :draft,
-    :tags_string
+    :tags_string,
+    :large_img,
+    :thumb_img
   ]
 
   @spec changeset(
