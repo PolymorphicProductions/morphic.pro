@@ -7,18 +7,6 @@
 # General application configuration
 use Mix.Config
 
-access_key_id =
-  System.get_env("AWS_ACCESS_KEY_ID") ||
-    raise """
-    environment variable AWS_ACCESS_KEY_ID is missing.
-    """
-
-secret_access_key =
-  System.get_env("AWS_SECRET_ACCESS_KEY") ||
-    raise """
-    environment variable AWS_SECRET_ACCESS_KEY is missing.
-    """
-
 config :morphic_pro,
   ecto_repos: [MorphicPro.Repo]
 
@@ -58,10 +46,6 @@ config :morphic_pro, MorphicProWeb.Mailer,
   adapter: Bamboo.LocalAdapter,
   # optional
   open_email_in_browser_url: "https://localhost:4001/sent_emails"
-
-config :ex_aws,
-  access_key_id: access_key_id,
-  secret_access_key: secret_access_key
 
 # config :mnesia, :dir, '../'
 
