@@ -2,7 +2,6 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const Jarvis = require("webpack-jarvis");
 
 module.exports = (env, options) => ({
   // mode - Chosen mode tells webpack to use its built-in optimizations accordingly.
@@ -62,19 +61,6 @@ module.exports = (env, options) => ({
           }
         }
       }
-      // ,
-      // {
-      //   test: /\.wasm$/,
-      //   use: {
-      //     loader: "file-loader",
-      //     options: {
-      //       name(file) {
-      //         return "[name]_[hash].[ext]";
-      //       },
-      //       outputPath: "../wasm/"
-      //     }
-      //   }
-      // }
     ]
   },
   devtool: "inline-source-map",
@@ -82,8 +68,5 @@ module.exports = (env, options) => ({
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
-    // new Jarvis({
-    //   port: 1337 // optional: set a port
-    // })
   ]
 });

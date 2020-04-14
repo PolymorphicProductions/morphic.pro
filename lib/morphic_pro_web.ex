@@ -50,8 +50,9 @@ defmodule MorphicProWeb do
       def parse_date(d), do: Timex.format!(d, "{Mshort} {D}, {YYYY}")
 
       def parse_markdown(text) do
+        # TODO: Capture the 3 item in the tuple that comes from `Earmark.as_html` and send to logs
         case Earmark.as_html(text) do
-          {:ok, html_doc, []} ->
+          {:ok, html_doc, _} ->
             html_doc
 
           {:error, _html_doc, error_messages} ->

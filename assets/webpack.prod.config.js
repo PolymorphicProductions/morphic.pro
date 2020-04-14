@@ -1,5 +1,4 @@
 const path = require("path");
-const glob = require("glob");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -29,7 +28,6 @@ module.exports = (env, options) => ({
     path: path.resolve(__dirname, "../priv/static/js"),
     chunkFilename: '[name].bundle.js',
     publicPath: '/js/',
-    // Do I need a public path?
   },
   module: {
     rules: [
