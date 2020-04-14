@@ -35,6 +35,7 @@ h3{
   @apply text-xl
 }
 
+
 .bg-black-05 {
   background: rgba(0, 0, 0, 0.5) !important;
 }
@@ -100,6 +101,9 @@ nav .icon-shape {
   }
   code.inline {
     @apply text-pink-500;
+    display: inline;
+    padding: 0 4px;
+    background-color: rgb(248, 248, 248)
   }
   code {
     @apply p-4 text-gray-600;
