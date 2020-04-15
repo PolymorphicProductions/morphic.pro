@@ -28,8 +28,10 @@
 </div>
 
 <a name="body"></a>
-<div class="container px-8 py-10 mx-auto my-20 bg-white post-body">
-  <%= @post.body |> parse_markdown |> raw %>
+<div class="container mx-auto my-20">
+  <div class="lg:px-64 px-8 py-24 bg-white post-body">
+    <%= @post.body |> parse_markdown |> raw %>
+  </div>
 </div>
 
 <%= admin_links @current_user, @post %>
