@@ -1,4 +1,6 @@
 import * as EasyMDE from "easymde";
+import ExifReader from 'exifreader';
+
 const easymdeBody = new EasyMDE({
   element: document.getElementById("snap_body")
 });
@@ -15,8 +17,23 @@ function draw(ev) {
     url = window.URL || window.webkitURL,
     src = url.createObjectURL(f);
 
+  let reader = new FileReader();
+  reader.readAsArrayBuffer(f)
+  reader.onload = function () {
+    console.log(reader.result);
+    let exif = ExifReader.load(reader.result);
+    document.getElementById("snap_exif_string").value = JSON.stringify(exif)
+    console.debug(exif)
+  };
+
+  reader.onerror = function () {
+    console.log(reader.error);
+  };
+
   img.src = src;
   img.onload = function () {
+
+
     ctx.canvas.width = img.width;
     ctx.canvas.height = img.height;
     ctx.drawImage(img, 0, 0);

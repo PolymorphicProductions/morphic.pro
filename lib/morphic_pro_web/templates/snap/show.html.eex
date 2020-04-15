@@ -4,10 +4,25 @@
   </div>
 </div>
 
-<div class="container mx-auto my-20">
-  <div class="lg:px-64 px-8 py-24 bg-white snap-body">
+<div class="container mx-auto mx-32">
+  <div class="lg:mx-48 px-8 py-10 bg-white snap-body">
     <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
-
+    <hr class="my-4" />
+    <%= if @snap.exif do %>
+    <div>
+      <ul>
+        <li>Camera: <%= @snap.exif["Make"]["description"] %> <%= @snap.exif["Model"]["description"]%> </li>
+        <li>Lens: <%= @snap.exif["Lens"]["description"] %></li>
+        <li>Aperture: ƒ/<%= @snap.exif["ApertureValue"]["description"] %></li>
+        <li>Focal Length: <%= @snap.exif["FocalLength"]["description"] %> </li>
+        <li>ShutterSpeedValue: <%= @snap.exif["ShutterSpeedValue"]["description"] %></li>
+        <li>ISO: <%= @snap.exif["ISOSpeedRatings"]["description"] %></li>
+        <li>White balance: <%= @snap.exif["Temperature"]["description"] %>k</li>
+        <li>Flash: <%= @snap.exif["Flash"]["description"] %></li>
+        <li>Date shot: <%= @snap.exif["DateTime"]["description"] %></li>
+      </ul>
+    </div>
+    <% end %>
   </div>
 </div>
 

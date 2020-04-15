@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, options) => ({
   // mode - Chosen mode tells webpack to use its built-in optimizations accordingly.
@@ -69,5 +70,6 @@ module.exports = (env, options) => ({
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
+    new BundleAnalyzerPlugin()
   ]
 });

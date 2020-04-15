@@ -8,6 +8,9 @@ defmodule MorphicProWeb.SnapView do
       :safe,
       """
       <script type="text/javascript" src="#{
+        Routes.static_path(MorphicProWeb.Endpoint, "/js/vendors~snap_edit.bundle.js")
+      }"></script>
+      <script type="text/javascript" src="#{
         Routes.static_path(MorphicProWeb.Endpoint, "/js/vendors~post_edit~snap_edit.bundle.js")
       }"></script>
       <script type="text/javascript" src="#{

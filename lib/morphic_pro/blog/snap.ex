@@ -17,13 +17,15 @@ defmodule MorphicPro.Blog.Snap do
   end
 
   schema "snaps" do
-    field :body, :string
-    field :draft, :boolean, default: true
-    field :published_at, :date
-    field :published_at_local, :string
-    field :tag_list, {:array, :string}, virtual: true
-    field :large_img, :string
-    field :thumb_img, :string
+    field(:body, :string)
+    field(:draft, :boolean, default: true)
+    field(:published_at, :date)
+    field(:published_at_local, :string)
+    field(:tag_list, {:array, :string}, virtual: true)
+    field(:large_img, :string)
+    field(:thumb_img, :string)
+    field(:exif_string, :string, virtual: true)
+    field(:exif, :map)
 
     many_to_many(:tags, Tag,
       join_through: "snap_tags",
@@ -36,10 +38,11 @@ defmodule MorphicPro.Blog.Snap do
 
   def changeset(snap, attrs) do
     snap
-    |> cast(attrs, [:body, :published_at_local, :large_img, :thumb_img])
+    |> cast(attrs, [:body, :published_at_local, :large_img, :thumb_img, :exif_string])
     |> validate_required([:body, :published_at_local, :large_img, :thumb_img])
     |> validate_published_at()
     |> put_published_at()
+    |> put_exif()
     |> put_tags_list()
     |> parse_tags_assoc()
   end
@@ -78,6 +81,15 @@ defmodule MorphicPro.Blog.Snap do
   end
 
   defp put_published_at(cs), do: cs
+
+  defp put_exif(%{valid?: true, changes: %{exif_string: exif_string}} = changeset) do
+    exif = exif_string |> Jason.decode!()
+
+    changeset
+    |> put_change(:exif, exif)
+  end
+
+  defp put_exif(cs), do: cs
 
   defp put_tags_list(%{valid?: true, changes: %{body: body}} = changeset) do
     tag_list = Regex.scan(~r/#(\w*)/, body) |> Enum.map(fn [_, tag] -> tag end)
