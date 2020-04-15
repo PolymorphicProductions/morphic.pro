@@ -9,15 +9,16 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 // Better minimizer output?
 
 module.exports = (env, options) => ({
-  mode: "production",
+  mode: "development",
   optimization: {
-    minimizer: [
-      new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
-      new OptimizeCSSAssetsPlugin({})
-    ],
+    // minimizer: [
+    //   new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
+    //   new OptimizeCSSAssetsPlugin({})
+    // ],
     splitChunks: {
       chunks: "all"
-    }
+    },
+    usedExports: true
   },
   entry: {
     app: "./js/app.js",
