@@ -8,7 +8,7 @@ defmodule MorphicProWeb.PostView do
       :safe,
       """
       <script type="text/javascript" src="#{
-        Routes.static_path(MorphicProWeb.Endpoint, "/js/vendors~post_edit.bundle.js")
+        Routes.static_path(MorphicProWeb.Endpoint, "/js/vendors~post_edit~snap_edit.bundle.js")
       }"></script>
       <script type="text/javascript" src="#{
         Routes.static_path(MorphicProWeb.Endpoint, "/js/post_edit.bundle.js")
@@ -22,7 +22,8 @@ defmodule MorphicProWeb.PostView do
       content_tag :div, class: "container px-3 mx-auto" do
         [
           link("Edit", to: Routes.post_path(MorphicProWeb.Endpoint, :edit, post), class: "mr-2"),
-          link("Delete", to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post),
+          link("Delete",
+            to: Routes.post_path(MorphicProWeb.Endpoint, :delete, post),
             method: :delete,
             data: [confirm: "Delete Post 🗑: #{post.title} ?"]
           )

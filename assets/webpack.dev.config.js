@@ -16,7 +16,8 @@ module.exports = (env, options) => ({
   mode: "development",
   entry: {
     app: "./js/app.js",
-    post_edit: "./js/post_edit.js"
+    post_edit: "./js/post_edit.js",
+    snap_edit: "./js/snap_edit.js"
   },
   output: {
     filename: "[name].bundle.js",

@@ -25,4 +25,9 @@ defmodule MorphicProWeb.TagView do
       )
     end)
   end
+
+  def parse_body_tags(content) do
+    content
+    |> String.replace(~r/#(\w*)/, "<a href='/snaps/tag/\\1'>#\\1</a>")
+  end
 end

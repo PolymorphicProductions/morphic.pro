@@ -20,12 +20,13 @@
             <i class="text-lg fas fa-book-open leading-lg"></i><span class="ml-2">Posts</span>
           </a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="#">
+            href="<%= Routes.snap_path(@conn, :index) %>">
             <i class="text-lg fas fa-camera leading-lg"></i><span class="ml-2">Snaps</span>
           </a>
         </li>
+        <!-- 
         <li class="nav-item">
           <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="#">

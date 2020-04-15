@@ -1,0 +1,9 @@
+<div class="my-20">
+  <div class="container px-3 mx-auto">
+    <h1 class="mb-5 font-bold">Edit Snap</h1>
+
+    <%= render "form.html", Map.put(assigns, :action, Routes.snap_path(@conn, :update, @snap)) %>
+
+    <span><%= link "Back", to: Routes.snap_path(@conn, :index) %></span>
+  </div>
+</div>
