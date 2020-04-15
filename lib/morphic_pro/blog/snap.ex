@@ -36,7 +36,7 @@ defmodule MorphicPro.Blog.Snap do
 
   def changeset(snap, attrs) do
     snap
-    |> cast(attrs, [:body, :published_at_local, :large_img, :thumb_img])
+    |> cast(attrs, [:body, :published_at_local, :large_img, :thumb_img, :draft])
     |> validate_required([:body, :published_at_local, :large_img, :thumb_img])
     |> validate_published_at()
     |> put_published_at()
