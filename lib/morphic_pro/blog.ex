@@ -6,7 +6,7 @@ defmodule MorphicPro.Blog do
   import Ecto.Query, warn: false
   alias MorphicPro.Repo
 
-  alias __MODULE__.{Post, Tag}
+  alias __MODULE__.{Post, Snap, Tag}
 
   defdelegate authorize(action, user, params), to: MorphicPro.Policy
 
@@ -28,6 +28,14 @@ defmodule MorphicPro.Blog do
     |> Repo.all()
   end
 
+  def list_latest_snaps do
+    Snap
+    |> from(limit: 4, preload: [:tags])
+    |> Repo.where_published()
+    |> Repo.order_by_published_at()
+    |> Repo.all()
+  end
+
   @doc """
   Returns the list of posts.
 
@@ -39,6 +47,14 @@ defmodule MorphicPro.Blog do
   """
   def list_posts(params, user) do
     Post
+    |> from(preload: [:tags])
+    |> Bodyguard.scope(user)
+    |> Repo.order_by_published_at()
+    |> Dissolver.paginate(params)
+  end
+
+  def list_snaps(params, user) do
+    Snap
     |> from(preload: [:tags])
     |> Bodyguard.scope(user)
     |> Repo.order_by_published_at()
@@ -70,6 +86,16 @@ defmodule MorphicPro.Blog do
     |> Repo.one!()
   end
 
+  def get_snap!(uuid, current_user, options \\ []) do
+    preload = Keyword.get(options, :preload, [])
+
+    Snap
+    |> Repo.by_uuid(uuid)
+    |> from(preload: ^preload)
+    |> Bodyguard.scope(current_user)
+    |> Repo.one!()
+  end
+
   @doc """
   Creates a post.
 
@@ -86,6 +112,13 @@ defmodule MorphicPro.Blog do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def create_snap(attrs \\ %{}) do
+    %Snap{}
+    |> Snap.changeset(attrs)
+    |> Repo.insert()
+    |> IO.inspect()
   end
 
   @doc """
@@ -106,6 +139,12 @@ defmodule MorphicPro.Blog do
     |> Repo.update()
   end
 
+  def update_snap(%Snap{} = snap, attrs) do
+    snap
+    |> Snap.changeset(attrs)
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a Post.
 
@@ -122,6 +161,10 @@ defmodule MorphicPro.Blog do
     Repo.delete(post)
   end
 
+  def delete_snap(%Post{} = snap) do
+    Repo.delete(snap)
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking post changes.
 
@@ -133,6 +176,10 @@ defmodule MorphicPro.Blog do
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
+  end
+
+  def change_snap(%Snap{} = snap) do
+    Snap.changeset(snap, %{})
   end
 
   @doc """
@@ -165,6 +212,27 @@ defmodule MorphicPro.Blog do
 
     tag =
       from(t in Tag, where: t.name == ^tag_name, preload: [posts: ^posts_query])
+      |> Repo.one!()
+
+    {tag, k}
+  end
+
+  def get_snap_for_tag!(tag_name, params \\ %{}) do
+    total_count =
+      from(t in "tags",
+        join: st in "snap_tags",
+        on: st.tag_id == t.id,
+        where: t.name == ^tag_name,
+        select: count()
+      )
+      |> Repo.one()
+
+    {snaps_query, k} =
+      from(s in Snap, order_by: [desc: :inserted_at], preload: [:tags])
+      |> Dissolver.paginate(params, total_count: total_count, lazy: true)
+
+    tag =
+      from(t in Tag, where: t.name == ^tag_name, preload: [snaps: ^snaps_query])
       |> Repo.one!()
 
     {tag, k}

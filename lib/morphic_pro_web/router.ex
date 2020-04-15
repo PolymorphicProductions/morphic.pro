@@ -35,6 +35,8 @@ defmodule MorphicProWeb.Router do
       only: [:edit, :new, :create, :update, :delete],
       param: "slug"
 
+    resources "/snaps", SnapController, only: [:edit, :new, :create, :update, :delete]
+
     post "/registration/send-confirmation-email",
          RegistrationController,
          :resend_confirmation_email
@@ -45,6 +47,10 @@ defmodule MorphicProWeb.Router do
 
     get("/posts/tag/:tag", TagController, :show_post, as: :post_tag)
     resources "/posts", PostController, only: [:index, :show], param: "slug"
+
+    get("/snaps/tag/:tag", TagController, :show_snap, as: :snap_tag)
+    resources "/snaps", SnapController, only: [:index, :show]
+
     get "/", PageController, :index
   end
 

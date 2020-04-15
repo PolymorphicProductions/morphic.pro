@@ -18,6 +18,7 @@ import "@fortawesome/fontawesome-free/js/brands";
 
 let isNavToggled = false;
 let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
+let white_bg = document.getElementsByClassName("navbar-wbg")[0]
 
 // Nav
 window.toggleNavbar = collapseID => {
@@ -48,7 +49,7 @@ function docReady(fn) {
 
 let navbarSmall = document.getElementsByClassName("navbar-small")[0];
 window.addEventListener("scroll", () => {
-  if (navbarSmall) {
+  if (navbarSmall || white_bg) {
     if (!isNavToggled) {
       if (window.scrollY >= 10) {
         navbarFixed.classList.add("shadow-xl");
@@ -68,7 +69,7 @@ window.addEventListener("scroll", () => {
 });
 
 docReady(() => {
-  if (navbarSmall) {
+  if (navbarSmall || white_bg) {
     navbarFixed.classList.add("bg-white", "text-gray-700");
   }
 })

@@ -5,7 +5,7 @@ defmodule MorphicPro.Blog.Tag do
 
   schema "tags" do
     field(:name)
-    # many_to_many(:pics, MorphicPro.Blog.Pic, join_through: "pic_tags")
     many_to_many(:posts, MorphicPro.Blog.Post, join_through: "post_tags")
+    many_to_many(:snaps, MorphicPro.Blog.Snap, join_through: "snap_tags")
   end
 end
