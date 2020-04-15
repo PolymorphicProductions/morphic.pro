@@ -51,7 +51,7 @@ defmodule MorphicProWeb do
 
       def parse_markdown(text) do
         # TODO: Capture the 3 item in the tuple that comes from `Earmark.as_html` and send to logs
-        case Earmark.as_html(text) do
+        case Earmark.as_html(text, pure_links: true) do
           {:ok, html_doc, _} ->
             html_doc
 
