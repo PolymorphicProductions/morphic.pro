@@ -19,7 +19,7 @@ defmodule MorphicProWeb.Endpoint do
     from: :morphic_pro,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt),
-    content_types: %{"02ee66ae5fb312b3f788.module.wasm" => "application/wasm"}
+    content_types: %{"219f925822b9da756558.module.wasm" => "application/wasm"}
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

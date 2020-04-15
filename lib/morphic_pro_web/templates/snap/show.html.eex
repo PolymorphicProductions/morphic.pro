@@ -7,8 +7,9 @@
 <div class="container mx-auto mx-32">
   <div class="lg:mx-48 px-8 py-10 bg-white snap-body">
     <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
-    <hr class="my-4" />
+
     <%= if @snap.exif do %>
+    <hr class="my-4" />
     <div>
       <ul>
         <li>Camera: <%= @snap.exif["Make"]["description"] %> <%= @snap.exif["Model"]["description"]%> </li>
