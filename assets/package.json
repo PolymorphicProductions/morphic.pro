@@ -10,6 +10,7 @@
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@silvia-odwyer/photon": "^0.2.0",
     "easymde": "^2.10.0",
+    "exifreader": "^3.8.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html"
   },
@@ -29,6 +30,7 @@
     "tailwindcss": "^1.2.0",
     "terser-webpack-plugin": "^2.3.5",
     "webpack": "4.42.0",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "webpack-jarvis": "^0.3.2"
   }
