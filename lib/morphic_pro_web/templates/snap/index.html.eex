@@ -24,6 +24,13 @@
         <div class="text-base text-gray-700 snap-body">
           <%= snap.body |> parse_markdown |> parse_tags |> raw %>
         </div>
+
+        <div class="text-base text-gray-700 snap-body">
+          <%= if snap.exif do %>
+          ƒ/<%= snap.exif["ApertureValue"]["description"] %> | <%= snap.exif["FocalLength"]["description"] %> |
+          <%= snap.exif["ShutterSpeedValue"]["description"] %>
+          <% end %>
+        </div>
       </div>
 
       <div class="px-6 pb-4">
