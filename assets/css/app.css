@@ -100,6 +100,47 @@ nav .icon-shape {
   @apply bg-red-700;
 }
 
+
+
+.snap{
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  &:hover {
+    .fa-search {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+ 
+  .fa-search {
+    z-index: 1;
+    transform: scale(.25);
+    color: rgb(36, 36, 36);
+    opacity: 0;
+    transition: opacity 1s ease, transform .5s ease;  
+    position: absolute; 
+    top: 0;
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    margin: auto; 
+    width: 100px; /* Need a specific value to work */
+    font-size: 3em;
+    pointer-events: none;
+  }
+
+  img {
+    transform: scale(1);
+    opacity: 1;
+    transition: opacity .5s ease, transform .5s ease;    
+    &:hover {
+      transform: scale(1.25);  
+      opacity: 0.5;
+    }
+  }
+}
+
 /* Posts */
 .post-body {
   overflow-wrap: break-word;
