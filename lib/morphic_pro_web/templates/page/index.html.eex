@@ -85,7 +85,7 @@
 
 <!-- Latest posts section -->
 <div class="mt-24 mb-20 " id="services">
-  <div class="container px-4 py-10 mx-auto">
+  <div class="container px-4  mx-auto">
 
     <div class="text-center section-title">
       <h2 class="mb-10 font-bold text-gray-800 text-1xl page-title">
@@ -97,7 +97,10 @@
       <%= for post <- @posts do %>
       <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
         <%= link to: Routes.post_path(@conn, :show, post) do %>
-        <img class="w-full" src="<%= post.thumb_img %>" alt="Sunset in the mountains">
+        <div class="thumb">
+          <i class="fas fa-search"></i>
+          <img class="w-full" src="<%= post.thumb_img %>">
+        </div>
         <% end %>
 
         <div class="px-6 py-4">
@@ -116,6 +119,42 @@
         <div class="px-6 py-4">
           <%= parse_tags(post.tags) %>
         </div>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Latest snaps section -->
+<div class="mt-24 mb-20 " id="services">
+  <div class="container px-4 pb-10 mx-auto">
+
+    <div class="text-center section-title">
+      <h2 class="mb-10 font-bold text-gray-800 text-1xl page-title">
+        <%= link "Latest Snaps", to: Routes.post_path(@conn, :index) %></h2>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+
+      <%= for snap <- @snaps do %>
+      <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
+        <%= link to: Routes.snap_path(@conn, :show, snap) do %>
+        <div class="thumb">
+          <i class="fas fa-search"></i>
+          <img class="w-full" src="<%= snap.thumb_img %>">
+        </div>
+        <% end %>
+
+        <div class="px-6 pt-4">
+          <div class="mb-2 text-xs"><%= parse_date snap.published_at %></div>
+        </div>
+
+        <div class="px-6 pb-4 text-base text-gray-700 snap-body">
+          <%= snap.body |> parse_markdown |> parse_body_tags |> raw %>
+        </div>
+
       </div>
       <% end %>
     </div>
