@@ -1,11 +1,18 @@
-<div class="container mx-auto my-32">
-  <div class="lg:px-48">
+<div class="container mx-auto mt-20 lg:mt-32">
+  <div class="relative lg:px-48">
+
     <img src="<%= @snap.large_img %>" />
   </div>
 </div>
 
-<div class="container mx-auto mx-32">
-  <div class="lg:mx-48 px-8 py-10 bg-white snap-body">
+<div class="container mx-32 mx-auto">
+  <div class="px-8 py-10 bg-white lg:mx-48 lg:my-10 snap-body">
+    <%= if @snap.draft do %>
+    <h3 class="text-red-800">Draft</h3>
+    <% end %>
+    <%= if Timex.before?(Timex.today, @snap.published_at) do %>
+    <h3 class="text-red-800">Unpublished</h3>
+    <% end %>
     <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
 
     <%= if @snap.exif do %>
@@ -24,7 +31,7 @@
       </ul>
     </div>
     <% end %>
+
+    <%= admin_links @current_user, @snap %>
   </div>
 </div>
-
-<%= admin_links @current_user, @snap %>

@@ -21,17 +21,21 @@ defmodule MorphicProWeb.SnapView do
   end
 
   def admin_links(%{admin: true}, snap) do
-    content_tag :div, class: "my-20" do
-      content_tag :div, class: "container px-3 mx-auto" do
+    content_tag :div, class: "mt-8" do
+      [
+        link to: Routes.snap_path(MorphicProWeb.Endpoint, :edit, snap), class: "btn-blue mr-2" do
         [
-          link("Edit", to: Routes.snap_path(MorphicProWeb.Endpoint, :edit, snap), class: "mr-2"),
-          link("Delete",
-            to: Routes.snap_path(MorphicProWeb.Endpoint, :delete, snap),
-            method: :delete,
-            data: [confirm: "Delete Snap 🗑: #{snap.id} ?"]
-          )
+          content_tag(:i, "", class: "far fa-edit mr-1"),
+          "Edit"
         ]
-      end
+        end,
+        link to: Routes.snap_path(MorphicProWeb.Endpoint, :delete, snap), class: "btn-red", method: :delete, data: [confirm: "Delete Snap 🗑: #{snap.id} ?"] do
+          [
+            content_tag(:i, "", class: "far fa-trash-alt mr-1"),
+            "Delete"
+          ]
+        end
+      ]
     end
   end
 
