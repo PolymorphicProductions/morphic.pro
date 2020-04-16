@@ -38,7 +38,7 @@ defmodule MorphicPro.Repo do
   def order_by_published_at(query) do
     from(
       q in query,
-      order_by: [desc: :published_at]
+      order_by: [desc: :published_at, desc: :inserted_at]
     )
   end
 end
