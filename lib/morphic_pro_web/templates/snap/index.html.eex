@@ -15,7 +15,10 @@
     <%= for snap <- @snaps do %>
     <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
       <%= link to: Routes.snap_path(@conn, :show, snap) do %>
-      <img class="w-full" src="<%= snap.thumb_img %>" alt="Sunset in the mountains">
+      <div class="snap">
+        <i class="fas fa-search"></i>
+        <img class="w-full" src="<%= snap.thumb_img %>">
+      </div>
       <% end %>
 
       <div class="px-6 py-4">
@@ -38,11 +41,7 @@
         </div>
       </div>
 
-      <div class="px-6 pb-4">
-        <%= link to: Routes.snap_path(@conn, :show, snap), class: "bg-gray-600 hover:bg-gray-800 text-xs text-white font-bold py-2 px-4 text-gray-100" do %>
-        <span class="pr-2">READ MORE</span> <i class="fas fa-arrow-circle-right"></i>
-        <% end %>
-      </div>
+
 
     </div>
     <% end %>
