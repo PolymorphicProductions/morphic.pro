@@ -86,6 +86,20 @@ nav .icon-shape {
   height: max-content;
 }
 
+.btn-blue {
+  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+}
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
+.btn-red {
+  @apply px-4 py-2 font-bold text-white bg-red-500 rounded;
+}
+.btn-red:hover {
+  @apply bg-red-700;
+}
+
 /* Posts */
 .post-body {
   overflow-wrap: break-word;
@@ -99,7 +113,7 @@ nav .icon-shape {
     padding: 1em;
     background-color: rgb(248, 248, 248);
   }
-  
+
   a{
     @apply text-blue-600;
     &:hover {
