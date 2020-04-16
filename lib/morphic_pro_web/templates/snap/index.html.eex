@@ -15,7 +15,7 @@
     <%= for snap <- @snaps do %>
     <div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
       <%= link to: Routes.snap_path(@conn, :show, snap) do %>
-      <div class="snap">
+      <div class="thumb">
         <i class="fas fa-search"></i>
         <img class="w-full" src="<%= snap.thumb_img %>">
       </div>
