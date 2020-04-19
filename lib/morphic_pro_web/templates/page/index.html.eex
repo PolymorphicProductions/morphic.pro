@@ -8,7 +8,7 @@
           Your personal creative<br />digital metamorphosis
         </h1>
         <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-thin text-1xl md:text-2xl">
-          From Web development to DevOps or<br />Photography to Design I can find your solotion!</p>
+          From Web development to DevOps or<br />Photography to Design I am your solution.</p>
         <div class="block mx-auto text-center md:text-left">
 
           <a href="#services"><button
@@ -59,7 +59,7 @@
           </span>
 
           <h5 class="mt-2 mb-4 text-lg font-medium">Development/DevOps</h5>
-          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir we provide
+          <p class="text-gray-500">With over a decade of web development experience from Ruby, PHP, Elixir I provide
             solutions to your server side needs.</p>
         </div>
       </div>
