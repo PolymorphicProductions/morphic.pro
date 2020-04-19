@@ -4,7 +4,7 @@
     <div class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start">
       <a class="relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap " href="/">
         <span class="pr-1 display-block icon-shape logo"></span>
-        Morphic.Pro
+        Morphic Pro
       </a>
       <button
         class="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"

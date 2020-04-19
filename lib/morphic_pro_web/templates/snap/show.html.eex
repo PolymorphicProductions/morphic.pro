@@ -1,4 +1,4 @@
-<div class="container mx-auto mt-20 lg:mt-32">
+<div class="container mx-auto mt-18 lg:mt-24">
   <div class="lg:px-48">
     <img src="<%= @snap.large_img %>" />
   </div>
@@ -6,31 +6,41 @@
 
 <div class="container mx-auto mb-32">
   <div class="px-8 py-10 bg-white shadow-md lg:mx-48 lg:mb-10 snap-body">
-    <%= if @snap.draft do %>
-    <h3 class="text-red-800">Draft</h3>
-    <% end %>
-    <%= if Timex.before?(Timex.today, @snap.published_at) do %>
-    <h3 class="text-red-800">Unpublished</h3>
-    <% end %>
     <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
+
+
+    <!---
+    <div class="mb-4">
+      <span class="pr-1"><i class="far fa-calendar-alt"></i></span>
+      <span class="pr-4"><%= @snap.published_at_local %></span>
+      <span class="pr-1"><i class="text-yellow-600 fas fa-trophy"></i></span>
+      <span class="pr-4">50</span>
+      <span class="pr-1"><i class="far fa-eye"></i></span>
+      <span>100k</span>
+    </div>
+    -->
 
     <%= if @snap.exif do %>
     <hr class="my-4" />
+
     <div>
-      <ul>
-        <li>Camera: <%= @snap.exif["Make"]["description"] %> <%= @snap.exif["Model"]["description"]%> </li>
-        <li>Lens: <%= @snap.exif["Lens"]["description"] %></li>
-        <li>Aperture: ƒ/<%= @snap.exif["ApertureValue"]["description"] %></li>
-        <li>Focal Length: <%= @snap.exif["FocalLength"]["description"] %> </li>
-        <li>ShutterSpeedValue: <%= @snap.exif["ShutterSpeedValue"]["description"] %></li>
-        <li>ISO: <%= @snap.exif["ISOSpeedRatings"]["description"] %></li>
-        <li>White balance: <%= @snap.exif["Temperature"]["description"] %>k</li>
-        <li>Flash: <%= @snap.exif["Flash"]["description"] %></li>
-        <li>Date shot: <%= @snap.exif["DateTime"]["description"] %></li>
-      </ul>
+      <span class="pr-2"><i class="fas fa-camera"></i></span>
+      <span class="pr-2"><%= @snap.exif["Make"]["description"] %></span>
+    </div>
+    <div>
+      <span class="pr-2"><%= @snap.exif["Lens"]["description"] %></span>
+    </div>
+    <div>
+      <span class="pr-2"><i class="fas fa-sliders-h"></i></span>
+      <span class="pr-2">ƒ/<%= @snap.exif["ApertureValue"]["description"] %></span>
+      <span class="pr-2"><%= @snap.exif["FocalLength"]["description"] %></span>
+      <span class="pr-2"><%= @snap.exif["ShutterSpeedValue"]["description"] %>s</span>
+      <span class="pr-2"><%= @snap.exif["ISOSpeedRatings"]["description"] %> ISO</span>
     </div>
     <% end %>
 
-    <%= admin_links @current_user, @snap %>
   </div>
+
+  <%= admin_links @current_user, @snap %>
+</div>
 </div>

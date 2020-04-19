@@ -3,8 +3,8 @@
     <div class="text-center">
 
       <h4 class="text-3xl font-bold text-gray-100">
-        <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro <span
-          class="text-xs">LLC</span>
+        <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro<span class="text-xs">,
+          LLC</span>
       </h4>
     </div>
   </div>
@@ -12,8 +12,7 @@
   <div class="py-10 text-sm text-gray-400 bg-gray-900">
     <div class="container flex flex-wrap items-center justify-between w-full mx-auto">
       <div class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start">
-        <span><i class="fas fa-copyright"></i> 2020 Morphic Pro LLC, All Rights
-          Reserved.</span>
+        <span><i class="fas fa-copyright"></i> 2020 Morphic Pro, LLC - All Rights Reserved.</span>
       </div>
 
       <div class="items-center flex-grow lg:flex">
