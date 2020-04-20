@@ -118,7 +118,6 @@ defmodule MorphicPro.Blog do
     %Snap{}
     |> Snap.changeset(attrs)
     |> Repo.insert()
-    |> IO.inspect()
   end
 
   @doc """
