@@ -23,7 +23,8 @@ defmodule MorphicProWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      use Phoenix.ConnTest
+      import Plug.Conn
+      import Phoenix.ConnTest
       alias MorphicProWeb.Router.Helpers, as: Routes
       import MorphicProWeb.ConnCase
       # The default endpoint for testing

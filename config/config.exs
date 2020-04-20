@@ -15,7 +15,7 @@ config :morphic_pro, MorphicProWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "7QzMQB7P1Ik7gQPUGM/4WHfFVWI6Xr+9w0vTh2pw4Rauo/LYlJ4wbegnNc+t4qVa",
   render_errors: [view: MorphicProWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: MorphicPro.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: MorphicPro.PubSub,
   live_view: [signing_salt: "hcqqKQO9gIPicsMKVqzt/8aOa5gwIq95"]
 
 # Configures Elixir's Logger

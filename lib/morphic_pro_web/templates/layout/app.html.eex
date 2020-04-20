@@ -26,7 +26,7 @@
 <body class="">
   <%= render "header.html", conn: @conn %>
   <main class="relative h-full">
-    <%= render @view_module, @view_template, assigns %>
+    <%= @inner_content %>
   </main>
 
   <%= render "footer.html", conn: @conn %>
