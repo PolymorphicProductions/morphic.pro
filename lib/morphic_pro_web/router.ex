@@ -5,12 +5,18 @@ defmodule MorphicProWeb.Router do
   use Pow.Extension.Phoenix.Router,
     extensions: [PowResetPassword, PowEmailConfirmation]
 
+  import Phoenix.LiveDashboard.Router
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :admins_only do
+    plug MorphicProWeb.Plug.AdminsOnly
   end
 
   pipeline :protected do
@@ -26,6 +32,11 @@ defmodule MorphicProWeb.Router do
     pipe_through :browser
     pow_routes()
     pow_extension_routes()
+  end
+
+  scope "/", MorphicProWeb do
+    pipe_through [:browser, :protected, :admins_only]
+    live_dashboard "/dashboard", metrics: MorphicProWeb.Telemetry
   end
 
   scope "/", MorphicProWeb do
