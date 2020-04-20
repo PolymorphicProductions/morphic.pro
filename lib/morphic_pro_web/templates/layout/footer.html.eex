@@ -6,6 +6,19 @@
         <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro<span class="text-xs">,
           LLC</span>
       </h4>
+      <div class="mt-5 text-white text-2xl">
+        <span class="mr-2">
+          <a href="https://keybase.io/morphicpro" class="hover:text-orange-500"><i class="fab fa-keybase"></i></a>
+        </span>
+        <span class="mr-2">
+          <a href="https://github.com/MorphicPro" class="hover:text-blue-700"><i class="fab fa-github"></i></a>
+
+        </span>
+        <span>
+          <a rel="me" href="https://mastodon.social/@morphicpro" class="hover:text-blue-500"><i
+              class="fab fa-mastodon"></i></a>
+        </span>
+      </div>
     </div>
   </div>
 
