@@ -10,8 +10,10 @@ defmodule MorphicPro.Application do
     children = [
       # Start the Ecto repository
       MorphicPro.Repo,
-
       MorphicProWeb.Telemetry,
+
+      # Start the PubSub system
+      {Phoenix.PubSub, name: MorphicPro.PubSub},
       # Start the endpoint when the application starts
       MorphicProWeb.Endpoint,
       # Start the persistent cache store for auth
