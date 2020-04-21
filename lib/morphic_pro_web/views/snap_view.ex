@@ -24,12 +24,15 @@ defmodule MorphicProWeb.SnapView do
     content_tag :div, class: "mt-8" do
       [
         link to: Routes.snap_path(MorphicProWeb.Endpoint, :edit, snap), class: "btn-blue mr-2" do
-        [
-          content_tag(:i, "", class: "far fa-edit mr-1"),
-          "Edit"
-        ]
+          [
+            content_tag(:i, "", class: "far fa-edit mr-1"),
+            "Edit"
+          ]
         end,
-        link to: Routes.snap_path(MorphicProWeb.Endpoint, :delete, snap), class: "btn-red", method: :delete, data: [confirm: "Delete Snap 🗑: #{snap.id} ?"] do
+        link to: Routes.snap_path(MorphicProWeb.Endpoint, :delete, snap),
+             class: "btn-red",
+             method: :delete,
+             data: [confirm: "Delete Snap 🗑: #{snap.id} ?"] do
           [
             content_tag(:i, "", class: "far fa-trash-alt mr-1"),
             "Delete"
@@ -39,7 +42,7 @@ defmodule MorphicProWeb.SnapView do
     end
   end
 
-  def admin_links(nil, _snap), do: nil
+  def admin_links(_, _snap), do: nil
 
   # def parse_tags(tags) do
   #   Enum.map(tags, fn tag ->
