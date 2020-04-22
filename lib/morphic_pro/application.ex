@@ -15,9 +15,7 @@ defmodule MorphicPro.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: MorphicPro.PubSub},
       # Start the endpoint when the application starts
-      MorphicProWeb.Endpoint,
-      # Start the persistent cache store for auth
-      Pow.Store.Backend.MnesiaCache
+      MorphicProWeb.Endpoint
 
       # Starts a worker by calling: MorphicPro.Worker.start_link(arg)
       # {MorphicPro.Worker, arg},

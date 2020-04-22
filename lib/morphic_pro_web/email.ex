@@ -7,31 +7,29 @@ defmodule MorphicProWeb.Email do
   import Bamboo.Email
 
   alias MorphicProWeb.EmailLayoutView
-  alias Pow.Phoenix.Mailer.Mail
 
-  # We can see that the Pow.Phoenix.Mailer.Mail has
-  # already rendered the template defined in its views.
-  # I'd like to find a way to completely bypass Pow.Phoenix.Mailer.Mail's view/templates
-  # since I feel I have more control and its more consolidated since my email is not
-  # exclusive to pow
-  def pow_email(%Mail{subject: subject, user: %{email: recipient}} = powEmail) do
-    base_email()
-    |> to(recipient)
-    |> assign(:email, powEmail.user.email)
-    |> assign(:confirm_link, powEmail.assigns[:url])
-    |> subject(subject)
-    |> set_template()
+  def confirmation_email(%{email: recipient}, url) do
+    email("Account Confirmation", recipient, url)
+    |> render("registration_email.html")
   end
 
-  defp set_template(%{subject: "Confirm your email address"} = email),
-    do: render(email, "registration_email.html")
+  def update_email_email(%{email: recipient}, url) do
+    email("Account Change | Email Update", recipient, url)
+    |> render("update_email_email.html")
+  end
 
-  defp set_template(%{subject: "Reset password link"} = email),
-    do: render(email, "registration_email.html")
+  def pass_reset_email(%{email: recipient}, url) do
+    email("Password Reset Request", recipient, url)
+    |> render("pass_reset.html")
+  end
 
-  defp base_email do
+  defp email(subject, recipient, url) do
     new_email()
     |> from({"Morphic.Pro", "no-reply@morphic.pro"})
     |> put_html_layout({EmailLayoutView, "email.html"})
+    |> to(recipient)
+    |> assign(:email, recipient)
+    |> assign(:url, url)
+    |> subject(subject)
   end
 end

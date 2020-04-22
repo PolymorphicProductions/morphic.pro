@@ -20,10 +20,10 @@ defmodule MorphicPro.Repo do
     )
   end
 
-  def by_uuid(query, uuid) do
+  def by_id(query, id) do
     from(
       q in query,
-      where: q.id == ^uuid
+      where: q.id == ^id
     )
   end
 

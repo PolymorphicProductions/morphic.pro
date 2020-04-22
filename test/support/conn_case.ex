@@ -18,7 +18,7 @@ defmodule MorphicProWeb.ConnCase do
   use ExUnit.CaseTemplate
 
   alias Ecto.Adapters.SQL.Sandbox
-  alias MorphicPro.{Repo, Users.User}
+  alias MorphicPro.Repo
 
   using do
     quote do
@@ -42,9 +42,34 @@ defmodule MorphicProWeb.ConnCase do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
-  def login_admin(%{conn: conn}) do
-    user = %User{email: "test@example.com", admin: true}
-    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :morphic_pro)
-    {:ok, conn: conn}
+  @doc """
+  Setup helper that registers and logs in users.
+
+      setup :register_and_login_user
+
+  It stores an updated connection and a registered user in the
+  test context.
+  """
+  def register_and_login_user(%{conn: conn}) do
+    user = MorphicPro.AccountsFixtures.user_fixture()
+    %{conn: login_user(conn, user), user: user}
+  end
+
+  def register_and_login_admin(%{conn: conn}) do
+    user = MorphicPro.AccountsFixtures.admin_fixture()
+    %{conn: login_user(conn, user), user: user}
+  end
+
+  @doc """
+  Logs the given `user` into the `conn`.
+
+  It returns an updated `conn`.
+  """
+  def login_user(conn, user) do
+    token = MorphicPro.Accounts.generate_session_token(user)
+
+    conn
+    |> Phoenix.ConnTest.init_test_session(%{})
+    |> Plug.Conn.put_session(:user_token, token)
   end
 end

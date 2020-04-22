@@ -33,7 +33,7 @@ defmodule MorphicProWeb.PostControllerTest do
     end
 
     test "lists all posts as admin", %{conn: conn} do
-      {:ok, [conn: conn]} = login_admin(%{conn: conn})
+      %{conn: conn} = register_and_login_admin(%{conn: conn})
       insert(:post, title: "See me")
 
       insert(:post,
@@ -49,7 +49,7 @@ defmodule MorphicProWeb.PostControllerTest do
   end
 
   describe "new post" do
-    setup [:login_admin]
+    setup [:register_and_login_admin]
 
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.post_path(conn, :new))
@@ -58,7 +58,7 @@ defmodule MorphicProWeb.PostControllerTest do
   end
 
   describe "create post" do
-    setup [:login_admin]
+    setup [:register_and_login_admin]
 
     test "redirects to show when data is valid", %{conn: conn} do
       %{title: title} = post_params = params_for(:post)
@@ -78,7 +78,7 @@ defmodule MorphicProWeb.PostControllerTest do
   end
 
   describe "edit post" do
-    setup [:create_post, :login_admin]
+    setup [:create_post, :register_and_login_admin]
 
     test "renders form for editing chosen post", %{conn: conn, post: post} do
       conn = get(conn, Routes.post_path(conn, :edit, post))
@@ -87,7 +87,7 @@ defmodule MorphicProWeb.PostControllerTest do
   end
 
   describe "update post" do
-    setup [:create_post, :login_admin]
+    setup [:create_post, :register_and_login_admin]
 
     test "redirects when data is valid", %{conn: conn, post: post} do
       %{title: title} = update_post_params = params_for(:post)
@@ -106,7 +106,7 @@ defmodule MorphicProWeb.PostControllerTest do
   end
 
   describe "delete post" do
-    setup [:create_post, :login_admin]
+    setup [:create_post, :register_and_login_admin]
 
     test "deletes chosen post", %{conn: conn, post: post} do
       conn = delete(conn, Routes.post_path(conn, :delete, post))
