@@ -85,7 +85,13 @@ defmodule MorphicPro.AccountsTest do
 
     test "registers users with a hashed password" do
       email = unique_user_email()
-      {:ok, user} = Accounts.register_user(%{email: email, password: valid_user_password()})
+
+      {:ok, user} =
+        Accounts.register_user(
+          %{email: email, password: valid_user_password(), captcha_return: "foo"},
+          "foo"
+        )
+
       assert user.email == email
       assert is_binary(user.hashed_password)
       assert is_nil(user.confirmed_at)

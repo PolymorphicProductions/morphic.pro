@@ -72,9 +72,9 @@ defmodule MorphicPro.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def register_user(attrs) do
+  def register_user(attrs, captcha_text \\ "") do
     %User{}
-    |> User.registration_changeset(attrs)
+    |> User.sign_up_changeset(attrs, captcha_text)
     |> Repo.insert()
   end
 
@@ -89,6 +89,10 @@ defmodule MorphicPro.Accounts do
   """
   def change_user_registration(%User{} = user, attrs \\ %{}) do
     User.registration_changeset(user, attrs)
+  end
+
+  def new_user_registration(%User{} = user, attrs \\ %{}) do
+    User.sign_up_changeset(user, attrs)
   end
 
   ## Settings
