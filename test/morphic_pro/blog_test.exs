@@ -1,8 +1,8 @@
 defmodule MorphicPro.BlogTest do
   use MorphicPro.DataCase
 
-  alias MorphicPro.Blog
   alias MorphicPro.Accounts.User
+  alias MorphicPro.Blog
 
   import MorphicPro.Factory
 
