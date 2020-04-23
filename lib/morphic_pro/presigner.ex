@@ -1,12 +1,6 @@
 defmodule MorphicPro.Presigner do
   defdelegate authorize(action, user, params), to: MorphicPro.Policy
 
-  def sign(list) do
-    list
-    |> Task.async_stream(&get_presigned_url/1)
-    |> Enum.map(fn {:ok, url} -> url end)
-  end
-
   def get_presigned_url(file) do
     bucket = "morphicpro"
     config = %{region: "us-west-2"}

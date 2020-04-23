@@ -5,14 +5,6 @@ defmodule MorphicPro.Repo do
 
   import Ecto.Query
 
-  def approved(query) do
-    from(q in query, where: q.approved == true)
-  end
-
-  def order_by_oldest(query) do
-    from(q in query, order_by: [asc: q.inserted_at])
-  end
-
   def by_slug(query, slug) do
     from(
       q in query,

@@ -47,13 +47,18 @@ defmodule MorphicProWeb.UserRegistrationControllerTest do
     test "render errors for invalid data", %{conn: conn} do
       conn =
         post(conn, Routes.user_registration_path(conn, :create), %{
-          "user" => %{"email" => "with spaces", "password" => "too short"}
+          "user" => %{
+            "email" => "with spaces",
+            "password" => "too short",
+            "captcha_return" => "bad"
+          }
         })
 
       response = html_response(conn, 200)
       assert response =~ "Register</h1>"
       assert response =~ "must have the @ sign and no spaces"
       assert response =~ "should be at least 12 character"
+      assert response =~ "captcha didn&#39;t match"
     end
   end
 end

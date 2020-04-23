@@ -20,3 +20,7 @@ config :logger, level: :warn
 config :dissolver, theme: Dissolver.HTML.Tailwind, per_page: 2
 
 config :morphic_pro, MorphicProWeb.Mailer, adapter: Bamboo.TestAdapter
+
+config :ex_aws,
+  access_key_id: "access_key_id",
+  secret_access_key: "secret_access_key"
