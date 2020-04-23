@@ -160,7 +160,7 @@ defmodule MorphicPro.Blog do
     Repo.delete(post)
   end
 
-  def delete_snap(%Post{} = snap) do
+  def delete_snap(%Snap{} = snap) do
     Repo.delete(snap)
   end
 
