@@ -90,7 +90,7 @@ defmodule MorphicPro.Blog do
     preload = Keyword.get(options, :preload, [])
 
     Snap
-    |> Repo.by_uuid(uuid)
+    |> Repo.by_id(uuid)
     |> from(preload: ^preload)
     |> Bodyguard.scope(current_user)
     |> Repo.one!()

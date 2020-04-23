@@ -1,52 +1,28 @@
-<table
-  border="0"
-  cellpadding="0"
-  cellspacing="0"
-  style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;"
->
+<table border="0" cellpadding="0" cellspacing="0"
+  style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
   <tr>
     <td style="font-family:sans-serif;font-size:14px;vertical-align:top;">
-      <p
-        style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"
-      >
-        Hello!
+      <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">
+        Hello and thank you for signing up an account with Morphic.Pro
       </p>
-      <p
-        style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"
-      >
+      <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;">
         This is your email confirmation for <%= @email %>. Please click the link
-        below to confirm your account.
+        below to confirm your account and complete your registration.
       </p>
-      <table
-        border="0"
-        cellpadding="0"
-        cellspacing="0"
-        class="btn btn-primary"
-        style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;"
-      >
+      <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary"
+        style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;">
         <tbody>
           <tr>
-            <td
-              align="left"
-              style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;"
-            >
-              <table
-                border="0"
-                cellpadding="0"
-                cellspacing="0"
-                style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;width:auto;"
-              >
+            <td align="left" style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">
+              <table border="0" cellpadding="0" cellspacing="0"
+                style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;width:auto;">
                 <tbody>
                   <tr>
                     <td
-                      style="font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;"
-                    >
-                      <a
-                        href="<%= @confirm_link %>"
-                        target="_blank"
-                        style="text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#3498db;border-color:#3498db;color:#ffffff;"
-                        >Confirm Invitation</a
-                      >
+                      style="font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;">
+                      <a href="<%= @url %>" target="_blank"
+                        style="text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#3498db;border-color:#3498db;color:#ffffff;">Confirm
+                        Invitation</a>
                     </td>
                   </tr>
                 </tbody>
@@ -55,9 +31,7 @@
           </tr>
         </tbody>
       </table>
-      <p
-        style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"
-      ></p>
+      <p style="font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;"></p>
     </td>
   </tr>
 </table>

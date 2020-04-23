@@ -7,7 +7,7 @@ defmodule MorphicPro.Blog.Snap do
   @foreign_key_type :binary_id
   @behaviour Bodyguard.Schema
 
-  def(scope(query, %MorphicPro.Users.User{admin: true}, _)) do
+  def(scope(query, %MorphicPro.Accounts.User{admin: true}, _)) do
     query
   end
 

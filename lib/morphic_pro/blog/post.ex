@@ -8,7 +8,7 @@ defmodule MorphicPro.Blog.Post do
 
   @behaviour Bodyguard.Schema
 
-  def(scope(query, %MorphicPro.Users.User{admin: true}, _)) do
+  def(scope(query, %MorphicPro.Accounts.User{admin: true}, _)) do
     query
   end
 

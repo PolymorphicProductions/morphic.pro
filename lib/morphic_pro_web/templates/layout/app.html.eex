@@ -24,12 +24,12 @@
 </head>
 
 <body class="">
-  <%= render "header.html", conn: @conn %>
+  <%= render "_header.html", assigns %>
   <main class="relative h-full">
     <%= @inner_content %>
   </main>
 
-  <%= render "footer.html", conn: @conn %>
+  <%= render "_footer.html", conn: @conn %>
 
   <script rel="preload" type="text/javascript"
     src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>

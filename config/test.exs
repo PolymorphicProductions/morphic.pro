@@ -18,3 +18,5 @@ config :morphic_pro, MorphicProWeb.Endpoint,
 config :logger, level: :warn
 
 config :dissolver, theme: Dissolver.HTML.Tailwind, per_page: 2
+
+config :morphic_pro, MorphicProWeb.Mailer, adapter: Bamboo.TestAdapter

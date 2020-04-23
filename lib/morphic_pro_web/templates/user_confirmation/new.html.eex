@@ -1,0 +1,23 @@
+<div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/login2.jpg") %>)">
+  <div class="w-screen justify-center min-h-screen bg-black-07">
+    <div
+      class="login-form md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto h-auto sm:max-w-sm">
+      <h1 class="text-white text-xl text-center font-bold">You need to confirm your account</h1>
+      <%= form_for :user, Routes.user_confirmation_path(@conn, :create), [class: "px-8 pt-4 pb-2"], fn f -> %>
+
+      <div class="">
+        <%= error_tag f, :email, class: "text-red-500" %>
+        <%= text_input f, :email, class: "bg-transparent shadow appearance-none border border-gray-500 w-full py-4 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-white hover:border-gray-200 transition-colors duration-700", id: "username", placeholder: "Email", required: true %>
+      </div>
+
+      <div class="">
+        <%= submit "Resend confirmation instructions", class: "w-full border border-white text-white hover:text-gray-600 hover:bg-gray-200 font-bold py-4 px-4 focus:outline-none transition-colors duration-700" %>
+      </div>
+      <% end %>
+
+      <p class="text-center text-gray-500 text-xs">
+        &copy;2020 Morphic Pro llc. All rights reserved.
+      </p>
+    </div>
+  </div>
+</div>

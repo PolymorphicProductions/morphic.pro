@@ -26,17 +26,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :morphic_pro, :pow,
-  user: MorphicPro.Users.User,
-  repo: MorphicPro.Repo,
-  web_module: MorphicProWeb,
-  web_mailer_module: MorphicProWeb,
-  mailer_backend: MorphicProWeb.Pow.Mailer,
-  extensions: [PowResetPassword, PowEmailConfirmation],
-  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
-  messages_backend: MorphicProWeb.Pow.Messages,
-  cache_store_backend: Pow.Store.Backend.MnesiaCache
-
 config :dissolver,
   repo: MorphicPro.Repo,
   theme: Dissolver.HTML.Tailwind,
