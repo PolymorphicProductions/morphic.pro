@@ -5,12 +5,17 @@ defmodule MorphicProWeb.UserRegistrationController do
   alias MorphicPro.Accounts.User
 
   def new(conn, _params) do
-    changeset = Accounts.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
+    %{changes: %{captcha: %{text: text}}} = changeset = Accounts.new_user_registration(%User{})
+
+    conn
+    |> Plug.Conn.put_session(:captcha_store, text)
+    |> render("new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Accounts.register_user(user_params) do
+    captcha_text = Plug.Conn.get_session(conn, :captcha_store)
+
+    case Accounts.register_user(user_params, captcha_text) do
       {:ok, user} ->
         Accounts.deliver_user_confirmation_instructions(
           user,
@@ -26,10 +31,14 @@ defmodule MorphicProWeb.UserRegistrationController do
             "Registration successful, please check for a confirmation email to complete login."
           )
 
-        redirect(conn, to: Routes.page_path(conn, :index))
+        conn
+        |> delete_session(:captcha_store)
+        |> redirect(to: Routes.page_path(conn, :index))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+      {:error, %{changes: %{captcha: %{text: text}}} = changeset} ->
+        conn
+        |> Plug.Conn.put_session(:captcha_store, text)
+        |> render("new.html", changeset: changeset)
     end
   end
 end

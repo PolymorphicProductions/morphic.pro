@@ -23,8 +23,15 @@ defmodule MorphicProWeb.UserRegistrationControllerTest do
       email = unique_user_email()
 
       conn =
-        post(conn, Routes.user_registration_path(conn, :create), %{
-          "user" => %{"email" => email, "password" => valid_user_password()}
+        conn
+        |> Phoenix.ConnTest.init_test_session(%{})
+        |> Plug.Conn.put_session(:captcha_store, "foo")
+        |> post(Routes.user_registration_path(conn, :create), %{
+          "user" => %{
+            "email" => email,
+            "password" => valid_user_password(),
+            "captcha_return" => "foo"
+          }
         })
 
       assert redirected_to(conn) =~ "/"

@@ -1,11 +1,11 @@
 <div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/login2.jpg") %>)">
-  <div class="w-screen justify-center min-h-screen bg-black-07">
+  <div class="justify-center w-screen min-h-screen bg-black-07">
     <div
-      class="login-form md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto h-auto sm:max-w-sm">
-      <h1 class="text-white text-xl text-center font-bold">Register</h1>
+      class="h-auto login-form md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto sm:max-w-sm">
+      <h1 class="text-xl font-bold text-center text-white">Register</h1>
       <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [as: :user, class: "px-8 pt-4 pb-2"], fn f -> %>
       <%= if @changeset.action do %>
-      <div class="text-center font-bold text-red-400 alert alert-danger pb-6">
+      <div class="pb-6 font-bold text-center text-red-400 alert alert-danger">
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
       <% end %>
@@ -20,13 +20,22 @@
         <%= password_input f, :password, error_class: "border border-red-500", class: "bg-transparent shadow appearance-none border border-gray-500 w-full py-4 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-white hover:border-gray-200 transition-colors duration-700", id: "password", placeholder: "Password", required: true %>
       </div>
 
+      <div class="mb-3 text-center">
+        <%= raw(image(@changeset.changes.captcha.image)) %>
+      </div>
+
+      <div class="mb-3">
+        <%= error_tag f, :captcha_return, class: "text-red-500" %>
+        <%= text_input f, :captcha_return, value: "", error_class: "border border-red-500", class: "bg-transparent shadow appearance-none border border-gray-500 w-full py-4 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-white hover:border-gray-200 transition-colors duration-700", id: "captcha_return", placeholder: "Type the letters from the image above", required: true %>
+      </div>
+
       <div class="">
         <%= submit "Register", class: "w-full border border-white text-white hover:text-gray-600 hover:bg-gray-200 font-bold py-4 px-4 focus:outline-none transition-colors duration-700" %>
       </div>
       <% end %>
-      <p class="text-center text-white pb-2"><%= link "Sign in", to: Routes.user_session_path(@conn, :new) %></p>
+      <p class="pb-2 text-center text-white"><%= link "Sign in", to: Routes.user_session_path(@conn, :new) %></p>
 
-      <p class="text-center text-gray-500 text-xs">
+      <p class="text-xs text-center text-gray-500">
         &copy;2020 Morphic Pro llc. All rights reserved.
       </p>
     </div>

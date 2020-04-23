@@ -9,9 +9,10 @@ defmodule MorphicPro.AccountsFixtures do
       attrs
       |> Enum.into(%{
         email: unique_user_email(),
-        password: valid_user_password()
+        password: valid_user_password(),
+        captcha_return: "foo"
       })
-      |> MorphicPro.Accounts.register_user()
+      |> MorphicPro.Accounts.register_user("foo")
 
     user
   end
@@ -21,9 +22,10 @@ defmodule MorphicPro.AccountsFixtures do
       attrs
       |> Enum.into(%{
         email: unique_user_email(),
-        password: valid_user_password()
+        password: valid_user_password(),
+        captcha_return: "foo"
       })
-      |> MorphicPro.Accounts.register_user()
+      |> MorphicPro.Accounts.register_user("foo")
 
     {:ok, user} =
       user
@@ -40,9 +42,10 @@ defmodule MorphicPro.AccountsFixtures do
       attrs
       |> Enum.into(%{
         email: unique_user_email(),
-        password: valid_user_password()
+        password: valid_user_password(),
+        captcha_return: "foo"
       })
-      |> MorphicPro.Accounts.register_user()
+      |> MorphicPro.Accounts.register_user("foo")
 
     {:ok, user} =
       user
