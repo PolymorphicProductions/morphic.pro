@@ -10,6 +10,8 @@ defmodule MorphicProWeb.Plug.AdminsOnly do
 
       _ ->
         conn
+        |> put_resp_content_type("text/html")
+        |> put_status(:forbidden)
         |> send_resp(403, "Unauthorized 403")
         |> halt()
     end
