@@ -1,6 +1,6 @@
 defmodule MorphicPro.Captcha do
   # allow customize receive timeout, default: 10_000
-  def get(timeout \\ 1_000) do
+  def get(timeout \\ 4_000) do
     path = Path.join(:code.priv_dir(:captcha), "captcha") |> IO.inspect()
 
     Port.open({:spawn, path}, [:binary])
