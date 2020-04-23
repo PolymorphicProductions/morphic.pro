@@ -148,7 +148,7 @@ defmodule MorphicPro.Accounts.User do
   defp validate_captcha(cs, _), do: cs
 
   defp put_captcha(%{valid?: false} = cs) do
-    case Captcha.get() do
+    case MorphicPro.Captcha.get() do
       {:ok, text, img_binary} ->
         # save text in session, then send img to client
         cs
