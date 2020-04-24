@@ -15,62 +15,67 @@
     <div class="items-center flex-grow hidden lg:flex" id="collapse-navbar">
       <ul class="flex flex-col list-none lg:flex-row lg:ml-auto">
         <li class="nav-item">
-          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50"
+          <a class="flex items-center px-3 py-4 font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+            href="#">
+            <span class="ml-2">Services</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="flex items-center px-3 py-4 font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50"
             href="<%= Routes.post_path(@conn, :index) %>">
-            <i class="text-lg fas fa-book-open leading-lg"></i><span class="ml-2">Posts</span>
+            <span class="ml-2">Posts</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+          <a class="flex items-center px-3 py-4 font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="<%= Routes.snap_path(@conn, :index) %>">
-            <i class="text-lg fas fa-camera leading-lg"></i><span class="ml-2">Snaps</span>
-          </a>
-        </li>
-        <!-- 
-        <li class="nav-item">
-          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="#">
-            <i class="text-lg fas fa-envelope leading-lg"></i><span class="ml-2">Contact</span>
+            <span class="ml-2">Snaps</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+          <a class="flex items-center px-3 py-4 font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
             href="#">
-            <i class="text-lg fas fa-address-card leading-lg"></i><span class="ml-2">About</span>
+            <span class="ml-2">Contact</span>
           </a>
-        </li> -->
+        </li>
+        <li class="nav-item">
+          <a class="flex items-center px-3 py-4 font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
+            href="#">
+            <span class="ml-2">About</span>
+          </a>
+        </li>
+
         <%= if @current_user do %>
         <li class="nav-item">
           <%= link to: Routes.user_session_path(@conn, :delete), method: :delete,
-          class: "flex items-center px-3 py-2 text-xs font-normal leading-snug
+          class: "flex items-center px-3 py-4 font-normal leading-snug
           uppercase transition-opacity duration-1000 hover:opacity-50" do %>
-          <i class="text-lg fas fa-sign-out-alt leading-lg"></i>
+
           <span class="ml-2">Sign out</span>
           <% end %>
         </li>
 
         <li class="nav-item">
           <%= link to: Routes.user_settings_path(@conn, :edit), class: "flex
-          items-center px-3 py-2 text-xs font-normal leading-snug uppercase
+          items-center px-3 py-4 font-normal leading-snug uppercase
           transition-opacity duration-1000 hover:opacity-50" do %>
-          <i class="text-lg fas fa-user-circle leading-lg"></i>
+
           <span class="ml-2">Account</span>
           <% end %>
         </li>
         <% else %>
         <li class="nav-item">
           <%= link to: Routes.user_session_path(@conn, :new), class: "flex
-          items-center px-3 py-2 text-xs font-normal leading-snug uppercase
+          items-center px-3 py-4 font-normal leading-snug uppercase
           transition-opacity duration-1000 hover:opacity-50" do %>
-          <i class="text-lg fas fa-sign-in-alt leading-lg"></i><span class="ml-2">Sign In</span>
+          <span class="ml-2">Sign In</span>
           <% end %>
         </li>
 
         <li class="nav-item">
           <%= link to: Routes.user_registration_path(@conn, :new), class: "flex
-          items-center px-3 py-2 text-xs font-normal leading-snug uppercase
+          items-center px-3 py-4 font-normal leading-snug uppercase
           transition-opacity duration-1000 hover:opacity-50" do %>
-          <i class="text-lg fas fa-user-circle leading-lg"></i>
           <span class="ml-2">Register</span>
           <% end %>
         </li>

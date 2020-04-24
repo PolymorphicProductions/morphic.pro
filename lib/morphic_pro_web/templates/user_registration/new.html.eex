@@ -1,7 +1,7 @@
 <div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/login2.jpg") %>)">
   <div class="justify-center w-screen min-h-screen bg-black-07">
     <div
-      class="h-auto login-form md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto sm:max-w-sm">
+      class="h-auto pt-20 login-form md:pt-0 md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto sm:max-w-sm">
       <h1 class="text-xl font-bold text-center text-white">Register</h1>
       <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [as: :user, class: "px-8 pt-4 pb-2"], fn f -> %>
       <%= if @changeset.action do %>
