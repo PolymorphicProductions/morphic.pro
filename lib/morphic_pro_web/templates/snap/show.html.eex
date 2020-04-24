@@ -1,5 +1,5 @@
 <div class="container mx-auto mt-18 lg:mt-24">
-  <div class="lg:px-48">
+  <div class="pt-20 lg:px-48">
     <img src="<%= @snap.large_img %>" />
   </div>
 </div>
