@@ -3,9 +3,17 @@
     <div class="text-center">
 
       <h4 class="text-3xl font-bold text-gray-100">
-        <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro<span class="text-xs">,
-          LLC</span>
+        <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro
       </h4>
+
+      <div class="mt-3 text-white">
+        (971) 533-7224 | <a href="mailto:hello@morphic.pro">hello@morphic.pro</a>
+      </div>
+      <div class="mt-2 text-white">
+        Portland, Oregon <i class="text-green-400 fas fa-tree"></i>
+      </div>
+
+
       <div class="mt-5 text-2xl text-white">
         <span class="mr-2">
           <a href="https://keybase.io/morphicpro" class="hover:text-orange-500"><i class="fab fa-keybase"></i></a>
@@ -25,11 +33,14 @@
   <div class="pt-10 text-sm text-gray-400 bg-gray-900">
     <div class="container flex flex-wrap items-center justify-between w-full mx-auto">
       <div class="w-full px-4 lg:w-auto lg:static lg:block lg:justify-start">
-        <span><i class="fas fa-copyright"></i> 2020 Morphic Pro, LLC - All Rights Reserved.</span>
+        <span><i class="far fa-copyright"></i></i> 2020 Morphic Pro, LLC - All Rights Reserved.</span>
       </div>
 
       <div class="items-center flex-grow w-full px-4 lg:w-auto lg:static lg:block lg:justify-start lg:flex">
         <ul class="flex flex-col list-none lg:flex-row lg:ml-auto">
+          <li class="pr-4">
+
+          </li>
           <li>
             <a href="/privacy" class="pr-4"><i class="fas fa-user-secret"></i> Privacy</a>
           </li>
