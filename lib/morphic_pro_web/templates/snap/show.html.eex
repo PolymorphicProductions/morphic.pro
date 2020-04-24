@@ -1,10 +1,10 @@
-<div class="container pt-20 mx-auto mt-0 lg:mt-24 md:pt-0">
+<div class="container pt-20 mx-auto mt-0 lg:mt-24 lg:pt-0">
   <div class="lg:px-48">
     <img src="<%= @snap.large_img %>" />
   </div>
 </div>
 
-<div class="container mx-auto mb-32">
+<div class="container mx-auto lg:mb-20">
   <div class="px-8 py-10 bg-white shadow-md lg:mx-48 lg:mb-10 snap-body">
     <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
 
@@ -38,9 +38,9 @@
       <span class="pr-2"><%= @snap.exif["ISOSpeedRatings"]["description"] %> ISO</span>
     </div>
     <% end %>
+    <%= admin_links @current_user, @snap %>
 
   </div>
 
-  <%= admin_links @current_user, @snap %>
 </div>
 </div>
