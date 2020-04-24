@@ -24,3 +24,5 @@ config :morphic_pro, MorphicProWeb.Mailer, adapter: Bamboo.TestAdapter
 config :ex_aws,
   access_key_id: "access_key_id",
   secret_access_key: "secret_access_key"
+
+config :bcrypt_elixir, log_rounds: 4
