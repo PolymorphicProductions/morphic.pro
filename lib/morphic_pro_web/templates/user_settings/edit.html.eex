@@ -1,10 +1,10 @@
 <div class="my-32">
   <div class="container px-3 mx-auto">
-    <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-red-400 text-center'> #{string}</h3>" end).() |> raw %>
+    <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-red-400'> #{string}</h3>" end).() |> raw %>
 
-    <h2 class="mb-5 font-bold border-b pb-2">Account Settings</h2>
+    <h2 class="pb-2 mb-5 font-bold border-b">Account Settings</h2>
 
-    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div class="mr-10">
 
         <h3>Change e-mail</h3>

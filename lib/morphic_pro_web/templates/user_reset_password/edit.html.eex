@@ -1,12 +1,12 @@
 <div class="bg-image" style="background-image: url(<%= Routes.static_path(@conn, "/images/login2.jpg") %>)">
-  <div class="w-screen justify-center min-h-screen bg-black-07">
+  <div class="justify-center w-screen min-h-screen bg-black-07">
     <div
-      class="login-form md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto h-auto sm:max-w-sm">
-      <h1 class="text-white text-xl text-center font-bold">Reset Password</h1>
-      <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-red-400 text-center'> #{string}</h3>" end).() |> raw %>
+      class="h-auto pt-20 login-form md:pt-0 md:top-0 md:left-0 md:right-0 md:bottom-0 md:absolute md:my-auto md:mx-auto sm:max-w-sm">
+      <h1 class="text-xl font-bold text-center text-white">Reset Password</h1>
+      <%= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-red-400'> #{string}</h3>" end).() |> raw %>
       <%= form_for @changeset, Routes.user_reset_password_path(@conn, :update, @token), [class: "px-8 pt-4 pb-2"], fn f -> %>
       <%= if @changeset.action do %>
-      <div class="text-center font-bold text-red-400 alert alert-danger pb-6">
+      <div class="pb-6 font-bold text-center text-red-400 alert alert-danger">
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
       <% end %>
@@ -25,10 +25,10 @@
         <%= submit "Reset Password", class: "w-full border border-white text-white hover:text-gray-600 hover:bg-gray-200 font-bold py-4 px-4 focus:outline-none transition-colors duration-700" %>
       </div>
       <% end %>
-      <p class="text-center text-white pb-2"><%= link "Sign in", to: Routes.user_session_path(@conn, :new) %> |
+      <p class="pb-2 text-center text-white"><%= link "Sign in", to: Routes.user_session_path(@conn, :new) %> |
         <%= link "Register", to: Routes.user_registration_path(@conn, :new) %></p>
 
-      <p class="text-center text-gray-500 text-xs">
+      <p class="text-xs text-center text-gray-500">
         &copy;2020 Morphic Pro llc. All rights reserved.
       </p>
     </div>
