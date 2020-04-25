@@ -12,7 +12,9 @@
     "easymde": "^2.10.0",
     "exifreader": "^3.8.0",
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html"
+    "phoenix_html": "file:../deps/phoenix_html",
+    "prism-themes": "^1.4.0",
+    "prismjs": "^1.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

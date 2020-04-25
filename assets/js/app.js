@@ -16,6 +16,16 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
+import Prism from 'prismjs';
+import "prismjs/components/prism-elixir.js"
+import "prismjs/components/prism-nginx.js"
+import "prismjs/components/prism-ruby.js"
+import "prismjs/components/prism-bash.js"
+import "prismjs/components/prism-rust.js"
+import "prismjs/components/prism-json.js"
+
+
+
 let isNavToggled = false;
 let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
 let white_bg = document.getElementsByClassName("navbar-wbg")[0]
