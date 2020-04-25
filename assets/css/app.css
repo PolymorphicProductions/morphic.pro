@@ -8,13 +8,7 @@
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
 @import "~easymde/dist/easymde.min.css";
-/* @import "~prism-themes/themes/prism-atom-dark.css"; */
-/* @import "~prism-themes/themes/prism-hopscotch.css"; */
-/* @import "~prism-themes/themes/prism-vsc-dark-plus.css"; */
-/* @import "~prism-themes/themes/prism-dracula.css"; */
-/* @import "~prism-themes/themes/prism-material-dark.css"; */
-/* @import "~prism-themes/themes/prism-material-oceanic.css"; */
-@import "~prism-themes/themes/prism-xonokai.css";
+
 
 @font-face {
   font-family: "icomoon";
@@ -106,8 +100,6 @@ nav .icon-shape {
   @apply bg-red-700;
 }
 
-
-
 .thumb{
   position: relative;
   overflow: hidden;
@@ -181,8 +173,18 @@ nav .icon-shape {
   }
   pre {
     line-height: 28px;
+    @apply mb-6;
   }
   p {
     margin-bottom: 20px;
   }
 }
+
+
+/* @import "~prism-themes/themes/prism-atom-dark.css"; */
+/* @import "~prism-themes/themes/prism-hopscotch.css"; */
+/* @import "~prism-themes/themes/prism-vsc-dark-plus.css"; */
+/* @import "~prism-themes/themes/prism-dracula.css"; */
+/* @import "~prism-themes/themes/prism-material-dark.css"; */
+/* @import "~prism-themes/themes/prism-material-oceanic.css"; */
+@import "~prism-themes/themes/prism-xonokai.css";
