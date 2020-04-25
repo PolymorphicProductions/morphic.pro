@@ -23,6 +23,7 @@ import "prismjs/components/prism-ruby.js"
 import "prismjs/components/prism-bash.js"
 import "prismjs/components/prism-rust.js"
 import "prismjs/components/prism-json.js"
+import "prismjs/components/prism-git.js"
 
 
 
