@@ -67,7 +67,9 @@ defmodule MorphicPro.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
-      {:phoenix_live_dashboard, "~> 0.1"},
+      {:phoenix_live_view, "~> 0.12.0"},
+      {:floki, ">= 0.0.0", only: :test},
+      {:phoenix_live_dashboard, "~> 0.2.0"},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:captcha, "~> 0.1.0"}
