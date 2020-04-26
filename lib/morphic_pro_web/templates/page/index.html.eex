@@ -123,6 +123,7 @@
         <div class="px-6 py-4">
           <%= parse_tags(post.tags) %>
         </div>
+
       </div>
       <% end %>
     </div>
@@ -157,6 +158,10 @@
 
         <div class="px-6 pb-4 text-base text-gray-700 snap-body">
           <%= snap.body |> parse_markdown |> parse_body_tags |> raw %>
+        </div>
+
+        <div class="px-6 py-4 text-center ">
+          <%= live_render(@conn, MorphicProWeb.SnapLive, session: %{"snap_id" => snap.id, "snap_likes" => snap.likes_count}) %>
         </div>
 
       </div>

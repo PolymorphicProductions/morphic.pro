@@ -27,6 +27,8 @@ defmodule MorphicPro.Blog.Snap do
     field(:exif_string, :string, virtual: true)
     field(:exif, :map)
 
+    field :likes_count, :integer, default: 0
+
     many_to_many(:tags, Tag,
       join_through: "snap_tags",
       on_delete: :delete_all,
