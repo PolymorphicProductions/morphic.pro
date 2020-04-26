@@ -33,7 +33,7 @@ defmodule MorphicProWeb.SnapLive do
   @impl true
   def render(assigns) do
     ~L"""
-    <button class="btn-blue text-xs focus:outline-none text-center" phx-click="inc_snap_likes">
+    <button class="btn-blue text-xs focus:outline-none text-center" phx-throttle="500" phx-click="inc_snap_likes">
       <i class="fas fa-heart"></i> <%= @snap_likes %>
     </button>
     """
