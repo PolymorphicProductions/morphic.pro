@@ -38,6 +38,10 @@
           ƒ/<%= snap.exif["ApertureValue"]["description"] %> | <%= snap.exif["FocalLength"]["description"] %> |
           <%= snap.exif["ShutterSpeedValue"]["description"] %>
           <% end %>
+
+          <div class="py-2">
+            <%= live_render(@conn, MorphicProWeb.SnapLive, session: %{"snap_id" => snap.id, "snap_likes" => snap.likes_count}) %>
+          </div>
         </div>
       </div>
 

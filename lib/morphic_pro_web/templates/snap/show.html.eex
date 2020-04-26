@@ -38,6 +38,9 @@
       <span class="pr-2"><%= @snap.exif["ISOSpeedRatings"]["description"] %> ISO</span>
     </div>
     <% end %>
+    <div class="px-6 py-4 text-center ">
+      <%= live_render(@conn, MorphicProWeb.SnapLive, session: %{"snap_id" => @snap.id, "snap_likes" => @snap.likes_count}) %>
+    </div>
     <%= admin_links @current_user, @snap %>
 
   </div>

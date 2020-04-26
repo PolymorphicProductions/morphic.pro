@@ -158,6 +158,20 @@ defmodule MorphicPro.Blog do
     {:ok, post.likes_count}
   end
 
+  def inc_likes(%Snap{id: id}) do
+    {1, [snap]} =
+      from(p in Snap, where: p.id == ^id, select: p)
+      |> Repo.update_all(inc: [likes_count: 1])
+
+    Phoenix.PubSub.broadcast(
+      MorphicPro.PubSub,
+      "post:like:#{id}",
+      {:post_liked, snap.likes_count}
+    )
+
+    {:ok, snap.likes_count}
+  end
+
   @doc """
   Deletes a Post.
 
