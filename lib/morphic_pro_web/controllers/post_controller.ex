@@ -12,7 +12,10 @@ defmodule MorphicProWeb.PostController do
 
   def index(conn, params, %{current_user: current_user}) do
     {posts, dissolver} = Blog.list_posts(params, current_user)
-    render(conn, "index.html", posts: posts, dissolver: dissolver)
+
+    conn
+    |> assign(:page_title, "Blog Posts | Morhpic.Pro")
+    |> render("index.html", posts: posts, dissolver: dissolver)
   end
 
   def new(conn, _params, %{current_user: current_user}) do
@@ -42,6 +45,8 @@ defmodule MorphicProWeb.PostController do
 
     conn
     |> assign(:nav_class, "navbar navbar-absolute navbar-fixed")
+    |> assign(:page_title, "#{post.title} | Morhpic.Pro")
+    |> assign(:page_image, post.thumb_img)
     |> render("show.html",
       post: post
       # changeset: changeset

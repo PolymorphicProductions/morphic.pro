@@ -8,6 +8,12 @@
   <meta name="description" content="Portland's Digital Curator">
   <meta name="author" content="Josh Chernoff <jchernoff@morphic.pro>">
 
+  <meta property="og:image" content="<%= assigns[:page_image] || "https://morphic.pro#{Routes.static_path(@conn, "/images/logo.png")}" %>">
+  <meta property="og:site_name" content="Morphic Pro">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= assigns[:page_title] || "Morphic.Pro" %>">
+  <meta property="og:url" content="https://morhpic.pro<%= @conn.request_path %>">
+
   <link rel="apple-touch-icon" sizes="180x180" href="<%= Routes.static_path(@conn, "/images/apple-touch-icon.png") %>">
   <link rel="icon" type="image/png" sizes="32x32" href="<%= Routes.static_path(@conn, "/images/favicon-32x32.png") %>">
   <link rel="icon" type="image/png" sizes="16x16" href="<%= Routes.static_path(@conn, "/images/favicon-16x16.png") %>">
