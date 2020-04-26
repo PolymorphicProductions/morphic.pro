@@ -12,7 +12,10 @@ defmodule MorphicProWeb.SnapController do
 
   def index(conn, params, %{current_user: current_user}) do
     {snaps, dissolver} = Blog.list_snaps(params, current_user)
-    render(conn, "index.html", snaps: snaps, dissolver: dissolver)
+
+    conn
+    |> assign(:page_title, "Snapshots and Photographs | Morhpic.Pro")
+    |> render("index.html", snaps: snaps, dissolver: dissolver)
   end
 
   def new(conn, _params, %{current_user: current_user}) do
@@ -41,6 +44,8 @@ defmodule MorphicProWeb.SnapController do
 
     conn
     |> assign(:nav_class, "navbar navbar-absolute navbar-fixed navbar-wbg")
+    |> assign(:page_title, "Snapshots and Photographs | Morhpic.Pro")
+    |> assign(:page_image, snap.thumb_img)
     |> render("show.html",
       snap: snap
     )
