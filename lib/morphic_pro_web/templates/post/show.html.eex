@@ -16,9 +16,14 @@
           <%= parse_tags(@post.tags) %>
         </div>
 
+        <div class="px-6 py-4 text-center ">
+          <%= live_render(@conn, MorphicProWeb.PostLive, session: %{"post_id" => @post.id, "post_likes" => @post.likes_count}) %>
+        </div>
+
+
         <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">
-          <a href="#body">
-            <i class="ml-2 fas fa-arrow-circle-down"></i>
+          <a href="#body" class=>
+            <i class="fas fa-arrow-circle-down"></i>
           </a>
         </p>
 

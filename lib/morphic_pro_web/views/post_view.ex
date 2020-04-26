@@ -40,7 +40,7 @@ defmodule MorphicProWeb.PostView do
         :span,
         link("##{tag.name}",
           to: Routes.post_tag_path(MorphicProWeb.Endpoint, :show_post, tag.name),
-          class: "inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200"
+          class: "inline-block py-2 px-2 text-sm font-semibold text-gray-700 bg-gray-200"
         )
       )
     end)

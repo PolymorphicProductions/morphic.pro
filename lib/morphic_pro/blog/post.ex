@@ -31,6 +31,8 @@ defmodule MorphicPro.Blog.Post do
     field :large_img, :string
     field :thumb_img, :string
 
+    field :likes_count, :integer, default: 0
+
     many_to_many(:tags, Tag,
       join_through: "post_tags",
       on_delete: :delete_all,
