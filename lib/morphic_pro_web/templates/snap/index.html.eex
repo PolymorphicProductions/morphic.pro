@@ -39,7 +39,7 @@
           <%= snap.exif["ShutterSpeedValue"]["description"] %>
           <% end %>
 
-          <div class="px-6 py-4 text-center ">
+          <div class="py-2">
             <%= live_render(@conn, MorphicProWeb.SnapLive, session: %{"snap_id" => snap.id, "snap_likes" => snap.likes_count}) %>
           </div>
         </div>
