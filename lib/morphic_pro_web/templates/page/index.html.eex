@@ -138,7 +138,7 @@
 
     <div class="text-center section-title">
       <h2 class="mb-10 font-bold text-gray-800 text-1xl page-title">
-        <%= link "Latest Snaps", to: Routes.post_path(@conn, :index) %></h2>
+        <%= link "Latest Snaps", to: Routes.snap_path(@conn, :index) %></h2>
     </div>
 
     <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
