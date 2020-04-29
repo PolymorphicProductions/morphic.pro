@@ -28,7 +28,7 @@ config :phoenix, :json_library, Jason
 
 config :dissolver,
   repo: MorphicPro.Repo,
-  theme: Dissolver.HTML.Tailwind,
+  theme: MorphicProWeb.Dissolver.HTML.Tailwind,
   per_page: 21
 
 config :morphic_pro, MorphicProWeb.Mailer,
