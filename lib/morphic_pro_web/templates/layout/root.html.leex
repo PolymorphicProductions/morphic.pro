@@ -41,7 +41,7 @@
   <script rel="preload" type="text/javascript"
     src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
   <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
-  <%= render_existing_nested @conn.private, "script.", assigns %>
+  <%= render_existing(view_module(@conn), "script." <> view_template(@conn)) %>
 </body>
 
 </html>
