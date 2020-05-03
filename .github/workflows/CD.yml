@@ -139,9 +139,9 @@ jobs:
             mkdir -p morphic_pro/releases
             mkdir -p morphic_pro/releases/${{ github.sha }}
             tar -xzvf /tmp/_build/prod/prod-${{ github.sha }}.tar.gz --directory ~/morphic_pro/releases/${{ github.sha}}/
-            ./morphic_pro/current/bin/prod stop
+            sudo /bin/systemctl stop morphic_pro.service
             ln -sfT ~/morphic_pro/releases/${{ github.sha}}/ ~/morphic_pro/current
-            ./morphic_pro/current/bin/prod daemon
+            sudo /bin/systemctl start morphic_pro.service
       - name: Run migrations
         uses: appleboy/ssh-action@master
         with:
