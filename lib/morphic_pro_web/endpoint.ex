@@ -34,7 +34,7 @@ defmodule MorphicProWeb.Endpoint do
   end
 
   # Live View
-  socket "/live", Phoenix.LiveView.Socket
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   plug Phoenix.LiveDashboard.RequestLogger,
     param_key: "request_logger",
