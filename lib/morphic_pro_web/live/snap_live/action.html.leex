@@ -1,0 +1,8 @@
+<%= live_component @socket,  MorphicProWeb.SnapLive.FormComponent,
+  id: @snap.id || :new,
+  title: @page_title,
+  action: @live_action,
+  snap: @snap,
+  return_to: Routes.snap_index_path(@socket, :index),
+  current_user: @current_user %>
+  

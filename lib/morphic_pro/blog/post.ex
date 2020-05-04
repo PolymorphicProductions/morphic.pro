@@ -8,7 +8,7 @@ defmodule MorphicPro.Blog.Post do
 
   @behaviour Bodyguard.Schema
 
-  def(scope(query, %MorphicPro.Accounts.User{admin: true}, _)) do
+  def scope(query, %MorphicPro.Accounts.User{admin: true}, _)  do
     query
   end
 
@@ -73,8 +73,8 @@ defmodule MorphicPro.Blog.Post do
     |> put_slug()
     |> parse_tags_list()
     |> parse_tags_assoc()
-    |> unique_constraint(:name, name: :posts_slug_index)
-    |> unique_constraint(:slug, name: :posts_slug_index)
+    |> unsafe_validate_unique(:slug, MorphicPro.Repo)
+    |> unique_constraint(:slug)
   end
 
   defp validate_published_at(

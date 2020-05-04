@@ -1,14 +1,11 @@
 /* This file is for your main application css. */
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
 @import "~easymde/dist/easymde.min.css";
-
 
 @font-face {
   font-family: "icomoon";
@@ -34,7 +31,6 @@ h2{
 h3{
   @apply text-xl
 }
-
 
 .bg-black-05 {
   background: rgba(0, 0, 0, 0.5) !important;
@@ -84,6 +80,19 @@ nav .icon-shape {
 
 .login-form {
   height: max-content;
+}
+.btn-red {
+  @apply px-4 py-2 font-bold text-white bg-red-500 rounded;
+}
+.btn-red:hover {
+  @apply bg-orange-700;
+}
+
+.btn-orange {
+  @apply px-4 py-2 font-bold text-white bg-orange-500 rounded;
+}
+.btn-orange:hover {
+  @apply bg-orange-700;
 }
 
 .btn-blue {
@@ -180,6 +189,94 @@ nav .icon-shape {
   }
 }
 
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+ 
+[type="file"] + label {
+  @apply px-4 py-2 text-xs text-center text-white bg-blue-500 rounded;
+  ;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 2rem 4rem;
+}
+  
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+  @apply bg-blue-800;
+}
+  
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
+}
+
+/* Toggle button  */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  @apply rounded bg-green-400;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  @apply rounded;
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+  background: #e8eeeb;
+  box-shadow: inset 2px 2px 4px #d8dddb, 
+              inset -2px -2px 4px #f8fffb;
+}
+
+input:checked + .slider {
+  @apply bg-red-400;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
 
 /* @import "~prism-themes/themes/prism-atom-dark.css"; */
 /* @import "~prism-themes/themes/prism-hopscotch.css"; */

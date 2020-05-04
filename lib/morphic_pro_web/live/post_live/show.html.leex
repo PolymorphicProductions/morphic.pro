@@ -11,16 +11,22 @@
           <%= parse_date @post.published_at %>
         </p>
 
-
         <div class="px-6 py-4 text-center ">
-          <%= parse_tags(@post.tags) %>
+          <%= parse_post_tags(@post.tags) %>
         </div>
 
-        <div class="px-6 py-4 text-center ">
-          <%= live_render(@conn, MorphicProWeb.PostLive, session: %{"post_id" => @post.id, "post_likes" => @post.likes_count}) %>
+        <%= if @current_user && @current_user.admin do %>
+        <div class="px-6 pb-4 text-center">
+          <%= admin_links @current_user, @post, @socket %>
         </div>
-
-
+        <% else %>
+        <div class="px-6 pb-4 text-center">
+          <button class="text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_post_likes" phx-value-post-id="<%= @post.id %>">
+            <i class="fas fa-heart"></i> <%= @post.likes_count %>
+          </button>
+        </div>
+        <% end %>
+        
         <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">
           <a href="#body" class=>
             <i class="fas fa-arrow-circle-down"></i>
@@ -34,15 +40,16 @@
 
 <a name="body"></a>
 <div class="container mx-auto my-20">
-  <div class="lg:px-64 px-8 py-24 bg-white post-body">
+  <div class="px-8 py-24 bg-white lg:px-64 post-body">
     <%= @post.body |> parse_markdown |> raw %>
 
-    <div class="px-6 py-4 text-center ">
-      <%= live_render(@conn, MorphicProWeb.PostLive, session: %{"post_id" => @post.id, "post_likes" => @post.likes_count}) %>
+    <div class="px-6 pb-4 text-center">
+      <button class="text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_post_likes" phx-value-post-id="<%= @post.id %>">
+        <i class="fas fa-heart"></i> <%= @post.likes_count %>
+      </button>
     </div>
   </div>
-
-
 </div>
 
-<%= admin_links @current_user, @post %>
+<%= admin_links @current_user, @post, @socket %>
+    

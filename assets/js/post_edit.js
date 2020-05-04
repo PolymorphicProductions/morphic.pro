@@ -1,11 +1,3 @@
-import * as EasyMDE from "easymde";
-const easymdeBody = new EasyMDE({
-  element: document.getElementById("post_body")
-});
-const easymdeExcerpt = new EasyMDE({
-  element: document.getElementById("post_excerpt")
-});
-
 
 function draw(ev) {
   console.log(ev);
@@ -82,6 +74,7 @@ function process_image() {
       let upload = new XMLHttpRequest();
       upload.addEventListener('load', (e) => {
         document.getElementById("post_large_img").value = `https://morphicpro.s3-us-west-2.amazonaws.com/posts/${uuid}/large.jpg`
+        document.getElementById("bg-image").style["background-image"] = `url(https://morphicpro.s3-us-west-2.amazonaws.com/posts/${uuid}/large.jpg)`
       })
       upload.open('PUT', url, true);
       upload.setRequestHeader('Content-Type', "image/jpeg");

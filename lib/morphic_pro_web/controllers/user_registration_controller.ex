@@ -33,7 +33,7 @@ defmodule MorphicProWeb.UserRegistrationController do
 
         conn
         |> delete_session(:captcha_store)
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.page_index_path(conn, :index))
 
       {:error, %{changes: %{captcha: %{text: text}}} = changeset} ->
         conn

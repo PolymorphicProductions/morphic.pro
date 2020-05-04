@@ -109,7 +109,7 @@ defmodule MorphicPro.Factory do
 
   def tag_factory do
     %Tag{
-      name: sequence(:name, &"#{Commerce.En.product_name_product()}#{&1})")
+      name: sequence(:name, &"#{Commerce.En.product_name_product() |> Slug.slugify()}#{&1}")
     }
   end
 end
