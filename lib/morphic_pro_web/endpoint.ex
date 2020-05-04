@@ -21,7 +21,8 @@ defmodule MorphicProWeb.Endpoint do
     only: ~w(css fonts images js favicon.ico robots.txt),
     content_types: %{
       "219f925822b9da756558.module.wasm" => "application/wasm",
-      "02ee66ae5fb312b3f788.module.wasm" => "application/wasm"
+      "02ee66ae5fb312b3f788.module.wasm" => "application/wasm",
+      "cb9f8fcc01608d45592f.module.wasm" => "application/wasm"
     }
 
   # Code reloading can be explicitly enabled under the

@@ -4,17 +4,18 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
+
 // Chuncking?
 // Treeshaking? Remove dead code
 // Better minimizer output?
 
 module.exports = (env, options) => ({
-  mode: "development",
+  mode: "production",
   optimization: {
-    // minimizer: [
-    //   new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
-    //   new OptimizeCSSAssetsPlugin({})
-    // ],
+    minimizer: [
+      new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
+      new OptimizeCSSAssetsPlugin({})
+    ],
     splitChunks: {
       chunks: "all"
     },
@@ -25,6 +26,7 @@ module.exports = (env, options) => ({
     post_edit: "./js/post_edit.js",
     snap_edit: "./js/snap_edit.js"
   },
+
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../priv/static/js"),
