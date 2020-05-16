@@ -1,4 +1,5 @@
 const path = require("path");
+const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -21,10 +22,9 @@ module.exports = (env, options) => ({
     },
     usedExports: true
   },
+
   entry: {
-    app: "./js/app.js",
-    post_edit: "./js/post_edit.js",
-    snap_edit: "./js/snap_edit.js"
+    'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
   },
 
   output: {
@@ -33,6 +33,7 @@ module.exports = (env, options) => ({
     chunkFilename: '[name].bundle.js',
     publicPath: '/js/',
   },
+
   module: {
     rules: [
       {
