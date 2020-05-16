@@ -10,7 +10,6 @@ const easymdeExcerpt = new EasyMDE({
 
 
 function draw(ev) {
-  console.log(ev);
   var ctx = document.getElementById('canvas').getContext('2d'),
     img = new Image(),
     f = document.getElementById("uploadimage").files[0],
@@ -32,8 +31,6 @@ function draw(ev) {
 
   img.src = src;
   img.onload = function () {
-
-
     ctx.canvas.width = img.width;
     ctx.canvas.height = img.height;
     ctx.drawImage(img, 0, 0);

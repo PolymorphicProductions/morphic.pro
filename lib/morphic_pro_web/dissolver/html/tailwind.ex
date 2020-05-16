@@ -1,6 +1,7 @@
 defmodule MorphicProWeb.Dissolver.HTML.Tailwind do
   @behaviour Dissolver.HTML.Theme
   use Phoenix.HTML
+  import Phoenix.LiveView.Helpers
 
   @moduledoc """
   This is a theme to support Tailwind css.
@@ -11,7 +12,7 @@ defmodule MorphicProWeb.Dissolver.HTML.Tailwind do
   def generate_links(page_list, additional_class) do
     content_tag :div, class: build_html_class(additional_class), role: "pagination" do
       for {label, _page, url, is_current} <- page_list do
-        link("#{label}",
+        live_patch("#{label}",
           to: url,
           class:
             hide_for_mobile(is_current, label) <>

@@ -18,6 +18,7 @@ defmodule MorphicProWeb.Email do
     |> render("update_email_email.html")
   end
 
+  @spec pass_reset_email(%{email: any}, any) :: Bamboo.Email.t()
   def pass_reset_email(%{email: recipient}, url) do
     email("Password Reset Request", recipient, url)
     |> render("pass_reset.html")

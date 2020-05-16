@@ -11,7 +11,6 @@ defmodule MorphicProWeb.Router do
     plug :put_root_layout, {MorphicProWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :fetch_current_user
   end
 
   pipeline :admins_only do
@@ -25,12 +24,12 @@ defmodule MorphicProWeb.Router do
   end
 
   scope "/", MorphicProWeb do
-    pipe_through [:browser, :require_authenticated_user, :admins_only]
+    pipe_through [:browser, :fetch_current_user, :require_authenticated_user, :admins_only]
     live_dashboard "/dashboard", metrics: MorphicProWeb.Telemetry
   end
 
   scope "/", MorphicProWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
+    pipe_through [:browser, :fetch_current_user, :redirect_if_user_is_authenticated]
 
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
@@ -43,14 +42,7 @@ defmodule MorphicProWeb.Router do
   end
 
   scope "/", MorphicProWeb do
-    pipe_through [:browser, :require_authenticated_user]
-
-    resources "/posts", PostController,
-      only: [:edit, :new, :create, :update, :delete],
-      param: "slug"
-
-    resources "/snaps", SnapController, only: [:edit, :new, :create, :update, :delete]
-
+    pipe_through [:browser, :fetch_current_user, :require_authenticated_user]
     delete "/users/logout", UserSessionController, :delete
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings/update_password", UserSettingsController, :update_password
@@ -59,19 +51,31 @@ defmodule MorphicProWeb.Router do
   end
 
   scope "/", MorphicProWeb do
-    pipe_through :browser
-
+    pipe_through [:browser, :fetch_current_user]
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
+  end
 
-    get("/posts/tag/:tag", TagController, :show_post, as: :post_tag)
-    resources "/posts", PostController, only: [:index, :show], param: "slug"
+  scope "/", MorphicProWeb do
+    pipe_through :browser
 
-    get("/snaps/tag/:tag", TagController, :show_snap, as: :snap_tag)
-    resources "/snaps", SnapController, only: [:index, :show]
+    live "/posts/:slug/edit", PostLive.Action, :edit
+    live "/snaps/:slug/edit", SnapLive.Action, :edit
 
-    get "/", PageController, :index
+    live "/posts/new", PostLive.Action, :new
+    live "/snaps/new", SnapLive.Action, :new
+
+    live "/posts/tags/:tag", PostLive.Index, :tag
+    live "/snaps/tags/:tag", SnapLive.Index, :tag
+
+    live "/posts/:slug", PostLive.Show, :show
+    live "/snaps/:slug", SnapLive.Show, :show
+
+    live "/posts", PostLive.Index, :index
+    live "/snaps", SnapLive.Index, :index
+
+    live "/", PageLive.Index, :index
   end
 
   if Mix.env() == :dev do

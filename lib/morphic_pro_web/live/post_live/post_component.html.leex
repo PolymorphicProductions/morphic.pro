@@ -1,0 +1,31 @@
+<div id="<%= @post.id %>" class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
+  <%= live_redirect to: Routes.post_show_path(@socket, :show, @post) do %>
+    <img class="w-full" src="<%= @post.thumb_img %>" alt="<%= @post.title %>">
+  <% end %>
+
+  <div class="px-6 py-4">
+    <div class="mb-2 text-xs"><%= parse_date @post.published_at %></div>
+    <div class="mb-2 text-xl font-bold">
+      <%= live_redirect @post.title, to: Routes.post_show_path(@socket, :show, @post), class: "hover:text-gray-600" %>
+    </div>
+    <div class="text-base text-gray-700 @post-body">
+      <%= @post.excerpt |> parse_markdown |> raw %>
+    </div>
+  </div>
+
+  <div class="px-6 pb-4">
+    <button class="text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_post_likes" phx-value-post-id="<%= @post.id %>" phx-target="<%= @myself %>">
+      <i class="fas fa-heart"></i> <%= @post.likes_count %>
+    </button>
+  </div>
+
+  <div class="px-6 pb-4">
+    <%= live_redirect to: Routes.post_show_path(@socket, :show, @post), class: "bg-gray-600 hover:bg-gray-800 text-xs text-white font-bold py-2 px-4 text-gray-100" do %>
+      <span class="pr-2">READ MORE</span> <i class="fas fa-arrow-circle-right"></i>
+    <% end %>
+  </div>
+
+  <div class="px-6 pb-4">
+    <%= parse_post_tags(@post.tags) %>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<%= f = form_for @changeset, "#",
+  id: "snap-form",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <div id="bg-image" class="bg-image" style="background-image: url(<%= @snap.large_img %>)">
+    <div class="flex items-center h-screen align-middle bg-black-07">
+      <div class="container px-3 py-6 mx-auto">
+        <div class="w-full my-12 align-middle">
+
+          <div class="mb-6 text-center">
+            <%= text_input f, :published_at_local, placeholder: "mm/dd/yyyy", class: "bg-transparent text-center border-b-2 border-dashed border-white text-white", "phx-debounce": "2000"  %>
+            <%= error_tag f, :published_at_local, class: "text-red-400 pt-1", tag: :div %>
+          </div>
+
+          <div class="px-6 py-4 flex justify-center">
+            <div class="text-right w-40 pr-6 mt-1">
+              <span class="text-green-400 <%= if (Map.get(@changeset.changes, :draft, @snap.draft )) do %>hidden<% end %>">Published</span>
+            </div>
+            <%= label f, :draft, class: "switch" do  %>
+            <%= checkbox f, :draft, class: "mr-2 leading-tight" %>
+            <span class="slider"></span>
+            <% end %>
+            <div class="text-left w-40 pl-6 mt-1">
+              <span class="text-red-400 <%= unless (Map.get(@changeset.changes, :draft, @snap.draft )) do %>hidden<% end %>">Draft</span>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <%= error_tag f, :draft, class: "text-red-400 pt-1", tag: :div %>
+          </div>
+
+          <div class="px-6 pb-4 text-center">
+            <input type="file" id="file" phx-hook="SnapUploader" />
+            <label for="file" /><i class="fas fa-cloud-upload-alt"></i> Upload new image</label>
+
+            <canvas style="display: none;" id="canvas"></canvas>
+            <article style="display: none;" id="resized_imgs"></article>
+          </div>
+
+          <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">
+            <a href="#body" class=>
+              <i class="fas fa-arrow-circle-down"></i>
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a name="body"></a>
+
+  <div class="container mx-auto my-20">
+    <div class="px-8 py-24 bg-white lg:px-64 snap-body">
+      <div class="mb-6">
+        <%= label f, :Body, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= textarea f, :body, rows: "10", class: "snap-body-edit appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "phx-hook": "EasymdePostBody", "phx-debounce": "10000"  %>
+        <%= error_tag f, :body, class: "text-red-400 pt-1", tag: :div %>
+      </div>
+      
+      <div class="mb-6">
+        <%= label f, :large_img, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= text_input f, :large_img, placeholder: "Large Image URL", class: "appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  %>
+        <%= error_tag f, :large_img, class: "text-red-400 pt-1", tag: :div %>
+      </div>
+
+      <div class="mb-6">
+        <%= label f, :thumb_img, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= text_input f, :thumb_img, placeholder: "Thumb Image URL", class: "appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  %>
+        <%= error_tag f, :thumb_img, class: "text-red-400 pt-1", tag: :div %>
+      </div>
+
+      <div class="mb-6">
+        <%= label f, "Image Exif", class: "md:w-1/3 block text-gray-700 font-bold text-sm font-bold mb-2"  %>
+        <%= textarea f, :exif_string, rows: "10", class: "appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    </div>
+  </div>
+</form>

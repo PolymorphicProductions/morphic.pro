@@ -1,0 +1,32 @@
+<div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
+  
+  <%= live_redirect to: Routes.snap_show_path(@socket, :show, @snap) do %>
+  <div class="thumb">
+    <i class="fas fa-search"></i>
+    <img class="w-full" src="<%= @snap.thumb_img %>">
+  </div>
+  <% end %>
+
+  <div class="px-6 py-4">
+    <div class="mb-2 text-xs <%= if Timex.before?(Timex.today, @snap.published_at), do: "text-red-800" %>">
+      <%= parse_date @snap.published_at %> <%= if @snap.draft do %><span class="text-red-800">Draft</span><% end %>
+    </div>
+
+    <div class="text-base text-gray-700 snap-body">
+      <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
+    </div>
+
+    <div class="text-base text-gray-700 snap-body">
+      <%= if @snap.exif do %>
+      ƒ/<%= @snap.exif["ApertureValue"]["description"] %> | <%= @snap.exif["FocalLength"]["description"] %> |
+      <%= @snap.exif["ShutterSpeedValue"]["description"] %>
+      <% end %>
+
+      <div class="py-2">
+        <button class="text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_snap_likes" phx-value-snap-id="<%= @snap.id %>" phx-target="<%= @myself %>">
+          <i class="fas fa-heart"></i> <%= @snap.likes_count %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

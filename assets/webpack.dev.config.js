@@ -1,4 +1,5 @@
 const path = require("path");
+const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -16,9 +17,7 @@ module.exports = (env, options) => ({
 
   mode: "development",
   entry: {
-    app: "./js/app.js",
-    post_edit: "./js/post_edit.js",
-    snap_edit: "./js/snap_edit.js"
+    'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
   },
   output: {
     filename: "[name].bundle.js",

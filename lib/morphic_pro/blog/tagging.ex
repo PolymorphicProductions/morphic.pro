@@ -58,6 +58,7 @@ defmodule MorphicPro.Blog.Tagging do
       changeset.changes
       |> Map.get(tag_list_attr, "")
       |> Enum.reject(fn name -> name == "" end)
+      |> Enum.reject(fn name -> name == nil end)
       |> Enum.map(&String.downcase(&1))
       |> Enum.uniq()
       |> Enum.sort()

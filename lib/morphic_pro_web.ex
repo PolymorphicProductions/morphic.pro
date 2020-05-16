@@ -38,24 +38,8 @@ defmodule MorphicProWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
-
-      import Dissolver.HTML
-
       # Include shared imports and aliases for views
       unquote(view_helpers())
-
-      def parse_date(d), do: Timex.format!(d, "{Mshort} {D}, {YYYY}")
-
-      def parse_markdown(text) do
-        # TODO: Capture the 3 item in the tuple that comes from `Earmark.as_html` and send to logs
-        case Earmark.as_html(text, pure_links: true) do
-          {:ok, html_doc, _} ->
-            html_doc
-
-          {:error, _html_doc, error_messages} ->
-            error_messages
-        end
-      end
     end
   end
 
@@ -73,22 +57,6 @@ defmodule MorphicProWeb do
       use Phoenix.LiveComponent
 
       unquote(view_helpers())
-    end
-  end
-
-  def router do
-    quote do
-      use Phoenix.Router
-      import Plug.Conn
-      import Phoenix.Controller
-      import Phoenix.LiveView.Router
-    end
-  end
-
-  def channel do
-    quote do
-      use Phoenix.Channel
-      import MorphicProWeb.Gettext
     end
   end
 
@@ -113,7 +81,9 @@ defmodule MorphicProWeb do
       use Phoenix.HTML
 
       # Import LiveView helpers (live_render, live_component, live_patch, etc)
+      # import Phoenix.LiveView.Helpers
       import Phoenix.LiveView.Helpers
+      import MorphicProWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
@@ -121,6 +91,23 @@ defmodule MorphicProWeb do
       import MorphicProWeb.ErrorHelpers
       import MorphicProWeb.Gettext
       alias MorphicProWeb.Router.Helpers, as: Routes
+      alias Dissolver.HTML
+    end
+  end
+
+  def router do
+    quote do
+      use Phoenix.Router
+      import Plug.Conn
+      import Phoenix.Controller
+      import Phoenix.LiveView.Router
+    end
+  end
+
+  def channel do
+    quote do
+      use Phoenix.Channel
+      import MorphicProWeb.Gettext
     end
   end
 

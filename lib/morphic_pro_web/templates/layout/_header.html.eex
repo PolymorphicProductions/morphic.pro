@@ -2,10 +2,10 @@
   class="fixed top-0 left-0 z-10 flex flex-wrap items-center justify-between w-full px-2 py-3 text-white transitions duration-700 navbar-fixed navbar-expand-lg <%= @conn.assigns[:nav_class] %>">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
     <div class="relative flex justify-between w-full px-4 lg:w-auto lg:static lg:block lg:justify-start">
-      <a class="relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap " href="/">
-        <span class="pr-1 display-block icon-shape logo"></span>
-        Morphic.Pro
-      </a>
+      <%= live_redirect to: Routes.page_index_path(@conn, :index), class: "relative inline-block py-2 ml-5 mr-4 font-bold leading-relaxed whitespace-no-wrap" do %>
+      <span class="pr-1 display-block icon-shape logo"></span>
+      Morphic.Pro
+      <% end %>
       <button
         class="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
         type="button" onclick="window.toggleNavbar('collapse-navbar')">
@@ -15,16 +15,14 @@
     <div class="items-center flex-grow hidden lg:flex" id="collapse-navbar">
       <ul class="flex flex-col list-none lg:flex-row lg:ml-auto">
         <li class="nav-item">
-          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50"
-            href="<%= Routes.post_path(@conn, :index) %>">
-            <i class="text-lg fas fa-book-open leading-lg"></i><span class="ml-2">Posts</span>
-          </a>
+          <%= live_redirect to: Routes.post_index_path(@conn, :index), class: "flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50" do %>
+          <i class="text-lg fas fa-book-open leading-lg"></i><span class="ml-2">Posts</span>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-1000 hover:opacity-50"
-            href="<%= Routes.snap_path(@conn, :index) %>">
-            <i class="text-lg fas fa-camera leading-lg"></i><span class="ml-2">Snaps</span>
-          </a>
+          <%= live_redirect to: Routes.snap_index_path(@conn, :index), class: "flex items-center px-3 py-2 text-xs font-normal leading-snug uppercase transition-opacity duration-500 hover:opacity-50" do %>
+          <i class="text-lg fas fa-camera leading-lg"></i><span class="ml-2">Snaps</span>
+          <% end %>
         </li>
         <!-- 
         <li class="nav-item">

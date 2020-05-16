@@ -4,27 +4,28 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Portland's Digital Curator">
-  <meta name="author" content="Josh Chernoff <jchernoff@morphic.pro>">
+  <meta name="viewport"              content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description"           content="Portland's Digital Curator">
+  <meta name="author"                content="Josh Chernoff <jchernoff@morphic.pro>">
 
-  <meta property="og:image" content="<%= assigns[:page_image] || "https://morphic.pro#{Routes.static_path(@conn, "/images/logo.png")}" %>">
+  <meta property="og:image"     content="<%= assigns[:page_image] || "https://morphic.pro#{Routes.static_path(@conn, "/images/logo.png")}" %>">
   <meta property="og:site_name" content="Morphic Pro">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="<%= assigns[:page_title] || "Morphic.Pro" %>">
-  <meta property="og:url" content="https://morhpic.pro<%= @conn.request_path %>">
+  <meta property="og:type"      content="website">
+  <meta property="og:title"     content="<%= assigns[:page_title] || "Morphic.Pro" %>">
+  <meta property="og:url"       content="https://morhpic.pro<%= @conn.request_path %>">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="<%= Routes.static_path(@conn, "/images/apple-touch-icon.png") %>">
-  <link rel="icon" type="image/png" sizes="32x32" href="<%= Routes.static_path(@conn, "/images/favicon-32x32.png") %>">
-  <link rel="icon" type="image/png" sizes="16x16" href="<%= Routes.static_path(@conn, "/images/favicon-16x16.png") %>">
+  <link rel="apple-touch-icon"      sizes="180x180" href="<%= Routes.static_path(@conn, "/images/apple-touch-icon.png") %>">
+  <link rel="icon" type="image/png" sizes="32x32"   href="<%= Routes.static_path(@conn, "/images/favicon-32x32.png") %>">
+  <link rel="icon" type="image/png" sizes="16x16"   href="<%= Routes.static_path(@conn, "/images/favicon-16x16.png") %>">
+
   <link rel="mask-icon" href="<%= Routes.static_path(@conn, "/images/safari-pinned-tab.svg") %>" color="#5bbad5">
 
   <%= csrf_meta_tag() %>
   <%= live_title_tag assigns[:page_title] || "Morphic.Pro" %>
 
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" as="style">
-  <link rel="preload" href="<%= Routes.static_path(@conn, "/fonts/icomoon.woff") %>" as="font" type="font/woff2"
-    crossorigin>
+  <link rel="preload" href="<%= Routes.static_path(@conn, "/fonts/icomoon.woff") %>" as="font" type="font/woff2" crossorigin>
+  
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>" />
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>" />
    
@@ -32,14 +33,12 @@
 
 <body class="">
   <%= render "_header.html", assigns %>
-  <main class="relative h-full">
-    <%= @inner_content %>
-  </main>
+  
+  <main class="relative h-full"><%= @inner_content %></main>
 
   <%= render "_footer.html", conn: @conn %>
 
-  <script rel="preload" type="text/javascript"
-    src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
+  <script rel="preload" type="text/javascript" src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
   <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
   <%= render_existing(view_module(@conn), "script." <> view_template(@conn)) %>
 </body>

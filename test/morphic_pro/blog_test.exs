@@ -47,7 +47,19 @@ defmodule MorphicPro.BlogTest do
       insert(:post, published_at: Timex.today() |> Timex.shift(days: -2), tags: [])
 
       {list_posts, _} = Blog.list_posts(%{}, %{})
-      assert list_posts == [post1, post2]
+
+      assert list_posts ==
+               [post1, post2]
+               |> Enum.map(
+                 &%{
+                   &1
+                   | body: nil,
+                     large_img: nil,
+                     published_at_local: nil,
+                     tags_string: nil,
+                     updated_at: nil
+                 }
+               )
     end
 
     test "list_snaps/2 non admin" do
@@ -75,7 +87,18 @@ defmodule MorphicPro.BlogTest do
       {list_posts, %{per_page: 2, total_count: 4, total_pages: 2}} =
         Blog.list_posts(%{}, %User{admin: true})
 
-      assert list_posts == [post1, post2]
+      assert list_posts ==
+               [post1, post2]
+               |> Enum.map(
+                 &%{
+                   &1
+                   | body: nil,
+                     large_img: nil,
+                     published_at_local: nil,
+                     tags_string: nil,
+                     updated_at: nil
+                 }
+               )
     end
 
     test "list_snaps/2 admin" do
@@ -272,7 +295,8 @@ defmodule MorphicPro.BlogTest do
 
     test "get_post_for_tag!/2 looks up a tag and gets all the posts for it " do
       %{tags: [%{name: tag_name} = tag | _t]} = post = insert(:post)
-      {%{posts: [found_post]} = found_tag, _} = Blog.get_post_for_tag!(tag_name)
+
+      {%{posts: [found_post]} = found_tag, _} = Blog.get_post_for_tag!(tag_name, %{admin: true})
 
       assert found_tag |> unpreload(:posts, :many) == tag
       assert found_post == post
@@ -280,7 +304,7 @@ defmodule MorphicPro.BlogTest do
 
     test "get_snap_for_tag!/2 looks up a tag and gets all the snaps for it " do
       %{tags: [%{name: tag_name} = tag | _t]} = snap = insert(:snap)
-      {%{snaps: [found_snap]} = found_tag, _} = Blog.get_snap_for_tag!(tag_name)
+      {%{snaps: [found_snap]} = found_tag, _} = Blog.get_snap_for_tag!(tag_name, %{admin: true})
 
       assert found_tag |> unpreload(:snaps, :many) == tag
       assert found_snap == snap

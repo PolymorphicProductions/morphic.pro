@@ -46,8 +46,21 @@ defmodule MorphicPro.Blog do
 
   """
   def list_posts(params, user) do
-    Post
-    |> from(preload: [:tags])
+    from(
+      p in Post,
+      preload: [:tags],
+      select: [
+        :id,
+        :title,
+        :draft,
+        :excerpt,
+        :published_at,
+        :slug,
+        :thumb_img,
+        :likes_count,
+        :inserted_at
+      ]
+    )
     |> Bodyguard.scope(user)
     |> Repo.order_by_published_at()
     |> Dissolver.paginate(params)
@@ -75,6 +88,15 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
+  def get_post(slug, current_user, options \\ []) do
+    preload = Keyword.get(options, :preload, [])
+
+    Post
+    |> Repo.by_slug(slug)
+    |> from(preload: ^preload)
+    |> Bodyguard.scope(current_user)
+    |> Repo.one()
+  end
 
   def get_post!(slug, current_user, options \\ []) do
     preload = Keyword.get(options, :preload, [])
@@ -149,13 +171,21 @@ defmodule MorphicPro.Blog do
       from(p in Post, where: p.id == ^id, select: p)
       |> Repo.update_all(inc: [likes_count: 1])
 
+    post = Repo.preload(post, [:tags])
+
     Phoenix.PubSub.broadcast(
       MorphicPro.PubSub,
-      "post:like:#{id}",
-      {:post_liked, post.likes_count}
+      "post:" <> post.slug,
+      {:post_liked, post}
     )
 
-    {:ok, post.likes_count}
+    Phoenix.PubSub.broadcast(
+      MorphicPro.PubSub,
+      "posts",
+      {:post_liked, post}
+    )
+
+    {:ok, post}
   end
 
   def inc_likes(%Snap{id: id}) do
@@ -163,13 +193,21 @@ defmodule MorphicPro.Blog do
       from(p in Snap, where: p.id == ^id, select: p)
       |> Repo.update_all(inc: [likes_count: 1])
 
+    snap = Repo.preload(snap, [:tags])
+
     Phoenix.PubSub.broadcast(
       MorphicPro.PubSub,
-      "post:like:#{id}",
-      {:post_liked, snap.likes_count}
+      "snap:" <> snap.id,
+      {:snap_liked, snap}
     )
 
-    {:ok, snap.likes_count}
+    Phoenix.PubSub.broadcast(
+      MorphicPro.PubSub,
+      "snaps",
+      {:snap_liked, snap}
+    )
+
+    {:ok, snap}
   end
 
   @doc """
@@ -201,12 +239,12 @@ defmodule MorphicPro.Blog do
       %Ecto.Changeset{source: %Post{}}
 
   """
-  def change_post(%Post{} = post) do
-    Post.changeset(post, %{})
+  def change_post(%Post{} = post, attrs \\ %{}) do
+    Post.changeset(post, attrs)
   end
 
-  def change_snap(%Snap{} = snap) do
-    Snap.changeset(snap, %{})
+  def change_snap(%Snap{} = snap, attrs \\ %{}) do
+    Snap.changeset(snap, attrs)
   end
 
   @doc """
@@ -223,18 +261,25 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post_for_tag!(tag_name, params \\ %{}) do
-    total_count =
-      from(t in "tags",
-        join: pt in "post_tags",
-        on: pt.tag_id == t.id,
+  def get_post_for_tag!(tag_name, user, params \\ %{}) do
+    posts =
+      from(p in Post)
+      |> Bodyguard.scope(user)
+
+    [total_count] =
+      from(pt in "post_tags",
+        join: p in ^posts,
+        on: p.id == pt.post_id,
+        join: t in "tags",
+        on: t.id == pt.tag_id,
         where: t.name == ^tag_name,
         select: count()
       )
-      |> Repo.one()
+      |> Repo.all()
 
     {posts_query, k} =
       from(p in Post, order_by: [desc: :inserted_at], preload: [:tags])
+      |> Bodyguard.scope(user)
       |> Dissolver.paginate(params, total_count: total_count, lazy: true)
 
     tag =
@@ -244,18 +289,25 @@ defmodule MorphicPro.Blog do
     {tag, k}
   end
 
-  def get_snap_for_tag!(tag_name, params \\ %{}) do
-    total_count =
-      from(t in "tags",
-        join: st in "snap_tags",
-        on: st.tag_id == t.id,
+  def get_snap_for_tag!(tag_name, user, params \\ %{}) do
+    snaps =
+      from(s in Snap)
+      |> Bodyguard.scope(user)
+
+    [total_count] =
+      from(st in "snap_tags",
+        join: s in ^snaps,
+        on: s.id == st.snap_id,
+        join: t in "tags",
+        on: t.id == st.tag_id,
         where: t.name == ^tag_name,
         select: count()
       )
-      |> Repo.one()
+      |> Repo.all()
 
     {snaps_query, k} =
       from(s in Snap, order_by: [desc: :inserted_at], preload: [:tags])
+      |> Bodyguard.scope(user)
       |> Dissolver.paginate(params, total_count: total_count, lazy: true)
 
     tag =
