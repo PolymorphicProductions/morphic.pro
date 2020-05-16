@@ -8,7 +8,7 @@
           Your personal creative<br />digital metamorphosis
         </h1>
         <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-thin text-1xl md:text-2xl">
-          <%= live_flash(@flash, :info) || live_flash(@flash, :error) || " From Web development to DevOps or<br />Photography to Design I am your solution." %>
+          <%= live_flash(@flash, :info) || live_flash(@flash, :error) || {:safe,"From Web development to DevOps or<br />Photography to Design I am your solution."} %>
         </p>
         <div class="block mx-auto text-center md:text-left">
 
