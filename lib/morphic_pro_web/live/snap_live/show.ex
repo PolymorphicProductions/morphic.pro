@@ -156,18 +156,15 @@ defmodule MorphicProWeb.SnapLive.Show do
   end
 
   def handle_event("delete", %{"id" => id}, %{assigns: %{current_user: current_user}} = socket) do
-    # with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
-    #   snap = Blog.get_snap!(slug, current_user, preload: [:tags])
-    #   {:ok, _snap} = Blog.delete_snap(snap)
+    with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
+      snap = Blog.get_snap!(id, current_user, preload: [:tags])
+      {:ok, _snap} = Blog.delete_snap(snap)
 
-    #   conn
-    #   |> put_flash(:info, "Snap deleted successfully.")
-    #   |> redirect(to: Routes.snap_path(conn, :index))
-    # end
-
-    snap = Blog.get_snap!(id, current_user)
-    {:ok, _} = Blog.delete_snap(snap)
-
-    {:noreply, push_redirect(socket, to: Routes.snap_index_path(socket, :index))}
+      socket
+      |> put_flash(:info, "Snap deleted successfully.")
+      |> redirect(to: Routes.snap_path(socket, :index))
+    else
+      err -> {:noreply, socket}
+    end
   end
 end
