@@ -2,8 +2,10 @@
   <div class="bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12">
+        
         <h1 class="mt-12 mb-2 text-4xl leading-tight text-center text-white font-book page-title">The Snaps</h1>
         <p class="mb-8 text-2xl font-thin leading-normal text-center text-white">In a blink of an eye </p>
+       
         <%= if live_flash(@flash, :info) do %>
           <div class="mx-auto w-1/2 relative p-3 rounded text-blue-700 bg-blue-200 bg-opacity-75">
             <%= live_flash(@flash, :info) %><button class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100">×</button>
@@ -15,6 +17,7 @@
             <%= live_flash(@flash, :error) %><button class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100">×</button>
           </div>
         <% end %>
+
       </div>
     </div>
   </div>
@@ -31,8 +34,4 @@
       <%= live_component @socket, MorphicProWeb.SnapLive.SnapComponent, snap: snap, id: snap.id %>
     <% end %>
   </div>
-</div>
-
-<div class="container px-4 py-10 mx-auto">
-  <%= HTML.paginate @dissolver, snap_paginate_helper(@socket, @live_action, @scope) %>
 </div>
