@@ -27,13 +27,14 @@ defmodule MorphicProWeb.SnapLive.Show do
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:snap, Blog.get_snap!(slug, current_user, preload: [:tags]))
-     |> nav_assigns()
-    }
+     |> nav_assigns()}
   end
+
   defp nav_assigns(%{assigns: %{live_action: :show}} = socket) do
     socket
     |> assign(:nav_class, "navbar navbar-absolute navbar-fixed navbar-wbg")
   end
+
   defp nav_assigns(socket), do: socket
 
   defp page_title(:show), do: "Show Snap"
@@ -46,6 +47,106 @@ defmodule MorphicProWeb.SnapLive.Show do
 
   @impl true
   def handle_event(
+        "keydown",
+        %{"code" => "ArrowRight", "key" => "ArrowRight"} = stuff,
+        %{assigns: %{snap: %{id: id}}} = socket
+      ) do
+    {:ok, id} = Ecto.UUID.dump(id)
+
+    sql = "
+    select *
+    from (
+        select id, published_at, inserted_at, draft,
+                lag(id)  over (order by published_at desc, inserted_at desc) as prev,
+                lead(id) over (order by published_at desc, inserted_at desc) as next
+                from snaps where draft is false and published_at <= now()
+        ) x
+    where $1 IN (id, prev, next)
+    "
+
+    [%{next: next, prev: prev}] = Ecto.Adapters.SQL.query!(
+      MorphicPro.Repo,
+      sql,
+      [id]
+    ).rows
+    |> Enum.filter(fn [snap_id, _, _, _prev, _next,_] ->
+      id == snap_id
+    end)
+    |> Enum.map(fn
+    [_snap_id, _, _, _, nil, next] ->
+      {:ok, next} = Ecto.UUID.cast(next)
+      %{prev: nil, next: next}
+
+    [_snap_id, _, _, _, prev, nil] ->
+      {:ok, prev} = Ecto.UUID.cast(prev)
+      %{prev: prev, next: nil}
+
+    [_snap_id, _, _, _, prev, next,] ->
+      {:ok, prev} = Ecto.UUID.cast(prev)
+      {:ok, next} = Ecto.UUID.cast(next)
+      %{prev: prev, next: next}
+    end)
+
+    if next == nil do
+      {:noreply, socket}
+    else
+      {:noreply, push_redirect(socket, to: MorphicProWeb.Router.Helpers.snap_show_path(socket, :show, next))}
+    end
+  end
+
+  def handle_event(
+        "keydown",
+        %{"code" => "ArrowLeft", "key" => "ArrowLeft"} = stuff,
+        %{assigns: %{snap: %{id: id}}} = socket
+      ) do
+    {:ok, id} = Ecto.UUID.dump(id)
+
+    sql = "
+    select *
+    from (
+        select id, published_at, inserted_at, draft,
+                lag(id)  over (order by published_at desc, inserted_at desc) as prev,
+                lead(id) over (order by published_at desc, inserted_at desc) as next
+                from snaps where draft is false and published_at <= now()
+        ) x
+    where $1 IN (id, prev, next)
+    "
+
+    [%{next: next, prev: prev}] = Ecto.Adapters.SQL.query!(
+      MorphicPro.Repo,
+      sql,
+      [id]
+    ).rows
+    |> Enum.filter(fn [snap_id, _, _, _prev, _next,_] ->
+      id == snap_id
+    end)
+    |> Enum.map(fn
+    [_snap_id, _, _, _, nil, next] ->
+      {:ok, next} = Ecto.UUID.cast(next)
+      %{prev: nil, next: next}
+
+    [_snap_id, _, _, _, prev, nil] ->
+      {:ok, prev} = Ecto.UUID.cast(prev)
+      %{prev: prev, next: nil}
+
+    [_snap_id, _, _, _, prev, next,] ->
+      {:ok, prev} = Ecto.UUID.cast(prev)
+      {:ok, next} = Ecto.UUID.cast(next)
+      %{prev: prev, next: next}
+    end) |> IO.inspect
+
+    if prev == nil do
+      {:noreply, socket}
+    else
+      {:noreply, push_redirect(socket, to: MorphicProWeb.Router.Helpers.snap_show_path(socket, :show, prev))}
+    end
+  end
+
+  def handle_event("keydown", _stuff, socket) do
+    {:noreply, socket}
+  end
+
+  def handle_event(
         "inc_snap_likes",
         %{"snap-id" => snap_id},
         socket
@@ -55,7 +156,6 @@ defmodule MorphicProWeb.SnapLive.Show do
   end
 
   def handle_event("delete", %{"id" => id}, %{assigns: %{current_user: current_user}} = socket) do
-
     # with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
     #   snap = Blog.get_snap!(slug, current_user, preload: [:tags])
     #   {:ok, _snap} = Blog.delete_snap(snap)
