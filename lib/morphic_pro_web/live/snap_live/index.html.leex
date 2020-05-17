@@ -28,10 +28,9 @@
 </div>
 
 <div class="container px-4 py-10 mx-auto">
-  <div id="snaps" class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3" >
-
+  <div id="snaps" class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     <%= for snap <- @snaps do %>
-      <%= live_component @socket, MorphicProWeb.SnapLive.SnapComponent, snap: snap, id: snap.id %>
+      <%= live_component(@socket, MorphicProWeb.SnapLive.SnapComponent, snap: snap, id: snap.id) %>
     <% end %>
   </div>
 </div>
