@@ -48,20 +48,17 @@ defmodule MorphicProWeb.PostLive.Show do
   end
 
   # TODO: fix me
-  def handle_event("delete", %{"id" => id}, %{assigns: %{current_user: current_user}} = socket) do
+  def handle_event("delete", %{"slug" => slug}, %{assigns: %{current_user: current_user}} = socket) do
 
-    # with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
-    #   post = Blog.get_post!(slug, current_user, preload: [:tags])
-    #   {:ok, _post} = Blog.delete_post(post)
+    with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
+      snap = Blog.get_post!(slug, current_user, preload: [:tags])
+      {:ok, _snap} = Blog.delete_snap(snap)
 
-    #   conn
-    #   |> put_flash(:info, "Post deleted successfully.")
-    #   |> redirect(to: Routes.post_path(conn, :index))
-    # end
-
-    post = Blog.get_post!(id, current_user)
-    {:ok, _} = Blog.delete_post(post)
-
-    {:noreply, push_redirect(socket, to: Routes.post_index_path(socket, :index))}
+      socket
+      |> put_flash(:info, "Post deleted successfully.")
+      |> push_redirect(to: Routes.snap_path(socket, :index))
+    else
+      err -> {:noreply, socket}
+    end
   end
 end
