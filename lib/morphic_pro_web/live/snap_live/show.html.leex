@@ -1,11 +1,15 @@
+
+<div phx-window-keydown="keydown" phx-throttle="500" />
+
 <div class="container pt-20 mx-auto mt-0 lg:mt-24 lg:pt-0">
   <div class="lg:px-48">
+    <span class="text-xs">navigate via < > buttons on your keyboard</span>
     <img src="<%= @snap.large_img %>" />
   </div>
 </div>
 
 <div class="container mx-auto lg:mb-20">
-  <div class="px-8 py-10 bg-white shadow-md lg:mx-48 lg:mb-10 snap-body">
+  <div class="px-8 pt-4 pb-10 bg-white shadow-md lg:mx-48 lg:mb-10 snap-body">
     <%= @snap.body |> parse_markdown |> parse_tags |> raw %>
     <%= if @snap.exif do %>
     <hr class="my-4" />
