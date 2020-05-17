@@ -1,5 +1,5 @@
 
-<div class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
+<div id="snap-<%= @snap.id %>" class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
   
   <%= live_redirect to: Routes.snap_show_path(@socket, :show, @snap) do %>
   <div class="thumb">
@@ -9,6 +9,7 @@
   <% end %>
 
   <div class="px-6 py-4">
+
     <div class="mb-2 text-xs <%= if Timex.before?(Timex.today, @snap.published_at), do: "text-red-800" %>">
       <%= parse_date @snap.published_at %> <%= if @snap.draft do %><span class="text-red-800">Draft</span><% end %>
     </div>
@@ -28,7 +29,7 @@
           <i class="fas fa-heart"></i> <%= @snap.likes_count %>
         </button>
       </div>
+
     </div>
   </div>
-</div>
 </div>

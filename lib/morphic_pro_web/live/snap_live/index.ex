@@ -40,7 +40,6 @@ defmodule MorphicProWeb.SnapLive.Index do
     |> assign(dissolver: dissolver)
     |> assign(scope: tag.name)
     |> assign(snaps: tag.snaps)
-
   end
 
 
