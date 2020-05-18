@@ -95,7 +95,7 @@
         <%= live_redirect to: Routes.post_show_path(@socket, :show, post) do %>
         <div class="thumb">
           <i class="fas fa-search"></i>
-          <img class="w-full" src="<%= post.thumb_img %>">
+          <img class="w-full" src="<%= post.thumb_img %>" loading="lazy">
         </div>
         <% end %>
 
@@ -146,7 +146,7 @@
         <%= live_redirect to: Routes.snap_show_path(@socket, :show, snap) do %>
         <div class="thumb">
           <i class="fas fa-search"></i>
-          <img class="w-full" src="<%= snap.thumb_img %>">
+          <img class="w-full" src="<%= snap.thumb_img %>" loading="lazy">
         </div>
         <% end %>
 

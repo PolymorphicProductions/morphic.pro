@@ -1,6 +1,6 @@
 <div id="<%= @post.id %>" class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
   <%= live_redirect to: Routes.post_show_path(@socket, :show, @post) do %>
-    <img class="w-full" src="<%= @post.thumb_img %>" alt="<%= @post.title %>">
+    <img class="w-full" src="<%= @post.thumb_img %>" alt="<%= @post.title %>" loading="lazy">
   <% end %>
 
   <div class="px-6 py-4">
