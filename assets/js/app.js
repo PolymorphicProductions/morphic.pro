@@ -34,6 +34,9 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 
 import * as EasyMDE from "easymde";
 
+
+import Hammer from "hammerjs";
+
 let Hooks = {
   PostUploader: {
     mounted() {
@@ -74,7 +77,40 @@ let Hooks = {
         element: document.getElementById("post_excerpt")
       });
     }
-  }
+  },
+  SnapNav: {
+    mounted() {
+
+      let target = this;
+      var myElement = document.getElementById('image');
+
+      // create a simple instance
+      // by default, it only adds horizontal recognizers
+      var mc = new Hammer(myElement);
+
+      // listen to events...
+      mc.on("panleft panright tap press", function (ev) {
+        switch (ev.type) {
+          case "panleft":
+            target.pushEvent("keydown", { code: "ArrowLeft", key: "ArrowLeft" });
+            console.log("select prev image")
+            break;
+          case "panright":
+            target.pushEvent("keydown", { code: "ArrowRight", key: "ArrowRight" });
+            console.log("select next image");
+            break;
+          case "tap":
+
+            break;
+          case "press":
+
+            break;
+        }
+        console.debug(ev);
+      });
+
+    }
+  },
 }
 
 function draw(target) {
@@ -276,3 +312,4 @@ docReady(() => {
     navbarFixed.classList.add("bg-white", "text-gray-700");
   }
 })
+

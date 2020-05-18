@@ -1,10 +1,11 @@
 
 <div phx-window-keydown="keydown" phx-throttle="500" />
+<div id="foo" phx-hook="SnapNav"></div>
 
 <div class="container pt-20 mx-auto mt-0 lg:mt-24 lg:pt-0">
   <div class="lg:px-48">
     <span class="text-xs">navigate via < > buttons on your keyboard</span>
-    <img src="<%= @snap.large_img %>" />
+    <img id="image" src="<%= @snap.large_img %>" />
   </div>
 </div>
 
