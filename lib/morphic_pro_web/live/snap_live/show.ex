@@ -23,10 +23,48 @@ defmodule MorphicProWeb.SnapLive.Show do
         _session,
         %{assigns: %{current_user: current_user}} = socket
       ) do
+
+        %{id: id} = snap = Blog.get_snap!(slug, current_user, preload: [:tags])
+
+        {:ok, id} = Ecto.UUID.dump(id)
+
+        sql = "
+        select *
+        from (
+            select id, published_at, inserted_at, draft, large_img,
+                    lag(id)  over (order by published_at desc, inserted_at desc) as prev,
+                    lead(id) over (order by published_at desc, inserted_at desc) as next
+                    from snaps where draft is false and published_at <= now()
+            ) x
+        where $1 IN (id, prev, next)
+        "
+
+        rows = Ecto.Adapters.SQL.query!(
+          MorphicPro.Repo,
+          sql,
+          [id]
+        ).rows
+
+        prev_large_img = case rows |> Enum.filter(fn [snap_id, _, _, _draft, img, _prev, next] -> id == next end) do
+          [] ->
+            nil
+          [[_, _, _, _, prev_large_img, _, _]] ->
+            prev_large_img
+        end
+
+        next_large_img = case rows |> Enum.filter(fn [snap_id, _, _, _draft, img, prev, _next] -> id == prev end) do
+          [] ->
+            nil
+          [[_, _, _, _, next_large_img, _, _]] ->
+            next_large_img
+        end
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:snap, Blog.get_snap!(slug, current_user, preload: [:tags]))
+     |> assign(:snap, snap)
+     |> assign(:prev_large_img, prev_large_img)
+     |> assign(:next_large_img, next_large_img)
      |> nav_assigns()}
   end
 

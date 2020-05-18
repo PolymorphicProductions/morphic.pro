@@ -6,6 +6,14 @@
   <div class="lg:px-48">
     <span class="text-xs">navigate via < > buttons on your keyboard</span>
     <img id="image" src="<%= @snap.large_img %>" />
+
+    <%= if @prev_large_img do %>
+      <img class="hidden" id="prev_image" src="<%= @prev_large_img %>" />
+    <% end %>
+    
+    <%= if @next_large_img do %>
+      <img class="hidden" id="next_image" src="<%= @next_large_img %>" />
+    <% end %>
   </div>
 </div>
 
