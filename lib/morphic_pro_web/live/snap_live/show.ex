@@ -133,7 +133,7 @@ defmodule MorphicProWeb.SnapLive.Show do
       {:ok, prev} = Ecto.UUID.cast(prev)
       {:ok, next} = Ecto.UUID.cast(next)
       %{prev: prev, next: next}
-    end) |> IO.inspect
+    end)
 
     if prev == nil do
       {:noreply, socket}

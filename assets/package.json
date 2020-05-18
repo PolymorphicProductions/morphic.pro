@@ -11,6 +11,7 @@
     "@silvia-odwyer/photon": "^0.2.0",
     "easymde": "^2.10.0",
     "exifreader": "^3.8.0",
+    "hammerjs": "^2.0.8",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
