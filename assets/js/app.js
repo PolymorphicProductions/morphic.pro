@@ -92,12 +92,10 @@ let Hooks = {
       mc.on("panleft panright tap press", function (ev) {
         switch (ev.type) {
           case "panleft":
-            target.pushEvent("keydown", { code: "ArrowLeft", key: "ArrowLeft" });
-            console.log("select prev image")
+            target.pushEvent("keydown", { code: "ArrowRight", key: "ArrowRight" });
             break;
           case "panright":
-            target.pushEvent("keydown", { code: "ArrowRight", key: "ArrowRight" });
-            console.log("select next image");
+            target.pushEvent("keydown", { code: "ArrowLeft", key: "ArrowLeft" });
             break;
           case "tap":
 
@@ -106,7 +104,6 @@ let Hooks = {
 
             break;
         }
-        console.debug(ev);
       });
 
     }
