@@ -16,28 +16,38 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
-import Prism from 'prismjs';
-import "prismjs/components/prism-elixir.js"
-import "prismjs/components/prism-nginx.js"
-import "prismjs/components/prism-ruby.js"
-import "prismjs/components/prism-bash.js"
-import "prismjs/components/prism-rust.js"
-import "prismjs/components/prism-json.js"
-import "prismjs/components/prism-git.js"
-
-
 import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
-import ExifReader from 'exifreader';
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
-import * as EasyMDE from "easymde";
-
-
-import Hammer from "hammerjs";
-
 let Hooks = {
+  PostShowCode: {
+    mounted() {
+      import('prismjs')
+        .then(foo => {
+          import("prismjs/components/prism-elixir.js")
+          import("prismjs/components/prism-nginx.js").then(() => { })
+          import("prismjs/components/prism-ruby.js").then(() => { })
+          import("prismjs/components/prism-bash.js").then(() => { })
+          import("prismjs/components/prism-rust.js").then(() => { })
+          import("prismjs/components/prism-json.js").then(() => { })
+          import("prismjs/components/prism-git.js").then(() => { })
+        })
+    },
+    update() {
+      import('prismjs')
+        .then(foo => {
+          import("prismjs/components/prism-elixir.js")
+          import("prismjs/components/prism-nginx.js").then(() => { })
+          import("prismjs/components/prism-ruby.js").then(() => { })
+          import("prismjs/components/prism-bash.js").then(() => { })
+          import("prismjs/components/prism-rust.js").then(() => { })
+          import("prismjs/components/prism-json.js").then(() => { })
+          import("prismjs/components/prism-git.js").then(() => { })
+        })
+    }
+  },
   PostUploader: {
     mounted() {
       document.getElementById("file").addEventListener("change", () => { draw("post") }, false)
@@ -50,32 +60,42 @@ let Hooks = {
   },
   EasymdePostBody: {
     mounted() {
-      console.log("mounted");
-      new EasyMDE({
-        element: document.getElementById("post_body")
-      });
-
+      console.log("EasymdePostBody upmounteddated");
+      import('easymde')
+        .then(EasyMDE => {
+          return new EasyMDE.default({
+            element: document.getElementById("post_body")
+          })
+        }); // using the default export
     },
     updated() {
-      console.log("updated");
-      new EasyMDE({
-        element: document.getElementById("post_body")
-      });
+      console.log("EasymdePostBody updated");
+      import('easymde')
+        .then(EasyMDE => {
+          return new EasyMDE.default({
+            element: document.getElementById("post_body")
+          })
+        }); // using the default export
     }
   },
   EasymdePostExcerpt: {
     mounted() {
-      console.log("mounted");
-      new EasyMDE({
-        element: document.getElementById("post_excerpt")
-      });
-
+      console.log("EasymdePostExcerpt mounted");
+      import('easymde')
+        .then(EasyMDE => {
+          return new EasyMDE.default({
+            element: document.getElementById("post_excerpt")
+          })
+        }); // using the default export
     },
     updated() {
-      console.log("updated");
-      new EasyMDE({
-        element: document.getElementById("post_excerpt")
-      });
+      console.log("EasymdePostExcerpt updated");
+      import('easymde')
+        .then(EasyMDE => {
+          new EasyMDE.default({
+            element: document.getElementById("post_excerpt")
+          })
+        }); // using the default export
     }
   },
   SnapNav: {
@@ -86,30 +106,32 @@ let Hooks = {
 
       // create a simple instance
       // by default, it only adds horizontal recognizers
-      var mc = new Hammer(myElement);
+      import('hammerjs')
+        .then(Hammer => {
+          var mc = new Hammer.default(myElement);
 
-      // listen to events...
-      mc.on("panleft panright tap press", function (ev) {
-        switch (ev.type) {
-          case "panleft":
-            target.pushEvent("keydown", { code: "ArrowRight", key: "ArrowRight" });
-            break;
-          case "panright":
-            target.pushEvent("keydown", { code: "ArrowLeft", key: "ArrowLeft" });
-            break;
-          case "tap":
+          // listen to events...
+          mc.on("panleft panright tap press", function (ev) {
+            console.debug(ev)
+            switch (ev.type) {
+              case "panleft":
+                target.pushEvent("keydown", { code: "ArrowRight", key: "ArrowRight" });
+                break;
+              case "panright":
+                target.pushEvent("keydown", { code: "ArrowLeft", key: "ArrowLeft" });
+                break;
+              case "tap":
 
-            break;
-          case "press":
+                break;
+              case "press":
 
-            break;
-        }
-      });
-
+                break;
+            }
+          });
+        })
     }
-  },
+  }
 }
-
 function draw(target) {
 
   var ctx = document.getElementById('canvas').getContext('2d'),
@@ -124,9 +146,12 @@ function draw(target) {
     reader.readAsArrayBuffer(f)
     reader.onload = function () {
       console.log(reader.result);
-      let exif = ExifReader.load(reader.result);
-      document.getElementById("snap_exif_string").value = JSON.stringify(exif)
-      console.debug(exif)
+      import('exifreader')
+        .then(ExifReader => {
+          let exif = ExifReader.load(reader.result);
+          document.getElementById("snap_exif_string").value = JSON.stringify(exif)
+          console.debug(exif)
+        }); // using the default export
     };
 
     reader.onerror = function () {
