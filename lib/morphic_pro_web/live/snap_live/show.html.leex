@@ -48,8 +48,7 @@
       </button>
     </div>
 
-    <% links = admin_links(@current_user, @snap, @socket) %>
-    <%= if links do %>
+    <%= if links = admin_links(@current_user, @snap, @socket) do %>
     <div class="pt-8 text-center">
       <hr />
       <div class="mt-8">
@@ -57,5 +56,6 @@
       </div>
     </div>
     <% end %>
+
   </div>
 </div>

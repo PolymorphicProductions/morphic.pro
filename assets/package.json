@@ -7,11 +7,13 @@
     "watch": "webpack --config webpack.dev.config.js --watch --colors"
   },
   "dependencies": {
+    "babel-plugin-prismjs": "^2.0.1",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@silvia-odwyer/photon": "^0.2.0",
     "easymde": "^2.10.0",
     "exifreader": "^3.8.0",
     "hammerjs": "^2.0.8",
+    "json-formatter-js": "^2.3.4",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
@@ -19,6 +21,7 @@
     "prismjs": "^1.20.0"
   },
   "devDependencies": {
+    "babel-plugin-prismjs": "^2.0.1",
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "acorn": ">=6.4.1",

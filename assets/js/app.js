@@ -23,29 +23,60 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 
 let Hooks = {
   PostShowCode: {
+    page() { return this.el.dataset.page },
     mounted() {
-      import('prismjs')
-        .then(foo => {
-          import("prismjs/components/prism-elixir.js")
-          import("prismjs/components/prism-nginx.js").then(() => { })
-          import("prismjs/components/prism-ruby.js").then(() => { })
-          import("prismjs/components/prism-bash.js").then(() => { })
-          import("prismjs/components/prism-rust.js").then(() => { })
-          import("prismjs/components/prism-json.js").then(() => { })
-          import("prismjs/components/prism-git.js").then(() => { })
+      import('prismjs').then(module => {
+        const Prism = module.default
+        window.Prism = Prism
+        import("prismjs/components/prism-elixir.js").then(() => {
+          window.Prism.highlightAll()
         })
+        import("prismjs/components/prism-nginx.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-ruby.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-bash.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-rust.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-json.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-git.js").then(() => {
+          window.Prism.highlightAll()
+        })
+      })
     },
-    update() {
-      import('prismjs')
-        .then(foo => {
-          import("prismjs/components/prism-elixir.js")
-          import("prismjs/components/prism-nginx.js").then(() => { })
-          import("prismjs/components/prism-ruby.js").then(() => { })
-          import("prismjs/components/prism-bash.js").then(() => { })
-          import("prismjs/components/prism-rust.js").then(() => { })
-          import("prismjs/components/prism-json.js").then(() => { })
-          import("prismjs/components/prism-git.js").then(() => { })
+    updated() {
+      import('prismjs').then(module => {
+        const Prism = module.default
+        window.Prism = Prism
+        import("prismjs/components/prism-elixir.js").then(() => {
+          window.Prism.highlightAll()
         })
+        import("prismjs/components/prism-nginx.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-ruby.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-bash.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-rust.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-json.js").then(() => {
+          window.Prism.highlightAll()
+        })
+        import("prismjs/components/prism-git.js").then(() => {
+          window.Prism.highlightAll()
+        })
+      })
     }
   },
   PostUploader: {
@@ -56,46 +87,6 @@ let Hooks = {
   SnapUploader: {
     mounted() {
       document.getElementById("file").addEventListener("change", () => { draw("snap") }, false)
-    }
-  },
-  EasymdePostBody: {
-    mounted() {
-      console.log("EasymdePostBody upmounteddated");
-      import('easymde')
-        .then(EasyMDE => {
-          return new EasyMDE.default({
-            element: document.getElementById("post_body")
-          })
-        }); // using the default export
-    },
-    updated() {
-      console.log("EasymdePostBody updated");
-      import('easymde')
-        .then(EasyMDE => {
-          return new EasyMDE.default({
-            element: document.getElementById("post_body")
-          })
-        }); // using the default export
-    }
-  },
-  EasymdePostExcerpt: {
-    mounted() {
-      console.log("EasymdePostExcerpt mounted");
-      import('easymde')
-        .then(EasyMDE => {
-          return new EasyMDE.default({
-            element: document.getElementById("post_excerpt")
-          })
-        }); // using the default export
-    },
-    updated() {
-      console.log("EasymdePostExcerpt updated");
-      import('easymde')
-        .then(EasyMDE => {
-          new EasyMDE.default({
-            element: document.getElementById("post_excerpt")
-          })
-        }); // using the default export
     }
   },
   SnapNav: {
@@ -151,6 +142,14 @@ function draw(target) {
           let exif = ExifReader.load(reader.result);
           document.getElementById("snap_exif_string").value = JSON.stringify(exif)
           console.debug(exif)
+
+          import('json-formatter-js')
+            .then(JSONFormatter => {
+              const myJSON = exif;
+              const formatter = new JSONFormatter.default(myJSON);
+
+              document.getElementById("image_exif").appendChild(formatter.render());
+            });
         }); // using the default export
     };
 

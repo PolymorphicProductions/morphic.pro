@@ -67,13 +67,13 @@
     <div class="px-8 py-24 bg-white lg:px-64 post-body">
       <div class="mb-6">
         <%= label f, :Body, class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= textarea f, :body, rows: "10", class: "post-body-edit appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "phx-hook": "EasymdePostBody", "phx-debounce": "10000"  %>
+        <%= textarea f, :body, rows: "10", class: "post-body-edit appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "phx-debounce": "3000"  %>
         <%= error_tag f, :body, class: "text-red-400 pt-1", tag: :div %>
       </div>
 
       <div class="mb-6">
         <%= label f, :excerpt, class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= textarea f, :excerpt, rows: "5", class: "post-body-edit appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "phx-hook": "EasymdePostExcerpt", "phx-debounce": "10000"  %>
+        <%= textarea f, :excerpt, rows: "5", class: "post-body-edit appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "phx-debounce": "3000"  %>
         <%= error_tag f, :excerpt, class: "text-red-400 pt-1", tag: :div %>
       </div>
 
