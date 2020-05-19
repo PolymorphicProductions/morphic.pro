@@ -1,5 +1,23 @@
 {
-    "presets": [
-        "@babel/preset-env"
-    ]
+    // "presets": [
+    //     "@babel/preset-env"
+    // ],
+    // "plugins": [
+    //     [
+    //         "prismjs",
+    //         {
+    //             "languages": [
+    //                 "javascript",
+    //                 "elixir",
+    //                 "css",
+    //                 "markup"
+    //             ],
+    //             "plugins": [
+    //                 "line-numbers"
+    //             ],
+    //             "theme": "prism-xonokai",
+    //             "css": true
+    //         }
+    //     ]
+    // ]
 }

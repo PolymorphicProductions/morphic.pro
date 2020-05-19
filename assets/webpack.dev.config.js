@@ -38,7 +38,28 @@ module.exports = (env, options) => ({
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+            // plugins: [
+            //   [
+            //     "prismjs",
+            //     {
+            //       "languages": [
+            //         "javascript",
+            //         "elixir",
+            //         "css",
+            //         "markup"
+            //       ],
+            //       "plugins": [
+            //         "line-numbers"
+            //       ],
+            //       "theme": "prism-xonokai",
+            //       "css": true
+            //     }
+            //   ]
+            // ]
+          }
         }
       },
       {
@@ -68,7 +89,7 @@ module.exports = (env, options) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
-    new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
-    new BundleAnalyzerPlugin()
+    new CopyWebpackPlugin([{ from: "static/", to: "../" }])
+    // new BundleAnalyzerPlugin()
   ]
 });

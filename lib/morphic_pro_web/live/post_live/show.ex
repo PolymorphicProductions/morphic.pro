@@ -36,6 +36,9 @@ defmodule MorphicProWeb.PostLive.Show do
   def handle_info({:post_liked, post}, socket) do
     {:noreply, assign(socket, post: post)}
   end
+  def handle_info({:post_edited, post}, socket) do
+    {:noreply, assign(socket, post: post)}
+  end
 
   @impl true
   def handle_event(
