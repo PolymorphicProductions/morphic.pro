@@ -154,6 +154,10 @@ nav .icon-shape {
   word-wrap: break-word;
   hyphens: auto;
 
+  hr {
+    @apply my-8;
+  }
+
   ul {
     list-style: disc;
     list-style-position: inside;
@@ -236,7 +240,7 @@ nav .icon-shape {
 
 /* The slider */
 .slider {
-  @apply rounded bg-green-400;
+  @apply bg-green-400 rounded;
   position: absolute;
   cursor: pointer;
   top: 0;
