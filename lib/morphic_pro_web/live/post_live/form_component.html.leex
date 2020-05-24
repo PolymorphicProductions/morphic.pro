@@ -4,7 +4,7 @@
   phx_change: "validate",
   phx_submit: "save" %>
 
-  <div id="bg-image" class="bg-image" style="background-image: url(<%= @post.large_img %>)">
+  <div id="bg-image" class="bg-image" style="background-image: url(<%= @post.large_img %>)" phx-hook="NavState">
     <div class="flex items-center h-screen align-middle bg-black-07">
       <div class="container px-3 py-6 mx-auto">
         <div class="w-full my-12 align-middle">
