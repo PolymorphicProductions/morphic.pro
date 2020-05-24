@@ -61,7 +61,7 @@ defmodule MorphicProWeb.PostLive.Show do
       |> put_flash(:info, "Post deleted successfully.")
       |> push_redirect(to: Routes.snap_path(socket, :index))
     else
-      err -> {:noreply, socket}
+      _err -> {:noreply, socket}
     end
   end
 end
