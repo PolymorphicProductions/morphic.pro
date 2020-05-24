@@ -21,9 +21,30 @@ import { LiveSocket } from "phoenix_live_view"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
+window.isNavToggled = false;
+
 let Hooks = {
+  NavState: {
+    style() {
+      console.debug(this.el.dataset)
+      return this.el.dataset.style
+    },
+    mounted() {
+      if (window.isNavToggled) {
+        window.toggleNavbar('collapse-navbar')
+      }
+      window.scrollTo(0, 0);
+
+      let navbarFixed = document.getElementsByClassName("navbar-fixed")[0]
+
+      if (this.style() == "white") {
+        navbarFixed.classList.add("nav-white", "bg-white", "text-gray-700")
+      } else {
+        navbarFixed.classList.remove("nav-white", "bg-white", "text-gray-700");
+      }
+    }
+  },
   PostShowCode: {
-    page() { return this.el.dataset.page },
     mounted() {
       import('prismjs').then(module => {
         const Prism = module.default
@@ -276,61 +297,34 @@ liveSocket.connect()
 // >> liveSocket.enableLatencySim(1000)
 window.liveSocket = liveSocket
 
-let isNavToggled = false;
+
 let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
-let white_bg = document.getElementsByClassName("navbar-wbg")[0]
 
 // Nav
 window.toggleNavbar = collapseID => {
-  isNavToggled = !isNavToggled;
+  window.isNavToggled = !window.isNavToggled;
   if (isNavToggled) {
     document.getElementById(collapseID).classList.remove("hidden");
     document.getElementById(collapseID).classList.add("flex");
-    if (!navbarSmall) {
-      navbarFixed.classList.add("bg-white", "text-gray-700");
-    }
   } else {
     document.getElementById(collapseID).classList.add("hidden");
     document.getElementById(collapseID).classList.remove("flex");
-    if (!navbarSmall) {
-      navbarFixed.classList.remove("bg-white", "text-gray-700");
-    }
   }
 };
 
-function docReady(fn) {
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    // call on next available tick
-    setTimeout(fn, 1);
-  } else {
-    document.addEventListener("DOMContentLoaded", fn);
-  }
-}
-
-let navbarSmall = document.getElementsByClassName("navbar-small")[0];
 window.addEventListener("scroll", () => {
-  if (navbarSmall || white_bg) {
-    if (!isNavToggled) {
-      if (window.scrollY >= 10) {
-        navbarFixed.classList.add("shadow-xl");
-      } else {
-        navbarFixed.classList.remove("shadow-xl");
-      }
+  let navbarWhite = document.getElementsByClassName("nav-white")[0];
+  if (window.scrollY >= 10) {
+    navbarFixed.classList.add("shadow-xl")
+    if (!navbarWhite) {
+      navbarFixed.classList.add("bg-white", "text-gray-700");
     }
   } else {
-    if (!isNavToggled) {
-      if (window.scrollY >= 10) {
-        navbarFixed.classList.add("bg-white", "text-gray-700", "shadow-xl");
-      } else {
-        navbarFixed.classList.remove("bg-white", "text-gray-700", "shadow-xl");
-      }
+    navbarFixed.classList.remove("shadow-xl")
+    if (!navbarWhite) {
+      navbarFixed.classList.remove("bg-white", "text-gray-700")
     }
   }
 });
 
-docReady(() => {
-  if (navbarSmall || white_bg) {
-    navbarFixed.classList.add("bg-white", "text-gray-700");
-  }
-})
 

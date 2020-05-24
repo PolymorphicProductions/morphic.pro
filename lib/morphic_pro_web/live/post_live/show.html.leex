@@ -1,4 +1,4 @@
-<div class="bg-image" style="background-image: url(<%= @post.large_img %>)">
+<div class="bg-image" style="background-image: url(<%= @post.large_img %>)" phx-hook="NavState">
   <div class="flex items-center h-screen align-middle bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12 align-middle">
@@ -40,7 +40,7 @@
 
 <a name="body"></a>
 <div class="container mx-auto my-20">
-  <div id="post-body" phx-hook="PostShowCode" class="px-8 py-24 bg-white lg:px-64 post-body" date-page="<%= @post.body %>">
+  <div id="post-body" phx-hook="PostShowCode" class="px-8 py-24 bg-white lg:px-64 post-body">
     <%= @post.body |> parse_markdown |> raw %>
 
     <div class="px-6 pb-4 text-center">

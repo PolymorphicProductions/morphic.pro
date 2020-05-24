@@ -45,14 +45,14 @@ defmodule MorphicProWeb.SnapLive.Show do
           [id]
         ).rows
 
-        prev_large_img = case rows |> Enum.filter(fn [snap_id, _, _, _draft, img, _prev, next] -> id == next end) do
+        prev_large_img = case rows |> Enum.filter(fn [_snap_id, _, _, _draft, _img, _prev, next] -> id == next end) do
           [] ->
             nil
           [[_, _, _, _, prev_large_img, _, _]] ->
             prev_large_img
         end
 
-        next_large_img = case rows |> Enum.filter(fn [snap_id, _, _, _draft, img, prev, _next] -> id == prev end) do
+        next_large_img = case rows |> Enum.filter(fn [_snap_id, _, _, _draft, _img, prev, _next] -> id == prev end) do
           [] ->
             nil
           [[_, _, _, _, next_large_img, _, _]] ->
@@ -86,7 +86,7 @@ defmodule MorphicProWeb.SnapLive.Show do
   @impl true
   def handle_event(
         "keydown",
-        %{"code" => "ArrowRight", "key" => "ArrowRight"} = stuff,
+        %{"code" => "ArrowRight", "key" => "ArrowRight"},
         %{assigns: %{snap: %{id: id}}} = socket
       ) do
     {:ok, id} = Ecto.UUID.dump(id)
@@ -102,7 +102,7 @@ defmodule MorphicProWeb.SnapLive.Show do
     where $1 IN (id, prev, next)
     "
 
-    [%{next: next, prev: prev}] = Ecto.Adapters.SQL.query!(
+    [%{next: next, prev: _prev}] = Ecto.Adapters.SQL.query!(
       MorphicPro.Repo,
       sql,
       [id]
@@ -134,7 +134,7 @@ defmodule MorphicProWeb.SnapLive.Show do
 
   def handle_event(
         "keydown",
-        %{"code" => "ArrowLeft", "key" => "ArrowLeft"} = stuff,
+        %{"code" => "ArrowLeft", "key" => "ArrowLeft"},
         %{assigns: %{snap: %{id: id}}} = socket
       ) do
     {:ok, id} = Ecto.UUID.dump(id)
@@ -150,7 +150,7 @@ defmodule MorphicProWeb.SnapLive.Show do
     where $1 IN (id, prev, next)
     "
 
-    [%{next: next, prev: prev}] = Ecto.Adapters.SQL.query!(
+    [%{next: _next, prev: prev}] = Ecto.Adapters.SQL.query!(
       MorphicPro.Repo,
       sql,
       [id]
@@ -202,7 +202,7 @@ defmodule MorphicProWeb.SnapLive.Show do
       |> put_flash(:info, "Snap deleted successfully.")
       |> redirect(to: Routes.snap_path(socket, :index))
     else
-      err -> {:noreply, socket}
+      _err -> {:noreply, socket}
     end
   end
 end
