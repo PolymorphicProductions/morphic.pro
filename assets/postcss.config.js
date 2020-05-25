@@ -7,9 +7,10 @@ module.exports = ctx => {
       require('postcss-nested'),
       require('@fullhuman/postcss-purgecss')({
         content: [
+          "./css/**/*.css",
           "../lib/morphic_pro_web/**/*.leex",
           "../lib/morphic_pro_web/**/*.eex",
-
+          "../lib/morphic_pro_web/**/*.ex"
         ],
         defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
       })
