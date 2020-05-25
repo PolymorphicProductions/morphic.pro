@@ -5,11 +5,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-
-// Chuncking?
-// Treeshaking? Remove dead code
-// Better minimizer output?
-
 module.exports = (env, options) => ({
   mode: "production",
   optimization: {

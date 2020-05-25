@@ -7,9 +7,10 @@
     "watch": "webpack --config webpack.dev.config.js --watch --colors"
   },
   "dependencies": {
-    "babel-plugin-prismjs": "^2.0.1",
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "@fullhuman/postcss-purgecss": "^2.2.0",
     "@silvia-odwyer/photon": "^0.2.0",
+    "babel-plugin-prismjs": "^2.0.1",
     "easymde": "^2.10.0",
     "exifreader": "^3.8.0",
     "hammerjs": "^2.0.8",
