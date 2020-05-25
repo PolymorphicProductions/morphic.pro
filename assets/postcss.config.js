@@ -5,7 +5,7 @@ module.exports = ctx => {
       require("tailwindcss"),
       require("autoprefixer"),
       require('postcss-nested'),
-      require('@fullhuman/postcss-purgecss')({
+      ctx.env === "production" && require('@fullhuman/postcss-purgecss')({
         content: [
           "./css/**/*.css",
           "../lib/morphic_pro_web/**/*.leex",
