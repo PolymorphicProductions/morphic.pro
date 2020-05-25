@@ -40,6 +40,12 @@ secret_access_key =
     environment variable AWS_SECRET_ACCESS_KEY is missing.
     """
 
+sentry_dsn =
+  System.get_env("SENTRY_DNS") ||
+    raise """
+    environment variable SENTRY_DNS is missing.
+    """
+
 config :morphic_pro, MorphicPro.Repo,
   # ssl: true,
   url: database_url,
@@ -59,6 +65,16 @@ config :morphic_pro, MorphicProWeb.Mailer,
   adapter: Bamboo.MailgunAdapter,
   api_key: mailer_api_key,
   domain: mailer_domain
+
+config :sentry,
+  dsn: sentry_dsn,
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!,
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information

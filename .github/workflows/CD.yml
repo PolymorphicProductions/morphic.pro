@@ -102,6 +102,7 @@ jobs:
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SENTRY_DNS: ${{ secrets.SENTRY_DNS }}
         run: MIX_ENV=prod mix compile
       - name: Compile assets
         run: |
@@ -115,6 +116,8 @@ jobs:
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SENTRY_DNS: ${{ secrets.SENTRY_DNS }}
+
         run: MIX_ENV=prod mix release --version ${{ github.sha }}
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
