@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased text-gray-900">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Portland's Digital Curator">
+  <meta name="author" content="Josh Chernoff <jchernoff@morphic.pro>">
+
+  <meta property="og:image"
+    content="<%= assigns[:page_image] || "https://morphic.pro#{Routes.static_path(@conn, "/images/logo.png")}" %>">
+  <meta property="og:site_name" content="Morphic Pro">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= assigns[:page_title] || "Morphic.Pro" %>">
+  <meta property="og:url" content="https://morhpic.pro<%= @conn.request_path %>">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= Routes.static_path(@conn, "/images/apple-touch-icon.png") %>">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= Routes.static_path(@conn, "/images/favicon-32x32.png") %>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= Routes.static_path(@conn, "/images/favicon-16x16.png") %>">
+
+  <link rel="mask-icon" href="<%= Routes.static_path(@conn, "/images/safari-pinned-tab.svg") %>" color="#5bbad5">
+
+  <%= csrf_meta_tag() %>
+  <%= live_title_tag assigns[:page_title] || "Morphic.Pro" %>
+
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" as="style">
+  <link rel="preload" href="<%= Routes.static_path(@conn, "/fonts/icomoon.woff") %>" as="font" type="font/woff2"
+    crossorigin>
+
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>" />
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>" />
+
+</head>
+
+<body>
+  <%= render "_header.html", assigns %>
+
+  <div id="error" class="h-screen w-screen">
+    <div class="z-0">
+      <video playsinline autoplay muted loop id="bgvid" class="object-cover w-screen h-screen absolute top-0 left-0">
+        <source src=" https://morphicpro.s3-us-west-2.amazonaws.com/dinos.mp4" type="video/mp4">
+        <source src="https://morphicpro.s3-us-west-2.amazonaws.com/dinos.webm" type="video/webm">
+        <source src="https://morphicpro.s3-us-west-2.amazonaws.com/dinos.ogv" type="video/ogg">
+      </video>
+      <div class="bg-black-05 top-0 right-0 bottom-0 left-0 absolute w-screen h-screen"></div>
+    </div>
+
+    <main>
+      <section class="message">
+        <h1 class="entry-title fade-in text-4xl text-gray-200">404</h1>
+        <div class="callout">
+          <p class="fade-in text-6xl text-gray-200">Not Found.</p>
+        </div>
+      </section>
+    </main>
+
+  </div><!-- #prilmary -->
+
+  <%= render "_footer.html", conn: @conn %>
+
+  <script rel="preload" type="text/javascript"
+    src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
+  <%= render_existing(view_module(@conn), "script." <> view_template(@conn)) %>
+</body>
+
+</html>

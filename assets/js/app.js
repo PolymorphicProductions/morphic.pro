@@ -23,6 +23,8 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 
 window.isNavToggled = false;
 
+let navbarFixed = document.getElementsByClassName("navbar-fixed")[0]
+
 let Hooks = {
   NavState: {
     style() {
@@ -34,8 +36,6 @@ let Hooks = {
         window.toggleNavbar('collapse-navbar')
       }
       window.scrollTo(0, 0);
-
-      let navbarFixed = document.getElementsByClassName("navbar-fixed")[0]
 
       if (this.style() == "white") {
         navbarFixed.classList.add("nav-white", "bg-white", "text-gray-700")
@@ -298,7 +298,6 @@ liveSocket.connect()
 window.liveSocket = liveSocket
 
 
-let navbarFixed = document.getElementsByClassName("navbar-fixed")[0];
 
 // Nav
 window.toggleNavbar = collapseID => {
@@ -312,7 +311,35 @@ window.toggleNavbar = collapseID => {
   }
 };
 
-window.addEventListener("scroll", () => {
+let lastScrollTop = 0
+
+let bgImg = document.getElementsByClassName("bg-image")[0]
+
+window.addEventListener("scroll", function () {
+  var st = window.pageYOffset || document.documentElement.scrollTop;
+  if (st > lastScrollTop) {
+    // let posision = bgImg.style["backgroundPositionY"]
+
+    console.debug(bgImg.style)
+    // let y = Number(bgImg.style.backgroundPositionY.replace("px", "")) 
+    // let y = window.pageYOffset
+    // bgImg.style["background-position-y"] = `${y}px`
+    navbarFixed.classList.add("close")
+  } else {
+    // console.log("Open menu")
+    // let y = window.pageYOffset * 2
+    // bgImg.style["background-position-y"] = `${y}px`
+    navbarFixed.classList.remove("close")
+  }
+  lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+}, false);
+
+window.addEventListener("scroll", (e) => {
+  fadeIn();
+
+  // window.scrollY
+  // console.debug(e)
+
   let navbarWhite = document.getElementsByClassName("nav-white")[0];
   if (window.scrollY >= 10) {
     navbarFixed.classList.add("shadow-xl")
@@ -327,4 +354,22 @@ window.addEventListener("scroll", () => {
   }
 });
 
+const fadeIn = () => {
+  [].map.call(
+    document.getElementsByClassName("content-primed"),
+    (primed) => {
+      if (isInViewport(primed)) {
+        primed.classList.remove("content-primed")
+        primed.classList.add("fade-in")
+      }
+    }
+  )
+}
 
+const isInViewport = (elem) => {
+  var bounding = elem.getBoundingClientRect();
+  return (
+    bounding.top >= 0 &&
+    bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+  );
+};

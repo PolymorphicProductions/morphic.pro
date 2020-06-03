@@ -1,6 +1,7 @@
-<div id="<%= @post.id %>" class="max-w-sm mx-auto overflow-hidden bg-white shadow-md">
-  <%= live_redirect to: Routes.post_show_path(@socket, :show, @post) do %>
-    <img class="w-full" src="<%= @post.thumb_img %>" alt="<%= @post.title %>" loading="lazy">
+<div id="<%= @post.id %>" class="mx-auto overflow-hidden bg-white shadow-md" style="box-shadow: 8px 8px 16px #e1e6eb, -8px -8px 16px #f9feff; background: linear-gradient(145deg, #feffff, #d5dade);
+">
+  <%= live_redirect to: Routes.post_show_path(@socket, :show, @post), class: "block h-65 overflow-hidden" do %>
+    <img class="w-full " src="<%= @post.thumb_img %>" alt="<%= @post.title %>" loading="lazy">
   <% end %>
 
   <div class="px-6 py-4">

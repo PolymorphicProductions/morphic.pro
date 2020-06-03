@@ -8,7 +8,6 @@ const easymdeExcerpt = new EasyMDE({
   element: document.getElementById("snap_excerpt")
 });
 
-
 function draw(ev) {
   var ctx = document.getElementById('canvas').getContext('2d'),
     img = new Image(),

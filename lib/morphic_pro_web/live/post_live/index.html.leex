@@ -1,28 +1,25 @@
+<div>
 <div class="bg-image" style="background-image: url(<%= Routes.static_path(@socket, "/images/login3.jpg") %>)" phx-hook="NavState">
   <div class="bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12">
-        <h1 class="mt-12 mb-2 text-4xl leading-tight text-center text-white font-book page-title">The Blog</h1>
-        <p class="mb-8 text-2xl font-thin leading-normal text-center text-white">The lines in between </p>
+        <h1 class="mt-12 mb-2 text-4xl leading-tight text-center text-white font-book page-title fade-in">The Blog</h1>
+        <p class="mb-8 text-2xl font-thin leading-normal text-center text-white fade-in">The lines in between </p>
         
         <%= if live_flash(@flash, :info) do %>
-          <div class="mx-auto w-1/2 relative p-3 rounded text-blue-700 bg-blue-200 bg-opacity-75">
+          <div class="mx-auto w-1/2 relative p-3 rounded text-blue-700 bg-blue-200 bg-opacity-75 fade-in>
             <%= live_flash(@flash, :info) %><button class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100">×</button>
           </div>
         <% end %>
 
         <%= if live_flash(@flash, :error) do %>
-          <div class="mx-auto w-1/2 relative p-3 rounded text-red-700 bg-red-200 bg-opacity-75">
+          <div class="mx-auto w-1/2 relative p-3 rounded text-red-700 bg-red-200 bg-opacity-75 fade-in">
             <%= live_flash(@flash, :error) %><button class="opacity-75 cursor-pointer absolute top-0 right-0 py-2 px-3 hover:opacity-100">×</button>
           </div>
         <% end %>
       </div>
     </div>
   </div>
-</div>
-
-<div class="container px-4 py-10 mx-auto">
-  <%= HTML.paginate @dissolver, post_paginate_helper(@socket, @live_action, @scope) %>
 </div>
 
 <div class="container px-4 py-10 mx-auto">
@@ -36,4 +33,5 @@
 
 <div class="container px-4 py-10 mx-auto">
   <%= HTML.paginate @dissolver, post_paginate_helper(@socket, @live_action, @scope) %>
+</div>
 </div>
