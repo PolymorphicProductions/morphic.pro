@@ -1,7 +1,7 @@
-<div class="bg-image" style="background-image: url(<%= Routes.static_path(@socket, "/images/home.jpg") %>)" phx-hook="NavState">
-  <div class="flex items-center h-screen align-middle bg-black-05">
-    <div class="container px-6 py-6 mx-auto">
-      <div class="w-full my-12 align-middle">
+<div id="landing" class="bg-image" style="background-image: url(<%= Routes.static_path(@socket, "/images/home.jpg") %>)" phx-hook="NavState" >
+  <div class="flex items-center h-screen align-middle bg-black-05" >
+    <div class="container px-6 py-6 mx-auto" phx-hook="PageIndex">
+      <div class="w-full my-12 align-middle fade-in">
         <%#= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-white'> #{string}</h3>" end).() |> raw %>
         <h1
           class="mt-12 mb-2 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
@@ -13,7 +13,7 @@
         <div class="block mx-auto text-center md:text-left">
 
           <a href="#services"><button
-              class="px-3 py-2 mb-5 text-xs text-sm font-bold text-gray-800 bg-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
+              class="px-3 py-2 mb-5 text-xs text-sm font-bold text-gray-200 border-2 background-none border-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
               Learn More <i class="ml-2 fas fa-arrow-circle-down"></i></button>
           </a>
         </div>
@@ -33,7 +33,7 @@
       </div>
       <div class="grid gap-4 text-center md:grid-cols-2 lg:grid-cols-3 ">
         <!-- Service 1 -->
-        <div class="px-4 py-2 m-2">
+        <div class="px-4 py-2 m-2 content-primed">
           <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
             <span class="text-4xl">
               <i class="fab fa-js-square" style="color: #f7df1e;"></i>
@@ -47,7 +47,7 @@
           </div>
         </div>
         <!-- Service 2 -->
-        <div class="px-4 py-2 m-2">
+        <div class="px-4 py-2 m-2 content-primed">
           <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
             <span class="text-4xl">
               <i class="fab fa-phoenix-framework" style="color: rgb(223, 95, 54);"></i>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <!-- Service 3 -->
-        <div class="px-4 py-2 m-2">
+        <div class="px-4 py-2 m-2 content-primed">
           <div class="h-full p-10 border border-solid rounded-lg shadow-xl">
             <span class="text-4xl">
               <i class="fab fa-youtube" style="color: #ff0000;"></i>
@@ -115,7 +115,7 @@
         </div>
 
         <div class="px-6 pb-4">
-          <button class="text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_post_likes" phx-value-post-id="<%= post.id %>">
+          <button class="post-likes text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_post_likes" phx-value-post-id="<%= post.id %>">
             <i class="fas fa-heart"></i> <%= post.likes_count %>
           </button>
         </div>
@@ -162,7 +162,7 @@
 
 
         <div class="px-6 pb-4">
-          <button class="text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_snap_likes" phx-value-snap-id="<%= snap.id %>">
+          <button class="snap-likes text-xs text-center btn-blue focus:outline-none" phx-throttle="500" phx-click="inc_snap_likes" phx-value-snap-id="<%= snap.id %>">
             <i class="fas fa-heart"></i> <%= snap.likes_count %>
           </button>
         </div>

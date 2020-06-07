@@ -8,7 +8,6 @@ const easymdeExcerpt = new EasyMDE({
   element: document.getElementById("snap_excerpt")
 });
 
-
 function draw(ev) {
   var ctx = document.getElementById('canvas').getContext('2d'),
     img = new Image(),
@@ -22,7 +21,7 @@ function draw(ev) {
     console.log(reader.result);
     let exif = ExifReader.load(reader.result);
     document.getElementById("snap_exif_string").value = JSON.stringify(exif)
-    console.debug(exif)
+    // console.debug(exif)
   };
 
   reader.onerror = function () {

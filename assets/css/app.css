@@ -50,6 +50,11 @@ h3{
   text-transform: none;
 }
 
+nav.close {
+    opacity: 0;
+    top: -45px;
+  }
+
 nav .icon-shape {
   line-height: 1;
   position: absolute;
@@ -280,6 +285,135 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+
+/* Error Page */
+#error{
+  .message {
+    font-family: "Abril Fatface", cursive;
+    font-weight: normal !important;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  } 
+
+}
+
+#content {
+  p, h1, h2, h3, input, textarea,
+  .button, .btn, .entry-meta, .job-title, .social-block a {
+    &.content-primed {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+    }
+    &.fade-in {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+      animation-name: fadeContent;
+    }
+  }
+}
+
+.content-primed:not(.no-fade) {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+.fade-in:not(.no-fade) {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  animation-name: fadeContent;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-duration: 1.25s;
+  animation-delay: 0.15s;
+
+  &:nth-child(odd) {
+    animation-duration: 1s; /* So they look staggered */
+  }
+}
+
+blockqoute {
+  @apply border-l-4 border-solid block pl-4;
+  text-indent: 1em;  
+  text-align: justify;
+  p {
+    @apply mb-4;
+  }
+  cite{
+    @apply block mt-4;
+  }
+}
+
+
+/* ----------------  THE Timeline */
+.timeline-item {
+  padding: 4em 2em 3em;
+  position: relative;
+  border-left: 2px solid rgba(0, 0, 0, .3);
+  
+  p {
+    font-size: 1rem;
+  }
+
+  &:before {
+    content: attr(date-is);
+    position: absolute;
+    left: 2em;
+    font-weight: bold;
+    top: 1em;
+    display: block;
+    font-weight: 700;
+    font-size: .785rem;
+  }
+
+  &:after {
+    width: 10px;
+    height: 10px;
+    display: block;
+    top: 1em;
+    position: absolute;
+    left: -7px;
+    border-radius: 10px;
+    content: '';
+    border: 2px solid rgba(0, 0, 0, .3);
+    background: white;
+  }
+  &:last-child {
+    border-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0)) 1 100%;
+  }
+}
+.timeline-item:first-child {
+  padding-top: 0px;
+}
+
+.timeline-item:first-child:after {
+  top: 0px;
+  background-color: black;
+}
+
+@keyframes fadeContent {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeImg {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotate3d(1, 0, 0, -5deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotate3d(1, 0, 0, 0);
+  }
 }
 
 /* @import "~prism-themes/themes/prism-atom-dark.css"; */

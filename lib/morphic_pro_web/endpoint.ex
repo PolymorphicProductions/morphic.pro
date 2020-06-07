@@ -18,7 +18,7 @@ defmodule MorphicProWeb.Endpoint do
     at: "/",
     from: :morphic_pro,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt),
+    only: ~w(css fonts images js favicon.ico robots.txt resume.pdf),
     content_types: %{
       "219f925822b9da756558.module.wasm" => "application/wasm",
       "02ee66ae5fb312b3f788.module.wasm" => "application/wasm",

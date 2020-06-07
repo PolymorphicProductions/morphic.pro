@@ -109,13 +109,20 @@ defmodule MorphicPro.Blog do
   end
 
   def get_snap!(uuid, current_user, options \\ []) do
-    preload = Keyword.get(options, :preload, [])
 
-    Snap
-    |> Repo.by_id(uuid)
-    |> from(preload: ^preload)
-    |> Bodyguard.scope(current_user)
-    |> Repo.one!()
+    with {:ok, uuid} <- Ecto.UUID.cast(uuid) do
+      preload = Keyword.get(options, :preload, [])
+
+      Snap
+      |> Repo.by_id(uuid)
+      |> from(preload: ^preload)
+      |> Bodyguard.scope(current_user)
+      |> Repo.one!()
+    else
+      _ ->
+      raise Ecto.NoResultsError, queryable: Snap
+    end
+
   end
 
   @doc """

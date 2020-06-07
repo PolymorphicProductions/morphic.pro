@@ -78,6 +78,8 @@ defmodule MorphicProWeb.Router do
     live "/posts", PostLive.Index, :index
     live "/snaps", SnapLive.Index, :index
 
+    live "/about", PageLive.About, :about
+    
     live "/", PageLive.Index, :index
   end
 

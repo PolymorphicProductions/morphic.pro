@@ -2,7 +2,7 @@
   <div class="py-20 bg-gray-800">
     <div class="text-center">
 
-      <h4 class="text-3xl font-bold text-gray-100 content-primed">
+      <h4 class="text-3xl font-bold text-gray-100">
         <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro
       </h4>
 
