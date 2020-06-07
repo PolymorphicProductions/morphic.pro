@@ -350,7 +350,7 @@ blockqoute {
 
 /* ----------------  THE Timeline */
 .timeline-item {
-  padding: 3em 2em 2em;
+  padding: 4em 2em 3em;
   position: relative;
   border-left: 2px solid rgba(0, 0, 0, .3);
   

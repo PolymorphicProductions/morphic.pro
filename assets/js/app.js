@@ -26,9 +26,104 @@ window.isNavToggled = false;
 let navbarFixed = document.getElementsByClassName("navbar-fixed")[0]
 
 let Hooks = {
+  PageIndex: {
+    mounted() {
+      import('@mojs/core').then(mojs => {
+        class Heart extends mojs.CustomShape {
+          getShape() { return '<path d="M92.6 7.4c-10-9.9-26-9.9-35.9 0l-4.4 4.3a3.4 3.4 0 0 1-4.7 0l-4.3-4.3c-10-9.9-26-9.9-35.9 0a25 25 0 0 0 0 35.5l22.4 22.2 13.5 13.4a9.5 9.5 0 0 0 13.4 0L70.2 65 92.6 43a25 25 0 0 0 0-35.5z"/>'; }
+          getLength() { return 200; } // optional
+        }
+        mojs.addShape('heart', Heart); // passing name and Bubble class
+
+        const SWIRL_OPTS = {
+          shape: 'heart',
+          left: 0, top: 0,
+          fill: '#F93E39',
+          duration: 'rand(600, 1000)',
+          radius: 'rand(10, 20)',
+          pathScale: 'rand(.5, 1)',
+          swirlFrequency: 'rand(2,4)',
+          swirlSize: 'rand(6,14)',
+        }
+
+        const swirl1 = new mojs.ShapeSwirl({
+          ...SWIRL_OPTS
+        });
+
+        const swirl2 = new mojs.ShapeSwirl({
+          ...SWIRL_OPTS,
+          direction: -1
+        });
+
+        const swirl3 = new mojs.ShapeSwirl({
+          ...SWIRL_OPTS
+        });
+
+        const swirl4 = new mojs.ShapeSwirl({
+          ...SWIRL_OPTS
+        });
+        let snap_likes = document.getElementsByClassName("snap-likes")
+        for (let snap of snap_likes) {
+          snap.addEventListener('click', function (e) {
+            const x = e.pageX,
+              y = { [e.pageY]: e.pageY - 150 };
+            swirl1
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+            swirl2
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+            swirl3
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+            swirl4
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+          });
+
+        };
+        let post_likes = document.getElementsByClassName("post-likes")
+        for (let post of post_likes) {
+          post.addEventListener('click', function (e) {
+            const x = e.pageX,
+              y = { [e.pageY]: e.pageY - 150 };
+            swirl1
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+            swirl2
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+            swirl3
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+            swirl4
+              .tune({ x, y })
+              .generate()
+              .replay();
+
+          });
+
+        };
+
+      })
+    }
+  },
   NavState: {
     style() {
-      console.debug(this.el.dataset)
       return this.el.dataset.style
     },
     mounted() {
@@ -124,7 +219,6 @@ let Hooks = {
 
           // listen to events...
           mc.on("panleft panright tap press", function (ev) {
-            console.debug(ev)
             switch (ev.type) {
               case "panleft":
                 target.pushEvent("keydown", { code: "ArrowRight", key: "ArrowRight" });
@@ -162,7 +256,6 @@ function draw(target) {
         .then(ExifReader => {
           let exif = ExifReader.load(reader.result);
           document.getElementById("snap_exif_string").value = JSON.stringify(exif)
-          console.debug(exif)
 
           import('json-formatter-js')
             .then(JSONFormatter => {
@@ -318,9 +411,6 @@ let bgImg = document.getElementsByClassName("bg-image")[0]
 window.addEventListener("scroll", function () {
   var st = window.pageYOffset || document.documentElement.scrollTop;
   if (st > lastScrollTop) {
-    // let posision = bgImg.style["backgroundPositionY"]
-
-    console.debug(bgImg.style)
     // let y = Number(bgImg.style.backgroundPositionY.replace("px", "")) 
     // let y = window.pageYOffset
     // bgImg.style["background-position-y"] = `${y}px`
@@ -336,9 +426,6 @@ window.addEventListener("scroll", function () {
 
 window.addEventListener("scroll", (e) => {
   fadeIn();
-
-  // window.scrollY
-  // console.debug(e)
 
   let navbarWhite = document.getElementsByClassName("nav-white")[0];
   if (window.scrollY >= 10) {
@@ -373,3 +460,4 @@ const isInViewport = (elem) => {
     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
   );
 };
+

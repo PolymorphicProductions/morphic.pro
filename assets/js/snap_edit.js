@@ -21,7 +21,7 @@ function draw(ev) {
     console.log(reader.result);
     let exif = ExifReader.load(reader.result);
     document.getElementById("snap_exif_string").value = JSON.stringify(exif)
-    console.debug(exif)
+    // console.debug(exif)
   };
 
   reader.onerror = function () {

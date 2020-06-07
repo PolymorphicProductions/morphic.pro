@@ -1,21 +1,37 @@
 <div class="bg-image" style="background-image: url(<%= Routes.static_path(@socket, "/images/me.jpeg") %>)"
   phx-hook="NavState">
-  <div class="flex items-center h-screen align-middle bg-black-05">
+  <div class="flex items-center h-screen align-middle bg-black-07">
     <div class="container px-6 py-6 mx-auto">
       <div class="w-full my-12 align-middle fade-in">
         <h1
-          class="mt-12 mb-2 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
+          class="mt-12 mb-8 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
           Hello, I'm Josh Chernoff
         </h1>
         <div class="block mx-auto text-center md:text-left">
-          <a href="#cover"><button
-              class="px-3 py-2 mb-5 mr-4 font-bold text-gray-800 bg-indigo-300 rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
-              More About Me <i class="fas fa-briefcase"></i></button>
+          <a href="<%= Routes.static_path(@socket, "/resume.pdf") %>"><button
+              class="border-green-500 border-2 border-soild bg-none px-3 py-2 mb-8 mr-3 font-bold text-green-500 rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
+              Download My PDF Resume <i class="fas fa-cloud-download-alt"></i></button>
           </a>
-          <a href="#cover "><button
-              class="bg-green-500 text-gray-200 px-3 py-2 mb-5 mr-3 font-bold bg-white rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
-              Download My Resume <i class="fas fa-cloud-download-alt"></i></button>
-          </a>
+          <ul class="mb-8">
+            <li>
+              <a class="text-gray-200 text-xl bold uppercase" href="#cover">About Me</a>
+            </li>
+            <li>
+              <a class="text-gray-200 text-xl bold uppercase" href="#focus">Intrests / Focus</a>
+            </li>
+            <li>
+              <a class="text-gray-200 text-xl bold uppercase" href="#work">Work History</a>
+            </li>
+            <li>
+              <a class="text-gray-200 text-xl bold uppercase" href="#refernces">References</a>
+            </li>
+            <!-- <li>
+              <a class="text-gray-200 text-xl bold uppercase" href="#books">Books I've Recently Read</a>
+            </li>
+            <li>
+              <a class="text-gray-200 text-xl bold uppercase" href="#projects">Active Side Projects</a>
+            </li> -->
+          </ul>
         </div>
         <div class="block mx-auto text-center md:text-left">
           <a href="https://www.linkedin.com/in/josh-chernoff-614b67132/">
@@ -60,8 +76,13 @@
   </p>
 
 </div>
+<a name="focus"></a>
 <div class="bg-gray-900 text-gray-200 py-8">
-  <div class="container mx-auto my-10 px-8">
+  <div class="container mx-auto mb-10 px-8">
+    <div class="text-center section-title mb-8">
+      <h2 class="text-4xl font-bold text-gray-100 page-title">Intrests</h2>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="p-8"
         style="background: linear-gradient(145deg, #1c222f, #171d28); box-shadow: 5px 5px 12px #151a24, -5px -5px 12px #1f2634;">
@@ -172,6 +193,7 @@
   </div>
 </div>
 
+<a name="work"></a>
 <div class="container mx-auto">
   <div class="relative my-10 px-8">
 
@@ -190,182 +212,304 @@
     </div> -->
 
     <div class="timeline-item" date-is='Now - March 2020'>
-      covid-19
 
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/covid-19.jpg") %>" alt="">
+        </div>
+
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            COVID-19 / Morphic Pro
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer / Designer
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>Elixir, Phoenix </li>
+            <li>Ruby, Rails </li>
+            <li>JS, React</li>
+            <li>Photography / Videography</li>
+            <li>AWS, Lambda, DynamoDb</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Just like so many others in our country right now, I've been unemployed as a result of Covid-19 since March. The
+        need to establish Morphic Pro came as a direct result of these volatile times.
+        My hope is to find new opportunities by providing my senior level skills at reasonable rates. Over the past 3
+        months, instead of giving my time to the unemployment office or pushing my resume in front of HR’s I’ve spent
+        this time investing in my academics learning the newest and leading technologies mainly Elixir and the Phoenix
+        framework.
+      </p>
     </div>
     <div class="timeline-item" date-is='March 2020 - February 2019 (1 year)'>
-      Focus Vision
-      From: 02/2019 To: 03/2020
-      Position​:
-      Full Stack Developer. / Elixir Dev
-      Description​:
-      I started working as an Elixir developer working on their Phoenix app that was the backend consuming service that
-      they called their transcript processing pipeline. This service was used as a qualitative research tool for their
-      Video Insights transcription service. After many management pivots on what was to be the primary focus. I was then
-      moved on to the front end of this tool for a little while working in react. Later I was moved on to their legacy
-      application which was a ruby on rails app where I spent the remaining part of my time working.
-      Duties:
-      Most commonly I worked to support their legacy system. Though I found myself jumping from Python to React to
-      Elixir to Ruby to Lambda to who knew which flavor of tech they supported. It really was a jack of all trades job
-      depending on which new direction they took on that month.
-      Tech:
-      Elixir, Phoenix
-      Ruby, Rails
-      AWS, Lambda, DynamoDb Python
-      JS, React
-      Challenges:
-      Getting requirements and road maps for upcoming work beyond the current work week were the most common challenge
-      there. This manifested in overall poor team morale and very unpredictable delivery dates.
-      Successes and Accomplishments:
-      I pushed very strongly for better workflows and helped aid the process for grooming the backlog of work which I
-      feel helped the overall team culture gain confidence. I discovered and then coordinated the deletion of over 34
-      million rows of erroneous database records which freed a substantial amount of resources.
-      Professional Reference:
-      Kyle Scherling ​kscherling@focusvision.com​ | Direct Manager Jake Kaad ​jkaad@focusvision.com​ | Coworker
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/focusvision.png") %>" alt="">
+        </div>
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            Focus Vision / Market Research
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>Elixir, Phoenix </li>
+            <li>Ruby, Rails </li>
+            <li>JS, React</li>
+            <li>AWS, Lambda, DynamoDb</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+      <p class="mb-4">
+        I did a little of everything while working for Focus Vision from Elixir and Phoenix to JS and React to Python
+        and AWS to Ruby and Rails. Focus Vision gave me an opertunity to work on a Machine Learning pipeline that would
+        injest videos and throught
+        multple services and processes would deconstruct the video down in to transcriptions, sentiments and other
+        analytical data points.
+      </p>
+
+      <p>
+      <ul>
+        <li>Kyle Scherling ​kscherling@focusvision.com​ | Direct Manager </li>
+        <li>Jake Kaad ​jkaad@focusvision.com​ | Coworker</li>
+      </ul>
+      </p>
     </div>
     <div class="timeline-item" date-is='February 2019 - May 2018 (1 year)'>
-      Self Employed / Freelancer
-      From: 05/2018 To: 02/2019
-      Position​:
-      Full Stack Developer.
-      Description​:
-      I upheld a few small contracts with a variety of companies as a Ruby developer.
-      Duties:
-      Most commonly I’m worked to support legacy systems and upgrade libraries and refactor code where I can.
-      Tech:
-      With my background primarily as a ruby developer, I found that most of my clients were asking for help in Rails
-      applications and occasionally DevOps tasks that require Linux and Unix.
-      Challenges:
-      While kept my lights on, it presents challenges that can not necessarily be solved with technology. At its
-      hardest, I find it difficult to justify to the stakeholders why upholding quality over expediency is important. I
-      find I often lose that battle and have to accommodate where I can to compensate for cost and development time.
-      Successes and Accomplishments:
-      While not having all of my disposable time taken up by anyone organization I find time to further my academics.
-      I’ve spent this time to help and contribute to open source projects where I can. Most recently I’ve contributed to
-      ThoughtBot’s Bambo library​ and as well I’ve been recently appointed the manager/lead organizer for the Portland
-      Elixir user group monthly meetup. I have since started a project to host a white label phoenix application that
-      hopefully will provide a free webspace to all the elixir user groups.
-      https://github.com/PDX-Elixir-Group/elixir.group
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/mp.jpg") %>" alt="">
+        </div>
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            Self Employed / Freelancer
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer.
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>Elixir, Phoenix </li>
+            <li>Ruby, Rails </li>
+            <li>JS, React</li>
+            <li>Postgres</li>
+            <li>Dev Ops</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+
+      <p>
+        I upheld a few small contracts with a variety of companies as a Ruby developer. <br />
+        Most the time I was working to support legacy systems, upgrade libraries and refactor code where I could. <br />
+        I also at this time picked up learning React and Redux.
+      </p>
+
     </div>
     <div class="timeline-item" date-is='April 2018 - February 2017 (1 year)'>
-      Impact NW
-      From: 02/2017 To: 04/2018
-      Position​:
-      Full Stack Developer.
-      Work History
-      Description​:
-      Impact NW is a large nonprofit that services the greater Portland area providing a wide range of social services
-      to people in need. ​https://impactnw.org/
-      Duties:
-      I was tasked with developing an internal data entry tool. The tool would be used to track the intake of new
-      clients, track the progress of current clients, and generate reports for compliance and oversight.
-      Tech:
-      I was given the chance to learn and apply my knowledge of Elixir, Phoenix, Postgres, and Nginx. Test coverage was
-      upheld at around 80 to 90%. I had implemented the system for deployments and automated CI tests.
-      Challenges:
-      The biggest challenge for me while working at Impact NW was a lack of resourcing. Aside from one database engineer
-      (“who was not very accessible”) I was the only other technically inclined employee. At the start of my employment,
-      the entire tech team had been let go leaving just me as the primary developer for the whole organization.
-      Successes and Accomplishments:
-      During my time with Impact NW, I was able to learn and apply elixir as the primary language used for their
-      application. I learned a great deal about how to deploy and maintain a fault-tolerant Phoenix app. I was also able
-      to support the quality assurance of my code with approximately 80%+ test coverage. I also found new skills in
-      working at being 508 and HIPAA compliant while being responsible for highly volatile and sensitive data. I also
-      took pride that I worked for an organization that upholds quality values and does a great service for the
-      disadvantaged and needy of our community.
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/impactnw.jpeg") %>" alt="">
+        </div>
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            Impact NW
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer.
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>Elixir, Phoenix </li>
+            <li>Ruby, Rails </li>
+            <li>JS, React</li>
+            <li>Postgres</li>
+            <li>Dev Ops</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+      <p>
+        I initially began as a Ruby Developer and built an application using rails to allow help desks to intake data
+        at hospitals. After the successful completion of that project I was later commissioned to revitalize a prior
+        failed attempt at an app that would be used to intake all of Impact NW's data.<br />
+        I was allowed to rebuild this app using Elixir and Phoenix.<br />
+        I also learned a great deal about 508 and HIPAA compliance.<br />
+      </p>
     </div>
-    <div class="timeline-item" date-is='April 2014 till March 2017 (3 years)'>
-      Crowd Compass
-      From: 04/2014 To: 03/2017
-      Position​:
-      Server-Side Developer (Software Engineer 2)
-      Description​:
-      Crowdcompass is now known as Cvent, Crowdcompass is a mobile app platform used by organizers and attendees of
-      conferences ​https://www.crowdcompass.com/
-      Duties:
-      Work in a team to implement features and resolve bugs for the mobile API and admin web-based dashboard. We tried
-      and used many different workflow styles such as kanban and agile with two to three-week sprints. In addition to
-      writing code, I helped revise and clarify technical specifications for upcoming projects and bugs.
-      Tech:
-      Ruby and Ruby on Rails was the primary tech used supported by a Postgres database. Jenkins was used for
-      deployments​. ​Jira for ticket tracking.
-      Challenges:
-      During my almost 3 year position at Crowd Compass, I saw two acquisitions. This produced what felt like a constant
-      restructuring of the organization. I saw multiple attempts to restructure the development team's workflow and the
-      structure of the team as a whole. This made it very difficult to quantify my own personal and professional growth.
-      Successes and Accomplishments:
-      Until this position, I had never worked on applications that were expected to support tens of thousands of
-      concurrent users. It was very satisfying being in a position that upheld quality over expediency. I learned a
-      great deal about multi service-driven applications. As well I learned a lot of soft skills while working in a
-      large and diverse organization that generally worked hard to create a peaceful and inclusive work environment.
+    <div class="timeline-item" date-is='March 2017 - April 2014 (3 years)'>
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/cvent.png") %>" alt="">
+        </div>
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            Cvent
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer.
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>Ruby, Rails </li>
+            <li>JS, Ember</li>
+            <li>Postgres</li>
+            <li>Dev Ops</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+      For 3 years I worked on the API and Admin Platform that was 3 monolithic rails apps.<br />
+      The front end Embeder app and the mobile apps depended on these apis which was managed by other teams.
+      I learned a bit about different workflows and teams structures as we tried everthing from cross functional to
+      siloed teams to conbon to agile and waterfall workflows.
     </div>
-    <div class="timeline-item" date-is='20-07-1990 (1 year)'>
-      The Able Few
-      From: 09/2012 To: 10/2013
-      Position​:
-      JR Ruby Developer
-      Work History
-      Description​:
-      The Able Few was a small team of ruby developers who worked as a consultancy and development team for a wide range
-      of customers. ​http://theablefew.com/
-      Duties:
-      Consult and define technical requirements for new client projects. Develop and deploy new features and websites
-      for a wide range of customers. Support current customers via ad hoc requests to address bugs and UX discoveries.
-      Tech:
-      Ruby and Ruby on rails supported by Postgres and MySQL databases. Jira for ticket tracking.
-      Challenges:
-      As a fairly new ruby developer, I found that I had little resources in the way of mentorship since our team was
-      fairly small and other developer’s time was very limited
-      Successes and Accomplishments:
-      I felt that I was able to overcome many challenges I faced with little to no guidance.
-      Project Samples:
-      ● Click With Me Now ​07/2013 URL: ​clickwithmenow.com
-      type:​ Ruby On Rails, SASS, HAML
-      ● Deployed Resources ​- 11/2012
-      URL: ​deployedresources.com
-      type:​ Ruby On Rails, SASS, HTML, API
+    <div class="timeline-item" date-is='Noverber 2013 - Oct 2012 (1 years)'>
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/taf.jpg") %>" alt="">
+        </div>
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            The Able Few
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer.
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>Ruby, Rails </li>
+            <li>JS</li>
+            <li>Postgres</li>
+            <li>Dev Ops</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Just breaking my teeth into ruby, I started with this small agency doing gig work for a variety of
+        clients.<br />
+        Looking to return back to PDX I left after a year to look for opertunities back in my hometown.
+      </p>
     </div>
-    <div class="timeline-item" date-is='April 2012 - April 2007'>
-      GFX Complex
-      From​: 04/2007 (5 years)
-      To​: 04/2012
-      Position​:
-      Freelance Web Developer.
-      Subcontractor for Flash / Actionscript 3 development and WordPress development and design
-      Clients / Projects:
-      ● Spry Digital ​What A Ya Nuts​ ​- 04/2012
-      type:​ Wordpress / PHP
-      ● Osborn & Barr​ Soy New Uses - 10/2011
-      type: ​Wodpress / PHP - Sole Developer on project
-      ● Phoogoo​ Portland Candles - 03/2011
-      type: ​Wodpress / PHP
-      ● Clear Media ​Style Rx - 10/10
-      url: (Preview)​ ​behance.net/gallery/Clinton-Kellys-Stylerxnet/1196811 type: ​Flash / AS3 - Co Developer on team
-      of 3
-      ● Matchbox Design Group ​Swiss Miss Teas - 06/10 type: ​Flash / AS3
-      ● Matchbox Design Group ​Energizer Facebook App - 03/10 t​y​pe: ​Flash / AS3, PHP, Facebook API
-      ● Clear Media ​Macy’s & Clinton Kelly Make Over America - 01/10 type: ​Flash / AS3 - Co-Developer on a team of 3
-      ● Decision Counsel​ Shop Mattel - 11/09
-      type: ​Flash / AS3 - Sole Developer on the project
-      ● Decision Counsel​ Cook or Be Cooked - 11/09 type:​ Flash / AS3 - Sole Developer on the project
+    <div class="timeline-item" date-is='Oct 2012 - April 2007 (5 years)'>
+      <div class="flex mb-8">
+        <div class="mr-8">
+          <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/mp.jpg") %>" alt="">
+        </div>
+        <div>
+          <h3 class="text-gray-700 text-2xl mb-2 bold">
+            GFX Complex Self Employed / Freelancer
+          </h3>
+          <p class="mb-2 text-gray-600">
+            Full Stack Developer.
+          </p>
+          <p>
+          <ul class="mb-2 text-gray-700 text-sm">
+            <li>AS3, Flash</li>
+            <li>PHP, Wordpress, Mangento, Drupel</li>
+            <li>Python, Django</li>
+            <li>JS, JQuery</li>
+            <li>MySql, Postgres</li>
+            <li>DevOps, Vagrant</li>
+          </ul>
+          </p>
+
+        </div>
+      </div>
+      Notable past projects:
+      <ul>
+        <li>
+          Spry Digital ​What A Ya Nuts​ ​- 04/2012 type:​ Wordpress / PHP
+          <img src="<%= Routes.static_path(@socket, "/images/wayn_wp.jpg") %>">
+        </li>
+        <li>
+          Osborn & Barr​ Soy New Uses - 10/2011 type: ​Wodpress / PHP / Flash
+          <img src="<%= Routes.static_path(@socket, "/images/ob_flash_project.jpg") %>">
+        </li>
+        <li>
+          Clear Media ​Style Rx - 10/10
+          <img src="<%= Routes.static_path(@socket, "/images/ck_flash.jpg") %>">
+        </li>
+        <li>
+          Clear Media ​Macy’s & Clinton Kelly Make Over America - 01/10
+          <img src="<%= Routes.static_path(@socket, "/images/ck_ma_flash.png") %>">
+        </li>
+        <li>
+          Decision Counsel​ Shop Mattel - 11/09
+          <img src="<%= Routes.static_path(@socket, "/images/sm_flash_1.jpg") %>">
+          <img src="<%= Routes.static_path(@socket, "/images/sm_flash2.jpg") %>">
+          <img src="<%= Routes.static_path(@socket, "/images/sm_flash_3.jpg") %>">
+          <img src="<%= Routes.static_path(@socket, "/images/sm_flash_4.jpg") %>">
+          <img src="<%= Routes.static_path(@socket, "/images/sm_flash_5.jpg") %>">
+        </li>
+        <li>
+          Decision Counsel​ Cook or Be Cooked - 11/09
+          <img src="<%= Routes.static_path(@socket, "/images/cobc_flash.jpg") %>">
+        </li>
+        <li>
+          Hallmark - Hallmark Park - 06/09
+          <img src="<%= Routes.static_path(@socket, "/images/hmp_flash.png") %>">
+        </li>
+      </ul>
     </div>
   </div>
 </div>
 
-<div>
-  <h2>What others have said about me</h2>
+<a name="refernces"></a>
 
-  Professional Reference
-  “Josh is a dedicated and diligent worker.
-  The perfect balance of integrity, pragmatism, and idealism.”
-  ​- Mike Bishop
+<a name="focus"></a>
+<div class="bg-gray-900 text-gray-200 py-8">
 
-  “Josh has a lot of drive. He is always asking questions and wanting to dig to the root of why.
-  He will take direction on how to do something and do it when he needs too, but would rather
-  understand the reasons behind why he should do it that way.”
-  ​- Amos King
+  <div class="container mx-auto mb-10 px-8">
+    <div class="text-center section-title mb-8">
+      <h2 class="text-4xl font-bold text-indigo-200 page-title">What others have said about me</h2>
+      <hr class="w-56 mx-auto my-5" />
+    </div>
 
+
+    <div class="flex my-24">
+      <img class="mx-auto rounded-full" style="box-shadow:  13px 13px 26px #212935, -13px -13px 26px #39455b;"
+        src="<%= Routes.static_path(@socket, "/images/mike.jpg") %>">
+      <blockqoute class="self-center mx-auto w-2/3">
+        “Josh is a dedicated and diligent worker.
+        The perfect balance of integrity, pragmatism, and idealism.”
+        ​<cite>​- Mike Bishop</cite>
+      </blockqoute>
+    </div>
+
+    <div class="flex my-24">
+      <blockqoute class="self-center mx-auto w-2/3">
+        “Josh has a lot of drive. He is always asking questions and wanting to dig to the root of why.
+        He will take direction on how to do something and do it when he needs too, but would rather
+        understand the reasons behind why he should do it that way.”
+        ​<cite>- Amos King</cite>
+      </blockqoute>
+      <img class="mx-auto rounded-full" style="box-shadow:  13px 13px 26px #212935, -13px -13px 26px #39455b;"
+        src="<%= Routes.static_path(@socket, "/images/amos.jpg") %>">
+
+    </div>
+  </div>
 </div>
+
+<!-- <a name="books"></a>
 <div>
   <h2>Recent books I've read</h2>
 </div>
+
+<a name="projects"></a>
+<div>
+  <h2>Side Projects</h2>
+</div> -->
