@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="container px-4 py-10 mx-auto">
+<div id="pagination" class="container px-4 py-10 mx-auto" phx-hook="ScrollToTop" onClick="window.scrollTo(0, 0);">
   <%= HTML.paginate @dissolver, post_paginate_helper(@socket, @live_action, @scope) %>
 </div>
 </div>
