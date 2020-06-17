@@ -79,7 +79,8 @@ defmodule MorphicProWeb.Router do
     live "/snaps", SnapLive.Index, :index
 
     live "/about", PageLive.About, :about
-    
+    live "/privacy", PageLive.Privacy, :privacy
+
     live "/", PageLive.Index, :index
   end
 
