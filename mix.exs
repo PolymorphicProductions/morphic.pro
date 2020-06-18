@@ -28,7 +28,7 @@ defmodule MorphicPro.MixProject do
   def application do
     [
       mod: {MorphicPro.Application, []},
-      extra_applications: [:captcha, :logger, :runtime_tools, :mnesia]
+      extra_applications: [:captcha, :logger, :runtime_tools, :os_mon]
     ]
   end
 
