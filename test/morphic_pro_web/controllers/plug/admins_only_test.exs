@@ -8,7 +8,7 @@ defmodule MorphicProWeb.Plug.AdminsOnlyTest do
   end
 
   test "GET /dashboard as admin", %{conn: conn} do
-    conn = conn |> login_user(admin_fixture()) |> get("/dashboard/nonode%40nohost")
+    conn = conn |> login_user(admin_fixture()) |> get("/dashboard/nonode%40nohost/home")
     assert html_response(conn, 200) =~ "Phoenix LiveDashboard"
   end
 end

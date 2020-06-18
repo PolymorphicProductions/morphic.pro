@@ -28,7 +28,7 @@ defmodule MorphicPro.MixProject do
   def application do
     [
       mod: {MorphicPro.Application, []},
-      extra_applications: [:captcha, :logger, :runtime_tools, :mnesia]
+      extra_applications: [:captcha, :logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -61,7 +61,7 @@ defmodule MorphicPro.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
-      {:phoenix_live_view, "~> 0.12.0"},
+      {:phoenix_live_view, "~> 0.13.0"},
       {:phoenix_live_dashboard, "~> 0.2.0"},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
