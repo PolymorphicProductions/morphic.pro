@@ -86,7 +86,7 @@ defmodule MorphicProWeb.SnapLive.Show do
   @impl true
   def handle_event(
         "keydown",
-        %{"code" => "ArrowRight", "key" => "ArrowRight"},
+        %{"key" => "ArrowRight"},
         %{assigns: %{snap: %{id: id}}} = socket
       ) do
     {:ok, id} = Ecto.UUID.dump(id)
@@ -125,6 +125,8 @@ defmodule MorphicProWeb.SnapLive.Show do
       %{prev: prev, next: next}
     end)
 
+    IO.inspect(next)
+
     if next == nil do
       {:noreply, socket}
     else
@@ -134,11 +136,11 @@ defmodule MorphicProWeb.SnapLive.Show do
 
   def handle_event(
         "keydown",
-        %{"code" => "ArrowLeft", "key" => "ArrowLeft"},
+        %{"key" => "ArrowLeft"},
         %{assigns: %{snap: %{id: id}}} = socket
       ) do
     {:ok, id} = Ecto.UUID.dump(id)
-
+    
     sql = "
     select *
     from (
@@ -172,6 +174,11 @@ defmodule MorphicProWeb.SnapLive.Show do
       {:ok, next} = Ecto.UUID.cast(next)
       %{prev: prev, next: next}
     end)
+
+    IO.inspect("WTF!----")
+    IO.inspect(prev)
+    require Logger
+    Logger.info("WTF!")
 
     if prev == nil do
       {:noreply, socket}

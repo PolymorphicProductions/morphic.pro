@@ -26,21 +26,17 @@
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" as="style">
   <link rel="preload" href="<%= Routes.static_path(@conn, "/fonts/icomoon.woff") %>" as="font" type="font/woff2" crossorigin>
   
-  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>" />
-  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>" />
-   
+  <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendors~app.bundle.css") %>" />
+  <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.bundle.css") %>" />
+
+  <script defer phx-track-static type="text/javascript" rel="preload" src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
+  <script defer phx-track-static type="text/javascript" rel="preload" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
 </head>
 
 <body class="">
   <%= render "_header.html", assigns %>
-  
   <main class="relative h-full"><%= @inner_content %></main>
-
   <%= render "_footer.html", conn: @conn %>
-
-  <script rel="preload" type="text/javascript" src="<%= Routes.static_path(@conn, "/js/vendors~app.bundle.js") %>"></script>
-  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.bundle.js") %>"></script>
   <%= render_existing(view_module(@conn), "script." <> view_template(@conn)) %>
 </body>
-
 </html>
