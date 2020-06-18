@@ -348,7 +348,6 @@ function process_image(target) {
   })
 }
 
-
 function dataURItoBlob(dataURI) {
   // convert base64/URLEncoded data component to raw binary data held in a string
   var byteString;
@@ -389,8 +388,6 @@ liveSocket.connect()
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)
 window.liveSocket = liveSocket
-
-
 
 // Nav
 window.toggleNavbar = collapseID => {
