@@ -72,7 +72,7 @@ defmodule MorphicPro.MixProject do
       {:floki, ">= 0.0.0", only: :test},
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.13.0", only: :test},
-      {:excoveralls, "0.12.3", only: [:test, :dev]},
+      {:excoveralls, "0.13.0", only: [:test, :dev]},
       {:credo, "1.3.0", only: [:dev, :test], runtime: false},
       {:sentry, "~> 7.0"},
       {:benchee, "~> 1.0", only: :dev}
