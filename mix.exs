@@ -54,7 +54,7 @@ defmodule MorphicPro.MixProject do
       {:bamboo, "~> 1.4"},
       {:timex, "~> 3.6.1"},
       {:slugify, "~> 1.3.0"},
-      {:earmark, "~> 1.3.0"},
+      {:earmark, "~> 1.4.5"},
       {:bodyguard, "~> 2.4.0"},
       {:dissolver, github: "MorphicPro/dissolver"},
       {:ex_aws, "~> 2.1"},
