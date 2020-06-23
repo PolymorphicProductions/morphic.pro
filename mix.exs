@@ -56,7 +56,7 @@ defmodule MorphicPro.MixProject do
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.4.5"},
       {:bodyguard, "~> 2.4.0"},
-      {:dissolver, github: "MorphicPro/dissolver"},
+      {:dissolver, "~> 0.9.4"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
@@ -73,7 +73,7 @@ defmodule MorphicPro.MixProject do
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.13.0", only: :test},
       {:excoveralls, "0.13.0", only: [:test, :dev]},
-      {:credo, "1.3.0", only: [:dev, :test], runtime: false},
+      {:credo, "1.4.0", only: [:dev, :test], runtime: false},
       {:sentry, "~> 7.0"},
       {:benchee, "~> 1.0", only: :dev}
     ]
