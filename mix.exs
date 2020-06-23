@@ -56,7 +56,7 @@ defmodule MorphicPro.MixProject do
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.4.5"},
       {:bodyguard, "~> 2.4.0"},
-      {:dissolver, github: "MorphicPro/dissolver"},
+      {:dissolver, "~> 0.9.4"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
