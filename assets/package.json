@@ -12,7 +12,7 @@
     "@mojs/core": "^0.288.2",
     "@silvia-odwyer/photon": "^0.2.0",
     "babel-plugin-prismjs": "^2.0.1",
-    "easymde": "^2.10.1",
+    "easymde": "^2.11.0",
     "exifreader": "^3.12.0",
     "hammerjs": "^2.0.8",
     "hard-source-webpack-plugin": "^0.13.1",
