@@ -21,7 +21,7 @@
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
     "prism-themes": "^1.4.0",
-    "prismjs": "^1.20.0"
+    "prismjs": "^1.21.0"
   },
   "devDependencies": {
     "babel-plugin-prismjs": "^2.0.1",
@@ -31,14 +31,14 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.2.1",
     "lodash": "^4.17.19",
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "tailwindcss": "^1.5.1",
-    "terser-webpack-plugin": "^3.0.6",
+    "terser-webpack-plugin": "^3.0.7",
     "webpack": "4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
