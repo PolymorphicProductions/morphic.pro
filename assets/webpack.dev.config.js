@@ -1,10 +1,11 @@
 const path = require("path");
-const glob = require('glob');
+const glob = require("glob");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = (env, options) => ({
   // mode - Chosen mode tells webpack to use its built-in optimizations accordingly.
@@ -18,20 +19,20 @@ module.exports = (env, options) => ({
 
   mode: "development",
   entry: {
-    'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
+    app: glob.sync("./vendor/**/*.js").concat(["./js/app.js"]),
   },
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../priv/static/js"),
-    chunkFilename: '[name].bundle.js',
-    publicPath: '/js/',
+    chunkFilename: "[name].bundle.js",
+    publicPath: "/js/",
     // Do I need a public path?
   },
   optimization: {
     splitChunks: {
-      chunks: "all"
+      chunks: "all",
     },
-    usedExports: true
+    usedExports: true,
   },
   module: {
     rules: [
@@ -39,9 +40,9 @@ module.exports = (env, options) => ({
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
+            presets: ["@babel/preset-env"],
             // plugins: [
             //   [
             //     "prismjs",
@@ -60,17 +61,8 @@ module.exports = (env, options) => ({
             //     }
             //   ]
             // ]
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true
-          }
-        },]
+          },
+        },
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
@@ -80,22 +72,33 @@ module.exports = (env, options) => ({
             name(file) {
               return "[name]_[hash].[ext]";
             },
-            outputPath: "../fonts/"
-          }
-        }
-      }
-    ]
+            outputPath: "../fonts/",
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
   },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: "eval-cheap-module-source-map",
   plugins: [
     new HardSourceWebpackPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'static', to: '../' }
-      ]
-    })
+      patterns: [{ from: "static", to: "../" }],
+    }),
     // new BundleAnalyzerPlugin()
-  ]
+  ],
 });

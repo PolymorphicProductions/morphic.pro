@@ -15,21 +15,22 @@
   font-display: swap;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
-html, body{
-  background-color: rgb(248, 248, 248)
+html,
+body {
+  background-color: rgb(248, 248, 248);
 }
 
-h1{
+h1 {
   @apply text-5xl;
 }
-h2{
+h2 {
   @apply text-3xl;
 }
-h3{
-  @apply text-xl
+h3 {
+  @apply text-xl;
 }
 
 .bg-black-05 {
@@ -51,16 +52,16 @@ h3{
 }
 
 nav.close {
-    opacity: 0;
-    top: -45px;
-  }
+  opacity: 0;
+  top: -45px;
+}
 
 nav .icon-shape {
   line-height: 1;
   position: absolute;
   left: -1.45rem;
   top: 0.71rem;
-  font-size: 1.25rem; 
+  font-size: 1.25rem;
 }
 
 .icon-shape:before {
@@ -114,7 +115,7 @@ nav .icon-shape {
   @apply bg-red-700;
 }
 
-.thumb{
+.thumb {
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -124,19 +125,19 @@ nav .icon-shape {
       opacity: 1;
     }
   }
- 
+
   .fa-search {
     z-index: 1;
-    transform: scale(.25);
+    transform: scale(0.25);
     color: rgb(36, 36, 36);
     opacity: 0;
-    transition: opacity 1s ease, transform .5s ease;  
-    position: absolute; 
+    transition: opacity 1s ease, transform 0.5s ease;
+    position: absolute;
     top: 0;
-    left: 0; 
-    right: 0; 
+    left: 0;
+    right: 0;
     bottom: 0;
-    margin: auto; 
+    margin: auto;
     width: 100px; /* Need a specific value to work */
     font-size: 3em;
     pointer-events: none;
@@ -145,9 +146,9 @@ nav .icon-shape {
   img {
     transform: scale(1);
     opacity: 1;
-    transition: opacity .5s ease, transform .5s ease;    
+    transition: opacity 0.5s ease, transform 0.5s ease;
     &:hover {
-      transform: scale(1.25);  
+      transform: scale(1.25);
       opacity: 0.5;
     }
   }
@@ -171,7 +172,7 @@ nav .icon-shape {
     background-color: rgb(248, 248, 248);
   }
 
-  a{
+  a {
     @apply text-blue-600;
     &:hover {
       @apply text-blue-400;
@@ -182,7 +183,7 @@ nav .icon-shape {
     @apply text-pink-500;
     display: inline;
     padding: 0 4px;
-    background-color: rgb(248, 248, 248)
+    background-color: rgb(248, 248, 248);
   }
   code {
     @apply p-4;
@@ -208,21 +209,20 @@ nav .icon-shape {
   white-space: nowrap;
   width: 1px;
 }
- 
+
 [type="file"] + label {
   @apply px-4 py-2 text-xs text-center text-white bg-blue-500 rounded;
-  ;
   color: #fff;
   cursor: pointer;
   display: inline-block;
   padding-left: 2rem 4rem;
 }
-  
+
 [type="file"]:focus + label,
 [type="file"] + label:hover {
   @apply bg-blue-800;
 }
-  
+
 [type="file"]:focus + label {
   outline: 1px dotted #000;
 }
@@ -252,8 +252,8 @@ nav .icon-shape {
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -265,12 +265,11 @@ nav .icon-shape {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 
   background: #e8eeeb;
-  box-shadow: inset 2px 2px 4px #d8dddb, 
-              inset -2px -2px 4px #f8fffb;
+  box-shadow: inset 2px 2px 4px #d8dddb, inset -2px -2px 4px #f8fffb;
 }
 
 input:checked + .slider {
@@ -278,7 +277,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -287,9 +286,8 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-
 /* Error Page */
-#error{
+#error {
   .message {
     font-family: "Abril Fatface", cursive;
     font-weight: normal !important;
@@ -298,13 +296,21 @@ input:checked + .slider:before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-  } 
-
+  }
 }
 
 #content {
-  p, h1, h2, h3, input, textarea,
-  .button, .btn, .entry-meta, .job-title, .social-block a {
+  p,
+  h1,
+  h2,
+  h3,
+  input,
+  textarea,
+  .button,
+  .btn,
+  .entry-meta,
+  .job-title,
+  .social-block a {
     &.content-primed {
       opacity: 0;
       transform: translate3d(0, 20px, 0);
@@ -337,23 +343,22 @@ input:checked + .slider:before {
 
 blockqoute {
   @apply border-l-4 border-solid block pl-4;
-  text-indent: 1em;  
+  text-indent: 1em;
   text-align: justify;
   p {
     @apply mb-4;
   }
-  cite{
+  cite {
     @apply block mt-4;
   }
 }
-
 
 /* ----------------  THE Timeline */
 .timeline-item {
   padding: 4em 2em 3em;
   position: relative;
-  border-left: 2px solid rgba(0, 0, 0, .3);
-  
+  border-left: 2px solid rgba(0, 0, 0, 0.3);
+
   p {
     font-size: 1rem;
   }
@@ -366,7 +371,7 @@ blockqoute {
     top: 1em;
     display: block;
     font-weight: 700;
-    font-size: .785rem;
+    font-size: 0.785rem;
   }
 
   &:after {
@@ -377,12 +382,17 @@ blockqoute {
     position: absolute;
     left: -7px;
     border-radius: 10px;
-    content: '';
-    border: 2px solid rgba(0, 0, 0, .3);
+    content: "";
+    border: 2px solid rgba(0, 0, 0, 0.3);
     background: white;
   }
   &:last-child {
-    border-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0)) 1 100%;
+    border-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 60%,
+        rgba(0, 0, 0, 0)
+      )
+      1 100%;
   }
 }
 .timeline-item:first-child {
