@@ -74,7 +74,7 @@ defmodule MorphicPro.MixProject do
       {:faker, "~> 0.15.0", only: :test},
       {:excoveralls, "0.13.1", only: [:test, :dev]},
       {:credo, "1.4.0", only: [:dev, :test], runtime: false},
-      {:sentry, "~> 7.0"},
+      {:sentry, "~> 8.0"},
       {:benchee, "~> 1.0", only: :dev}
     ]
   end
