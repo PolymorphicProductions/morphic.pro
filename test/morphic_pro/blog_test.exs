@@ -172,6 +172,13 @@ defmodule MorphicPro.BlogTest do
           %{}
         )
       end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Blog.get_snap!(
+          "foo",
+          %{}
+        )
+      end
     end
 
     test "get_post!/3 admin returns for draft" do
@@ -308,6 +315,20 @@ defmodule MorphicPro.BlogTest do
 
       assert found_tag |> unpreload(:snaps, :many) == tag
       assert found_snap == snap
+    end
+
+    test "inc_likes/1 incerments likes for a given post and broadcasts the event" do
+      post = insert(:post, published_at: Timex.today() |> Timex.shift(days: -1), tags: [])
+      assert post.likes_count == 0
+      {:ok, updated_post} = Blog.inc_likes(post)
+      assert updated_post.likes_count == 1
+    end
+
+    test "inc_likes/1 incerments likes for a given snap and broadcasts the event" do
+      snap = insert(:snap, published_at: Timex.today() |> Timex.shift(days: -1), tags: [])
+      assert snap.likes_count == 0
+      {:ok, updated_snap} = Blog.inc_likes(snap)
+      assert updated_snap.likes_count == 1
     end
   end
 end
