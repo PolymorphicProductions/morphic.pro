@@ -4,8 +4,7 @@ defmodule MorphicProWeb.Router do
   import Phoenix.LiveDashboard.Router
   import MorphicProWeb.UserAuth
 
-  use Plug.ErrorHandler
-  use Sentry.Plug
+  use Sentry.PlugCapture
 
   pipeline :browser do
     plug :accepts, ["html"]

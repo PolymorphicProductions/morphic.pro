@@ -50,7 +50,7 @@ defmodule MorphicPro.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.2", override: true},
-      {:plug_cowboy, "~> 2.1"},
+      {:plug_cowboy, "~> 2.3"},
       {:bamboo, "~> 1.4"},
       {:timex, "~> 3.6.1"},
       {:slugify, "~> 1.3.0"},
@@ -74,7 +74,7 @@ defmodule MorphicPro.MixProject do
       {:faker, "~> 0.15.0", only: :test},
       {:excoveralls, "0.13.1", only: [:test, :dev]},
       {:credo, "1.4.0", only: [:dev, :test], runtime: false},
-      {:sentry, "~> 7.0"},
+      {:sentry, "~> 8.0"},
       {:benchee, "~> 1.0", only: :dev}
     ]
   end
