@@ -71,7 +71,7 @@ defmodule MorphicPro.MixProject do
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:floki, ">= 0.0.0", only: :test},
       {:ex_machina, "~> 2.4.0", only: :test},
-      {:faker, "~> 0.14.0", only: :test},
+      {:faker, "~> 0.15.0", only: :test},
       {:excoveralls, "0.13.1", only: [:test, :dev]},
       {:credo, "1.4.0", only: [:dev, :test], runtime: false},
       {:sentry, "~> 7.0"},
