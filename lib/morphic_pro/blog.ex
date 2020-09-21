@@ -88,16 +88,6 @@ defmodule MorphicPro.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post(slug, current_user, options \\ []) do
-    preload = Keyword.get(options, :preload, [])
-
-    Post
-    |> Repo.by_slug(slug)
-    |> from(preload: ^preload)
-    |> Bodyguard.scope(current_user)
-    |> Repo.one()
-  end
-
   def get_post!(slug, current_user, options \\ []) do
     preload = Keyword.get(options, :preload, [])
 

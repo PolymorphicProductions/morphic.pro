@@ -1,9 +1,10 @@
-defmodule MorphicPro.FallbackController do
+defmodule MorphicProWeb.FallbackController do
   use MorphicProWeb, :controller
 
   def call(conn, {:error, :unauthorized}) do
     conn
     |> put_status(:forbidden)
-    |> render(MorphicProWeb.ErrorView, :"403")
+    |> put_view(MorphicProWeb.ErrorView)
+    |> render(:"403")
   end
 end
