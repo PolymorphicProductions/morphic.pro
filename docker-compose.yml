@@ -3,6 +3,8 @@ services:
   web:
     container_name: morphicpro_elixir
     build: .
+    environment:
+      - DB_HOST=db
     env_file:
       - .env
     command: mix phx.server
