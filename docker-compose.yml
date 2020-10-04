@@ -1,14 +1,37 @@
 version: "3"
 services:
+  web:
+    container_name: morphicpro_elixir
+    build: .
+    environment:
+      - DB_HOST=db
+    env_file:
+      - .env
+    command: mix phx.server
+    volumes:
+      - $PWD:/app
+      - _build:/app/_build/dev/ # Make _build volume persistent, and do not sync with host
+      - test:/app/_build/test/ # Make _build/test volume persistent, and do not sync with host
+      - deps:/app/deps/ # Make deps volume persistent, and do not sync with host
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.aws:/root/.aws:ro
+    ports:
+      - "127.0.0.1:4001:4001"
+    depends_on:
+      - db
   db:
     image: "postgres:10"
     environment:
       POSTGRES_DB: "morphic_pro_dev"
       POSTGRES_HOST_AUTH_METHOD: "trust"
-    container_name: "morphic_pro_data"
+    container_name: "morphicpro_postgres"
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - morphic_pro_data:/var/lib/postgresql/data
 volumes:
   morphic_pro_data:
+    driver: local
+  deps:
+  _build:
+  test:
