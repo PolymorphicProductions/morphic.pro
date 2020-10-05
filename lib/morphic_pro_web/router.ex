@@ -77,10 +77,10 @@ defmodule MorphicProWeb.Router do
     live "/posts", PostLive.Index, :index
     live "/snaps", SnapLive.Index, :index
 
-    live "/about",   PageLive.About,   :about
+    live "/about", PageLive.About, :about
     live "/privacy", PageLive.Privacy, :privacy
-    live "/terms",   PageLive.Terms,   :terms
 
+    live "/terms", PageLive.Terms, :terms
 
     live "/", PageLive.Index, :index
   end

@@ -1,0 +1,10 @@
+#! /bin/sh
+[ "$DEBUGG" ] && set -x
+#set -ex
+
+printenv
+
+cd assets
+npm install
+node_modules/webpack/bin/webpack.js --config webpack.dev.config.js --watch-stdin --colors
+
