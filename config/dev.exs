@@ -27,17 +27,17 @@ config :morphic_pro, MorphicProWeb.Endpoint,
   ],
   debug_errors: false,
   code_reloader: true,
-  check_origin: false
-  # watchers: [
-  #   node: [
-  #     "node_modules/webpack/bin/webpack.js",
-  #     "--config",
-  #     "webpack.dev.config.js",
-  #     "--watch-stdin",
-  #     "--colors",
-  #     cd: Path.expand("../assets", __DIR__)
-  #   ]
-  # ]
+  check_origin: false,
+  watchers: [
+    node: [
+      "node_modules/webpack/bin/webpack.js",
+      "--config",
+      "webpack.dev.config.js",
+      "--watch-stdin",
+      "--colors",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
 # ## SSL Support
 #

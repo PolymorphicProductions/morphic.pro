@@ -1,12 +1,5 @@
 version: "3"
 services:
-  assets:
-    stdin_open: true
-    container_name: morphoicpro_nodejs
-    build: assets/
-    command: script/boot/assests
-    volumes:
-      - $PWD:/app
   web:
     container_name: morphicpro_elixir
     build: .
