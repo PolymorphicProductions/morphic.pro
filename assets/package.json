@@ -20,7 +20,7 @@
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
-    "prism-themes": "^1.4.0",
+    "prism-themes": "^1.4.1",
     "prismjs": "^1.21.0"
   },
   "devDependencies": {
