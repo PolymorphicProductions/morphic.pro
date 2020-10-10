@@ -40,3 +40,5 @@ npm-debug.log
 /priv/cert/
 
 Mnesia.nonode@nohost
+
+.DS_Store
