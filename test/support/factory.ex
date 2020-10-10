@@ -3,13 +3,13 @@ defmodule MorphicPro.Factory do
 
   use ExMachina.Ecto, repo: MorphicPro.Repo
 
-  alias Faker.{Commerce, Lorem, Name}
+  alias Faker.{Commerce, Lorem, Person}
   alias MorphicPro.Blog.{Post, Snap, Tag}
 
   # Only use as a source for params
   # Will not produce a valid struct
   def random_post_factory do
-    title = Name.Person.title()
+    title = Person.title()
 
     tags =
       build_list(3, :tag)
@@ -61,7 +61,7 @@ defmodule MorphicPro.Factory do
   end
 
   def post_factory do
-    title = Name.title()
+    title = Person.title()
     date = Timex.today()
     tags = build_list(3, :tag)
 
