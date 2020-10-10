@@ -9,7 +9,7 @@ defmodule MorphicPro.Factory do
   # Only use as a source for params
   # Will not produce a valid struct
   def random_post_factory do
-    title = Name.title()
+    title = Name.Person.title()
 
     tags =
       build_list(3, :tag)
