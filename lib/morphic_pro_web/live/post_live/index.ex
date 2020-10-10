@@ -31,7 +31,11 @@ defmodule MorphicProWeb.PostLive.Index do
   end
 
   # TODO: Scope taged posts to a user
-  defp apply_action(%{assigns: %{current_user: current_user}} = socket, :tag, %{"tag" => tag} = params) do
+  defp apply_action(
+         %{assigns: %{current_user: current_user}} = socket,
+         :tag,
+         %{"tag" => tag} = params
+       ) do
     {tag, dissolver} = Blog.get_post_for_tag!(tag, current_user, params)
 
     socket
@@ -39,12 +43,12 @@ defmodule MorphicProWeb.PostLive.Index do
     |> assign(dissolver: dissolver)
     |> assign(scope: tag.name)
     |> assign(posts: tag.posts)
-
   end
 
   @impl true
   def handle_info({:post_liked, %{id: id} = post}, %{assigns: %{posts: posts}} = socket) do
-    posts = Enum.map(posts, fn
+    posts =
+      Enum.map(posts, fn
         %{id: ^id} -> post
         p -> p
       end)
@@ -53,7 +57,8 @@ defmodule MorphicProWeb.PostLive.Index do
   end
 
   def handle_info({:post_edited, %{id: id} = post}, %{assigns: %{posts: posts}} = socket) do
-    posts = Enum.map(posts, fn
+    posts =
+      Enum.map(posts, fn
         %{id: ^id} -> post
         p -> p
       end)

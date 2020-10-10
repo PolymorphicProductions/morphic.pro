@@ -10,10 +10,6 @@ services:
     command: mix phx.server
     volumes:
       - $PWD:/app
-      - _build:/app/_build/dev/ # Make _build volume persistent, and do not sync with host
-      - test:/app/_build/test/ # Make _build/test volume persistent, and do not sync with host
-      - deps:/app/deps/ # Make deps volume persistent, and do not sync with host
-      - ~/.ssh:/root/.ssh:ro
       - ~/.aws:/root/.aws:ro
     ports:
       - "127.0.0.1:4001:4001"
