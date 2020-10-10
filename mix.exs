@@ -47,7 +47,7 @@ defmodule MorphicPro.MixProject do
       {:phoenix, "~> 1.5.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.1"},
+      {:ecto_sql, "~> 3.5"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:gettext, "~> 0.11"},
@@ -71,11 +71,11 @@ defmodule MorphicPro.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:sobelow, "~> 0.8", only: :dev},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:floki, ">= 0.0.0", only: :test},
+      {:floki, ">= 0.29.0", only: :test},
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.15.0", only: :test},
       {:excoveralls, "0.13.2", only: [:test, :dev]},
-      {:credo, "1.4.0", only: [:dev, :test], runtime: false},
+      {:credo, "1.4.1", only: [:dev, :test], runtime: false},
       {:sentry, "~> 8.0"},
       {:benchee, "~> 1.0", only: :dev}
     ]
