@@ -33,8 +33,8 @@ config :morphic_pro, MorphicProWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--config",
       "webpack.dev.config.js",
-      "--watch-stdin",
-      "--colors",
+      "--color",
+      "--bail",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

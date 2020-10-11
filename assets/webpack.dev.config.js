@@ -4,19 +4,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//   .BundleAnalyzerPlugin;
 
 module.exports = (env, options) => ({
-  // mode - Chosen mode tells webpack to use its built-in optimizations accordingly.
-  // entry
-  // output
-  // module - configuration regarding modules
-  // devtools - enhance debugging by adding meta info for the browser devtools
-  // target - the environment in which the bundle should run changes chunk loading behavior and available modules
-  // externals - Don't follow/bundle these modules, but request them at runtime from the environment
-  // stats - lets you precisely control what bundle information gets displayed
-
   mode: "development",
   entry: {
     app: glob.sync("./vendor/**/*.js").concat(["./js/app.js"]),
@@ -26,13 +17,24 @@ module.exports = (env, options) => ({
     path: path.resolve(__dirname, "../priv/static/js"),
     chunkFilename: "[name].bundle.js",
     publicPath: "/js/",
-    // Do I need a public path?
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
     },
     usedExports: true,
+  },
+  resolve: {
+    fallback: {
+      util: require.resolve("util/"),
+      tap: require.resolve("tap/"),
+    },
+  },
+  experiments: {
+    // outputModule: true,
+    syncWebAssembly: true,
+    // topLevelAwait: true,
+    // asyncWebAssembly: true,
   },
   module: {
     rules: [
@@ -43,24 +45,6 @@ module.exports = (env, options) => ({
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
-            // plugins: [
-            //   [
-            //     "prismjs",
-            //     {
-            //       "languages": [
-            //         "javascript",
-            //         "elixir",
-            //         "css",
-            //         "markup"
-            //       ],
-            //       "plugins": [
-            //         "line-numbers"
-            //       ],
-            //       "theme": "prism-xonokai",
-            //       "css": true
-            //     }
-            //   ]
-            // ]
           },
         },
       },
@@ -70,7 +54,7 @@ module.exports = (env, options) => ({
           loader: "file-loader",
           options: {
             name(file) {
-              return "[name]_[hash].[ext]";
+              return "[name]_[contenthash].[ext]";
             },
             outputPath: "../fonts/",
           },
@@ -96,7 +80,7 @@ module.exports = (env, options) => ({
       },
     ],
   },
-  devtool: "eval-cheap-module-source-map",
+  // devtool: "eval-cheap-module-source-map",
   plugins: [
     new HardSourceWebpackPlugin(),
     new CleanWebpackPlugin(),
@@ -104,6 +88,5 @@ module.exports = (env, options) => ({
     new CopyWebpackPlugin({
       patterns: [{ from: "static", to: "../" }],
     }),
-    // new BundleAnalyzerPlugin()
   ],
 });
