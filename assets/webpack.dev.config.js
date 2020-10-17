@@ -3,7 +3,7 @@ const glob = require("glob");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+// const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 //   .BundleAnalyzerPlugin;
 
@@ -15,10 +15,11 @@ module.exports = (env, options) => ({
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../priv/static/js"),
-    chunkFilename: "[name].bundle.js",
-    publicPath: "/js/",
+    // chunkFilename: "[name].bundle.js",
+    // publicPath: "/js/",
   },
   optimization: {
+    chunkIds: "natural",
     splitChunks: {
       chunks: 'all',
     },
@@ -82,7 +83,7 @@ module.exports = (env, options) => ({
   },
   // devtool: "eval-cheap-module-source-map",
   plugins: [
-    new HardSourceWebpackPlugin(),
+    // new HardSourceWebpackPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin({
