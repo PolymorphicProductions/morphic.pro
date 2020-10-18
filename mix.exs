@@ -44,7 +44,7 @@ defmodule MorphicPro.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.0"},
-      {:phoenix, "~> 1.5.0"},
+      {:phoenix, "~> 1.5.6"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.5"},
@@ -53,7 +53,7 @@ defmodule MorphicPro.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.2", override: true},
       {:plug_cowboy, "~> 2.3"},
-      {:bamboo, "~> 1.4"},
+      {:bamboo, "~> 1.6"},
       {:timex, "~> 3.6.1"},
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.4.5"},
