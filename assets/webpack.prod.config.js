@@ -10,33 +10,45 @@ module.exports = (env, options) => ({
   optimization: {
     minimizer: [
       new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}),
     ],
     splitChunks: {
-      chunks: "all"
+      chunks: "all",
     },
-    usedExports: true
+    usedExports: true,
   },
 
   entry: {
-    'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
+    app: glob.sync("./vendor/**/*.js").concat(["./js/app.js"]),
   },
 
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../priv/static/js"),
-    chunkFilename: '[name].bundle.js',
-    publicPath: '/js/',
+    chunkFilename: "[name].bundle.js",
+    publicPath: "/js/",
   },
-
+  resolve: {
+    fallback: { 
+      util: require.resolve("util/"),
+      tap: require.resolve("tap/")
+    }
+  },
+  experiments: {
+    // outputModule: true,
+    syncWebAssembly: true,
+    // topLevelAwait: true,
+    // asyncWebAssembly: true,
+  },
+  
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.css$/,
@@ -48,8 +60,8 @@ module.exports = (env, options) => ({
               url: false,
             },
           },
-          "postcss-loader"
-        ]
+          "postcss-loader",
+        ],
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
@@ -59,18 +71,16 @@ module.exports = (env, options) => ({
             name(file) {
               return "[name]_[hash].[ext]";
             },
-            outputPath: "../fonts/"
-          }
-        }
-      }
-    ]
+            outputPath: "../fonts/",
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "../css/[name].bundle.css" }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'static/', to: '../' }
-      ]
-    })
-  ]
+      patterns: [{ from: "static/", to: "../" }],
+    }),
+  ],
 });

@@ -21,7 +21,8 @@
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
     "prism-themes": "^1.4.1",
-    "prismjs": "^1.21.0"
+    "prismjs": "^1.22.0",
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -38,8 +39,9 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^4.0.4",
     "tailwindcss": "^1.8.13",
+    "tap": "^14.10.8",
     "terser-webpack-plugin": "^4.2.3",
-    "webpack": "^4.44.2",
+    "webpack": "^5.0.0",
     "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^4.0.0",
     "webpack-jarvis": "^0.3.2"
