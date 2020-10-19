@@ -1,8 +1,6 @@
 defmodule MorphicPro.MixProject do
   use Mix.Project
 
-
-
   def project do
     [
       app: :morphic_pro,
@@ -63,8 +61,9 @@ defmodule MorphicPro.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
-      {:phoenix_live_view, "~> 0.13.0"},
-      {:phoenix_live_dashboard, "~> 0.2.0"},
+      {:phoenix_live_view, "~> 0.14.3"},
+      {:phoenix_live_dashboard, "~> 0.3.0"},
+      {:ecto_psql_extras, "~> 0.2", override: true},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:captcha, "~> 0.1.0"},

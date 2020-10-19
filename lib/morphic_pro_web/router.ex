@@ -27,7 +27,7 @@ defmodule MorphicProWeb.Router do
 
   scope "/", MorphicProWeb do
     pipe_through [:browser, :fetch_current_user, :require_authenticated_user, :admins_only]
-    live_dashboard "/dashboard", metrics: MorphicProWeb.Telemetry
+    live_dashboard "/dashboard", metrics: MorphicProWeb.Telemetry, ecto_repos: [MorphicPro.Repo]
   end
 
   scope "/", MorphicProWeb do
