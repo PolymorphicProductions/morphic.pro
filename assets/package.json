@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "webpack --config webpack.prod.config.js",
-    "watch": "webpack --config webpack.dev.config.js --watch --colors"
+    "watch": "webpack --config webpack.dev.config.js --watch --color"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
