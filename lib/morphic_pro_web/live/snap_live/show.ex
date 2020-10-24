@@ -62,6 +62,7 @@ defmodule MorphicProWeb.SnapLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
+     |> assign(:page_description, page_description(socket.assigns.live_action, snap.body))
      |> assign(:snap, snap)
      |> assign(:prev_large_img, prev_large_img)
      |> assign(:next_large_img, next_large_img)
@@ -77,6 +78,9 @@ defmodule MorphicProWeb.SnapLive.Show do
 
   defp page_title(:show), do: "Show Snap"
   defp page_title(:edit), do: "Edit Snap"
+
+  defp page_description(:show, description), do: description
+  defp page_description(:edit, _), do: "Editing Snap"
 
   @impl true
   def handle_info({:snap_liked, snap}, socket) do
@@ -140,7 +144,7 @@ defmodule MorphicProWeb.SnapLive.Show do
         %{assigns: %{snap: %{id: id}}} = socket
       ) do
     {:ok, id} = Ecto.UUID.dump(id)
-    
+
     sql = "
     select *
     from (
