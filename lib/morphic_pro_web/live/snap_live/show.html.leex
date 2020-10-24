@@ -1,5 +1,5 @@
 
-<div phx-window-keydown="keydown" phx-throttle="500" phx-hook="NavState" data-style="white"/>
+<div id="nav-state" phx-window-keydown="keydown" phx-throttle="500" phx-hook="NavState" data-style="white"/>
 
 <div id="foo" phx-hook="SnapNav"></div>
 
@@ -11,7 +11,7 @@
     <%= if @prev_large_img do %>
       <img class="hidden" id="prev_image" src="<%= @prev_large_img %>" />
     <% end %>
-    
+
     <%= if @next_large_img do %>
       <img class="hidden" id="next_image" src="<%= @next_large_img %>" />
     <% end %>

@@ -1,4 +1,4 @@
-<div class="bg-image" style="background-image: url(<%= @post.large_img %>)" phx-hook="NavState">
+<div id="bg-image" class="bg-image" style="background-image: url(<%= @post.large_img %>)" phx-hook="NavState">
   <div class="flex items-center h-screen align-middle bg-black-05">
     <div class="container px-3 py-6 mx-auto">
       <div class="w-full my-12 align-middle">
@@ -26,7 +26,7 @@
           </button>
         </div>
         <% end %>
-        
+
         <p class="text-3xl leading-tight text-center text-white md:pt-10 font-book page-title">
           <a href="#body" class=>
             <i class="fas fa-arrow-circle-down"></i>
@@ -50,4 +50,3 @@
     </div>
   </div>
 </div>
-

@@ -1,4 +1,4 @@
-<div class="bg-image" style="background-image: url(<%= Routes.static_path(@socket, "/images/me.jpeg") %>)"
+<div id="bg-image" class="bg-image" style="background-image: url(<%= Routes.static_path(@socket, "/images/me.jpeg") %>)"
   phx-hook="NavState">
   <div class="flex items-center h-screen align-middle bg-black-07">
     <div class="container px-6 py-6 mx-auto">
@@ -9,33 +9,33 @@
         </h1>
         <div class="block mx-auto text-center md:text-left">
           <a href="<%= Routes.static_path(@socket, "/resume.pdf") %>"><button
-              class="border-green-500 border-2 border-soild bg-none px-3 py-2 mb-8 mr-3 font-bold text-green-500 rounded-full shadow-lg md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
+              class="px-3 py-2 mb-8 mr-3 font-bold text-green-500 border-2 border-green-500 rounded-full shadow-lg border-soild bg-none md:px-8 md:py-4 md:mb-6 md:text-lg hover:underline">
               Download My PDF Resume <i class="fas fa-cloud-download-alt"></i></button>
           </a>
           <ul class="mb-8">
             <li>
-              <a class="text-gray-200 text-xl bold uppercase" href="#cover">About Me</a>
+              <a class="text-xl text-gray-200 uppercase bold" href="#cover">About Me</a>
             </li>
             <li>
-              <a class="text-gray-200 text-xl bold uppercase" href="#focus">Interests / Focus</a>
+              <a class="text-xl text-gray-200 uppercase bold" href="#focus">Interests / Focus</a>
             </li>
             <li>
-              <a class="text-gray-200 text-xl bold uppercase" href="#work">Work History</a>
+              <a class="text-xl text-gray-200 uppercase bold" href="#work">Work History</a>
             </li>
             <li>
-              <a class="text-gray-200 text-xl bold uppercase" href="#refernces">References</a>
+              <a class="text-xl text-gray-200 uppercase bold" href="#refernces">References</a>
             </li>
           </ul>
         </div>
         <div class="block mx-auto text-center md:text-left">
           <a href="https://www.linkedin.com/in/josh-chernoff-614b67132/">
-            <i class="text-white text-3xl fab fa-linkedin mr-4"></i>
+            <i class="mr-4 text-3xl text-white fab fa-linkedin"></i>
           </a>
           <a href="https://github.com/joshchernoff">
-            <i class="text-white text-3xl fab fa-github-square  mr-4"></i>
+            <i class="mr-4 text-3xl text-white fab fa-github-square"></i>
           </a>
           <a href="https://keybase.io/morphicpro">
-            <i class="text-white text-3xl fab fa-keybase"></i>
+            <i class="text-3xl text-white fab fa-keybase"></i>
           </a>
         </div>
 
@@ -45,8 +45,8 @@
 </div>
 
 <a name="cover"></a>
-<div class="container mx-auto my-10 px-8">
-  <div class="text-center section-title mb-8">
+<div class="container px-8 mx-auto my-10">
+  <div class="mb-8 text-center section-title">
     <h2 class="text-4xl font-bold text-gray-800 page-title">About Me</h2>
     <h6 class="text-gray-500">Please, pardon the narcissism.</h6>
     <hr class="w-56 mx-auto my-5" />
@@ -72,13 +72,13 @@
 
 </div>
 <a name="focus"></a>
-<div class="bg-gray-900 text-gray-200 py-8">
-  <div class="container mx-auto mb-10 px-8">
-    <div class="text-center section-title mb-8">
+<div class="py-8 text-gray-200 bg-gray-900">
+  <div class="container px-8 mx-auto mb-10">
+    <div class="mb-8 text-center section-title">
       <h2 class="text-4xl font-bold text-gray-100 page-title">Interests</h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
       <div class="p-8"
         style="background: linear-gradient(145deg, #1c222f, #171d28); box-shadow: 5px 5px 12px #151a24, -5px -5px 12px #1f2634;">
         <h2 class="mb-4"><i class="fas fa-book"></i> Primary focus </h2>
@@ -87,8 +87,8 @@
           <li class="mb-2">
             Elixir / Phoenix
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-purple-600 text-xs leading-none py-1 text-center text-white" style="width: 100%">100%
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-purple-600" style="width: 100%">100%
                 </div>
               </div>
             </div>
@@ -97,8 +97,8 @@
           <li class="mb-2">
             JavaScript / React
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-yellow-500 text-xs leading-none py-1 text-center text-white" style="width: 75%">75%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-yellow-500" style="width: 75%">75%</div>
               </div>
             </div>
           </li>
@@ -106,8 +106,8 @@
           <li class="mb-2">
             Photography / Videography / Design / UX
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-pink-500 text-xs leading-none py-1 text-center text-white" style="width: 45%">45%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-pink-500" style="width: 45%">45%</div>
               </div>
             </div>
           </li>
@@ -115,8 +115,8 @@
           <li class="mb-2">
             Ruby / Rails
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-red-600 text-xs leading-none py-1 text-center text-white" style="width: 35%">35%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-red-600" style="width: 35%">35%</div>
               </div>
             </div>
           </li>
@@ -125,8 +125,8 @@
           <li class="mb-2">
             Unix Systems / Automations
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-blue-500 text-xs leading-none py-1 text-center text-white" style="width: 15%">15%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-blue-500" style="width: 15%">15%</div>
               </div>
             </div>
           </li>
@@ -142,8 +142,8 @@
           <li class="mb-2">
             App / Web Development
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-purple-600 text-xs leading-none py-1 text-center text-white" style="width: 100%">100%
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-purple-600" style="width: 100%">100%
                 </div>
               </div>
             </div>
@@ -151,32 +151,32 @@
           <li class="mb-2">
             Interactive Web Design
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-yellow-500 text-xs leading-none py-1 text-center text-white" style="width: 75%">75%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-yellow-500" style="width: 75%">75%</div>
               </div>
             </div>
           </li>
           <li class="mb-2">
             Marketing
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-pink-500 text-xs leading-none py-1 text-center text-white" style="width: 45%">45%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-pink-500" style="width: 45%">45%</div>
               </div>
             </div>
           </li>
           <li class="mb-2">
             Post Production / Motion Graphics
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-red-600 text-xs leading-none py-1 text-center text-white" style="width: 35%">35%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-red-600" style="width: 35%">35%</div>
               </div>
             </div>
           </li>
           <li class="mb-2">
             Animations
             <div class="w-full">
-              <div class="shadow w-full bg-gray-800">
-                <div class="bg-blue-500 text-xs leading-none py-1 text-center text-white" style="width: 15%">15%</div>
+              <div class="w-full bg-gray-800 shadow">
+                <div class="py-1 text-xs leading-none text-center text-white bg-blue-500" style="width: 15%">15%</div>
               </div>
             </div>
           </li>
@@ -190,9 +190,9 @@
 
 <a name="work"></a>
 <div class="container mx-auto">
-  <div class="relative my-10 px-8">
+  <div class="relative px-8 my-10">
 
-    <div class="text-center section-title mb-8">
+    <div class="mb-8 text-center section-title">
       <h2 class="text-4xl font-bold text-gray-800 page-title">Work History</h2>
       <hr class="w-56 mx-auto my-5" />
     </div>
@@ -205,14 +205,14 @@
         </div>
 
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             COVID-19 / Morphic Pro
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer / Designer
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>Elixir, Phoenix </li>
             <li>Ruby, Rails </li>
             <li>JS, React</li>
@@ -237,14 +237,14 @@
           <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/focusvision.png") %>" alt="">
         </div>
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             Focus Vision / Market Research
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>Elixir, Phoenix </li>
             <li>Ruby, Rails </li>
             <li>JS, React</li>
@@ -275,14 +275,14 @@
           <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/mp.jpg") %>" alt="">
         </div>
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             Self Employed / Freelancer
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer.
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>Elixir, Phoenix </li>
             <li>Ruby, Rails </li>
             <li>JS, React</li>
@@ -307,14 +307,14 @@
           <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/impactnw.jpeg") %>" alt="">
         </div>
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             Impact NW
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer.
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>Elixir, Phoenix </li>
             <li>Ruby, Rails </li>
             <li>JS, React</li>
@@ -339,14 +339,14 @@
           <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/cvent.png") %>" alt="">
         </div>
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             Cvent
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer.
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>Ruby, Rails </li>
             <li>JS, Ember</li>
             <li>Postgres</li>
@@ -364,14 +364,14 @@
           <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/taf.jpg") %>" alt="">
         </div>
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             The Able Few
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer.
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>Ruby, Rails </li>
             <li>JS</li>
             <li>Postgres</li>
@@ -393,14 +393,14 @@
           <img class="rounded-full" src="<%= Routes.static_path(@socket, "/images/mp.jpg") %>" alt="">
         </div>
         <div>
-          <h3 class="text-gray-700 text-2xl mb-2 bold">
+          <h3 class="mb-2 text-2xl text-gray-700 bold">
             GFX Complex Self Employed / Freelancer
           </h3>
           <p class="mb-2 text-gray-600">
             Full Stack Developer.
           </p>
           <p>
-          <ul class="mb-2 text-gray-700 text-sm">
+          <ul class="mb-2 text-sm text-gray-700">
             <li>AS3, Flash</li>
             <li>PHP, Wordpress, Mangento, Drupel</li>
             <li>Python, Django</li>
@@ -415,11 +415,11 @@
       <span class="pb-4">Notable past projects:</span>
       <ul>
         <li class="mb-6">
-          Spry Digital What A Ya Nuts - 04/2012 
+          Spry Digital What A Ya Nuts - 04/2012
           <img src="<%= Routes.static_path(@socket, "/images/wayn_wp.jpg") %>">
         </li>
         <li class="mb-6">
-          Osborn & Barr Soy New Uses - 10/2011 
+          Osborn & Barr Soy New Uses - 10/2011
           <img src="<%= Routes.static_path(@socket, "/images/ob_flash_project.jpg") %>">
         </li>
         <li class="mb-6">
@@ -454,10 +454,10 @@
 <a name="refernces"></a>
 
 <a name="focus"></a>
-<div class="bg-gray-900 text-gray-200 py-8">
+<div class="py-8 text-gray-200 bg-gray-900">
 
-  <div class="container mx-auto mb-10 px-8">
-    <div class="text-center section-title mb-8">
+  <div class="container px-8 mx-auto mb-10">
+    <div class="mb-8 text-center section-title">
       <h2 class="text-4xl font-bold text-indigo-200 page-title">What others have said about me</h2>
       <hr class="w-56 mx-auto my-5" />
     </div>
@@ -466,7 +466,7 @@
     <div class="flex my-24">
       <img class="mx-auto rounded-full" style="box-shadow:  13px 13px 26px #212935, -13px -13px 26px #39455b;"
         src="<%= Routes.static_path(@socket, "/images/mike.jpg") %>">
-      <blockqoute class="self-center mx-auto w-2/3">
+      <blockqoute class="self-center w-2/3 mx-auto">
         “Josh is a dedicated and diligent worker.
         The perfect balance of integrity, pragmatism, and idealism.”
         ​<cite>​- Mike Bishop</cite>
@@ -474,7 +474,7 @@
     </div>
 
     <div class="flex my-24">
-      <blockqoute class="self-center mx-auto w-2/3">
+      <blockqoute class="self-center w-2/3 mx-auto">
         “Josh has a lot of drive. He is always asking questions and wanting to dig to the root of why.
         He will take direction on how to do something and do it when he needs too, but would rather
         understand the reasons behind why he should do it that way.”
