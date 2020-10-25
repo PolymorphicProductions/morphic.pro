@@ -13,6 +13,10 @@ defmodule MorphicProWeb.LiveHelpers do
 
       {:error, _html_doc, error_messages} ->
         error_messages
+        |> Enum.reduce("", fn(error, acc) ->
+          {type, line_number, issue} = error
+          acc <> "#{type} on line #{line_number} | #{issue}" <> "\n"
+        end)
     end
   end
 
