@@ -1,8 +1,7 @@
-defmodule MorphicPro.Plug.NavbarSmall do
+defmodule MorphicProWeb.Plugs.NavbarSmall do
   @moduledoc """
     simple plug to denote if a css class should be used in a header
   """
-
   import Plug.Conn
 
   def init(default), do: default

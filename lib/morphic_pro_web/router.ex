@@ -16,7 +16,7 @@ defmodule MorphicProWeb.Router do
   end
 
   pipeline :admins_only do
-    plug MorphicProWeb.Plug.AdminsOnly
+    plug MorphicProWeb.Plugs.AdminsOnly
   end
 
   pipeline :api do

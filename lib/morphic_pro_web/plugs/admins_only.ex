@@ -1,4 +1,4 @@
-defmodule MorphicProWeb.Plug.AdminsOnly do
+defmodule MorphicProWeb.Plugs.AdminsOnly do
   import Plug.Conn
 
   def init(options), do: options

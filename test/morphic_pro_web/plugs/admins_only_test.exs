@@ -1,4 +1,4 @@
-defmodule MorphicProWeb.Plug.AdminsOnlyTest do
+defmodule MorphicProWeb.Plugs.AdminsOnlyTest do
   use MorphicProWeb.ConnCase
   import MorphicPro.AccountsFixtures
 
