@@ -30,6 +30,7 @@ defmodule MorphicProWeb.PostLive.Show do
      |> assign(:post, post)
      |> assign(:page_title, page_title(socket.assigns.live_action, post.title))
      |> assign(:page_description, page_description(socket.assigns.live_action, post.excerpt))
+     |> assign(:page_img, post.thumb_img)
     }
   end
 

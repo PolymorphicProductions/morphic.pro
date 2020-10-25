@@ -63,6 +63,7 @@ defmodule MorphicProWeb.SnapLive.Show do
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:page_description, page_description(socket.assigns.live_action, snap.body))
+     |> assign(:page_image, snap.thumb_img)
      |> assign(:snap, snap)
      |> assign(:prev_large_img, prev_large_img)
      |> assign(:next_large_img, next_large_img)
