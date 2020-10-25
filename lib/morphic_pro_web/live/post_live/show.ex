@@ -23,14 +23,21 @@ defmodule MorphicProWeb.PostLive.Show do
         _session,
         %{assigns: %{current_user: current_user}} = socket
       ) do
+
+    post = Blog.get_post!(slug, current_user, preload: [:tags])
     {:noreply,
      socket
-     |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:post, Blog.get_post!(slug, current_user, preload: [:tags]))}
+     |> assign(:post, post)
+     |> assign(:page_title, page_title(socket.assigns.live_action, post.title))
+     |> assign(:page_description, page_description(socket.assigns.live_action, post.excerpt))
+     |> assign(:page_img, post.thumb_img)
+    }
   end
 
-  defp page_title(:show), do: "Show Post"
-  defp page_title(:edit), do: "Edit Post"
+  defp page_title(:show, title), do: title
+  defp page_title(:edit, _), do: "Edit Post"
+  defp page_description(:show, description), do: description
+  defp page_description(:edit, _), do: "Editing Post"
 
   @impl true
   def handle_info({:post_liked, post}, socket) do
@@ -53,11 +60,11 @@ defmodule MorphicProWeb.PostLive.Show do
   def handle_event("delete", %{"id" => id}, %{assigns: %{current_user: current_user}} = socket) do
     with :ok <- Bodyguard.permit(Blog, :delete, current_user, nil) do
       {:ok, _post} = Blog.get_post!(id, current_user) |> Blog.delete_post()
-      
+
       socket = socket
       |> put_flash(:info, "Post deleted successfully.")
       |> redirect(to: Routes.post_index_path(socket, :index))
-      
+
       {:noreply, socket}
     else
       _err -> {:noreply, socket}
