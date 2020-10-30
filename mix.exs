@@ -45,7 +45,7 @@ defmodule MorphicPro.MixProject do
       {:phoenix, "~> 1.5.6"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.5"},
+      {:ecto_sql, "~> 3.5.3"},
       {:postgrex, ">= 0.15.7"},
       {:phoenix_html, "~> 2.11"},
       {:gettext, "~> 0.11"},
@@ -62,8 +62,8 @@ defmodule MorphicPro.MixProject do
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
       {:phoenix_live_view, "~> 0.14.3"},
-      {:phoenix_live_dashboard, "~> 0.3.2"},
-      {:ecto_psql_extras, "~>0.4.0"},
+      {:phoenix_live_dashboard, "~> 0.3.6"},
+      {:ecto_psql_extras, "~>0.4.1"},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:captcha, "~> 0.1.0"},
@@ -74,7 +74,7 @@ defmodule MorphicPro.MixProject do
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.16.0", only: :test},
       {:excoveralls, "0.13.3", only: [:test, :dev]},
-      {:credo, "1.4.1", only: [:dev, :test], runtime: false},
+      {:credo, "1.5.0", only: [:dev, :test], runtime: false},
       {:sentry, "~> 8.0"},
       {:benchee, "~> 1.0", only: :dev}
     ]
