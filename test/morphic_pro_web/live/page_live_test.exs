@@ -3,17 +3,6 @@ defmodule MorphicProWeb.PageLiveTest do
   use MorphicProWeb.LiveCase
   import MorphicPro.Factory
 
-  # test "disconnected and connected mount", %{conn: conn} do
-  #   conn = get(conn, "/")
-  #   assert html_response(conn, 200) =~ "Your personal creative digital metamorphosis"
-
-  #   {:ok, view, html} = live(conn)
-  # end
-
-  # test "redirected mount", %{conn: conn} do
-  #   assert {:error, {:redirect, %{to: "/somewhere"}}} = live(conn, "my-path")
-  # end
-
   test "index connected mount", %{conn: conn} do
     post = insert(:post, published_at: Timex.today(), tags: [])
     snap = insert(:snap, published_at: Timex.today(), tags: [])
@@ -29,8 +18,6 @@ defmodule MorphicProWeb.PageLiveTest do
     assert render_click(view, :inc_snap_likes, %{"snap-id" => snap.id}) =~ "phx-value-snap-id=\"#{snap.id}\"><i class=\"fas fa-heart\"></i> 2"
   end
 
-
-
   test "about connected mount", %{conn: conn} do
     {:ok, _view, html} = live(conn, "/about")
     assert html =~ "Please, pardon the narcissism."
@@ -43,8 +30,4 @@ defmodule MorphicProWeb.PageLiveTest do
     {:ok, _view, html} = live(conn, "/terms")
     assert html =~ "This website is operated by Morphic Pro."
   end
-
-
-
-
 end
