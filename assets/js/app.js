@@ -255,7 +255,7 @@ function draw(target) {
       import('exifreader')
         .then(ExifReader => {
           let exif = ExifReader.load(reader.result);
-          document.getElementById("snap_exif_string").value = JSON.stringify(exif)
+          document.getElementById("snap-form_exif_string").value = JSON.stringify(exif)
 
           import('json-formatter-js')
             .then(JSONFormatter => {
@@ -320,7 +320,7 @@ function process_image(target) {
       let url = result.data.url
       let upload = new XMLHttpRequest();
       upload.addEventListener('load', (e) => {
-        document.getElementById(`${target}_thumb_img`).value = `https://morphicpro.s3-us-west-2.amazonaws.com/${target}s/${uuid}/thumb.jpg`
+        document.getElementById(`${target}-form_thumb_img`).value = `https://morphicpro.s3-us-west-2.amazonaws.com/${target}s/${uuid}/thumb.jpg`
       })
       upload.open('PUT', url, true);
       upload.setRequestHeader('Content-Type', "image/jpeg");
@@ -332,12 +332,12 @@ function process_image(target) {
     let largeUrl = new XMLHttpRequest();
     largeUrl.open('PUT', "/api/gen_presigned_url", true);
     largeUrl.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    largeUrl.addEventListener('load', (e) => {
+    largeUrl.addEventListener('load', () => {
       let result = JSON.parse(e.target.responseText)
       let url = result.data.url
       let upload = new XMLHttpRequest();
-      upload.addEventListener('load', (e) => {
-        document.getElementById(`${target}_large_img`).value = `https://morphicpro.s3-us-west-2.amazonaws.com/${target}s/${uuid}/large.jpg`
+      upload.addEventListener('load', () => {
+        document.getElementById(`${target}-form_large_img`).value = `https://morphicpro.s3-us-west-2.amazonaws.com/${target}s/${uuid}/large.jpg`
         document.getElementById("bg-image").style["background-image"] = `url(https://morphicpro.s3-us-west-2.amazonaws.com/${target}s/${uuid}/large.jpg)`
       })
       upload.open('PUT', url, true);
