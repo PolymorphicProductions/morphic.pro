@@ -3,7 +3,7 @@
     <div class="text-center">
 
       <h4 class="text-3xl font-bold text-gray-100 content-primed">
-        <span class="pr-1 font-thin text-white display-block icon-shape logo"></span> Morphic Pro
+        <span class="pr-1 font-extralight text-white display-block icon-shape logo"></span> Morphic Pro
       </h4>
 
       <div class="mt-3 text-white">

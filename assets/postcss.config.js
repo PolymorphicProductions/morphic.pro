@@ -2,9 +2,9 @@ module.exports = ctx => {
   return {
     map: ctx.env === "dev" ? ctx.map : false,
     plugins: [
+      require('postcss-nested'),
       require("tailwindcss"),
       require("autoprefixer"),
-      require('postcss-nested'),
       // require('@fullhuman/postcss-purgecss')({
       //   content: [
       //     "./css/**/*.css",
