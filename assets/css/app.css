@@ -1,7 +1,7 @@
 /* This file is for your main application css. */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
@@ -91,14 +91,14 @@ nav .icon-shape {
   @apply px-4 py-2 font-bold text-white bg-red-500 rounded;
 }
 .btn-red:hover {
-  @apply bg-orange-700;
+  @apply bg-yellow-700;
 }
 
 .btn-orange {
-  @apply px-4 py-2 font-bold text-white bg-orange-500 rounded;
+  @apply px-4 py-2 font-bold text-white bg-yellow-500 rounded;
 }
 .btn-orange:hover {
-  @apply bg-orange-700;
+  @apply bg-yellow-700;
 }
 
 .btn-blue {
