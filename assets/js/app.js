@@ -332,7 +332,7 @@ function process_image(target) {
     let largeUrl = new XMLHttpRequest();
     largeUrl.open('PUT', "/api/gen_presigned_url", true);
     largeUrl.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    largeUrl.addEventListener('load', () => {
+    largeUrl.addEventListener('load', (e) => {
       let result = JSON.parse(e.target.responseText)
       let url = result.data.url
       let upload = new XMLHttpRequest();
