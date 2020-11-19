@@ -4,10 +4,10 @@
       <div class="w-full my-12 align-middle fade-in">
         <%#= get_flash(@conn) |> Map.values |> List.to_string |> (fn string -> "<h3 class='text-center text-white'> #{string}</h3>" end).() |> raw %>
         <h1
-          class="mt-12 mb-2 text-4xl leading-tight text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
+          class="mt-12 mb-2 text-4xl text-center text-white md:text-4xl lg:text-5xl md:text-left font-book page-title">
           Your personal creative<br />digital metamorphosis
         </h1>
-        <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-thin text-1xl md:text-2xl">
+        <p class="mb-3 leading-normal text-center text-gray-500 md:mb-8 md:text-left md:font-extralight text-1xl md:text-2xl">
           <%= live_flash(@flash, :info) || live_flash(@flash, :error) || {:safe,"From Web development to DevOps or<br />Photography to Design I am your solution."} %>
         </p>
         <div class="block mx-auto text-center md:text-left">
