@@ -1,0 +1,69 @@
+/* Posts */
+.post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  hr {
+    @apply my-8;
+  }
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: rgb(248, 248, 248);
+  }
+  a {
+    @apply text-blue-600;
+    &:hover {
+      @apply text-blue-400;
+      text-decoration: underline;
+    }
+  }
+  code.inline {
+    @apply text-pink-500;
+    display: inline;
+    padding: 0 4px;
+    background-color: rgb(248, 248, 248);
+  }
+  code {
+    @apply p-4;
+    display: block;
+    overflow: scroll;
+  }
+  pre {
+    line-height: 28px;
+    @apply mb-6;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+  @apply px-4 py-2 text-xs text-center text-white bg-blue-500 rounded;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 2rem 4rem;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+  @apply bg-blue-800;
+}
+
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
+}

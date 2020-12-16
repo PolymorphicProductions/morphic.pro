@@ -1,0 +1,20 @@
+.btn-red {
+  @apply px-4 py-2 font-bold text-white bg-red-500 rounded;
+  &:hover {
+    @apply bg-red-700;
+  }
+}
+
+.btn-orange {
+  @apply px-4 py-2 font-bold text-white bg-yellow-500 rounded;
+  &:hover {
+    @apply bg-yellow-700;
+  }
+}
+
+.btn-blue {
+  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+  &:hover {
+    @apply bg-blue-700;
+  }
+}

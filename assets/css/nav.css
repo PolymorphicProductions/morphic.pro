@@ -1,0 +1,11 @@
+nav.close {
+  opacity: 0;
+  top: -45px;
+}
+nav .icon-shape {
+  line-height: 1;
+  position: absolute;
+  left: -1.45rem;
+  top: 0.71rem;
+  font-size: 1.25rem;
+}
