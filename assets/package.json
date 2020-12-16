@@ -3,7 +3,7 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "deploy": "webpack --config webpack.prod.config.js",
+    "deploy": "NODE_ENV=production webpack --config webpack.prod.config.js --mode production",
     "watch": "webpack --config webpack.dev.config.js --watch --color"
   },
   "dependencies": {
