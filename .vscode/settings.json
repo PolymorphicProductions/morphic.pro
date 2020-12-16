@@ -1,4 +1,5 @@
 {
   "css.validate": false,
-  "stylelint.enable": true, // Enable sytlelint
+  "stylelint.enable": true,
+  "editor.formatOnSave": true
 }

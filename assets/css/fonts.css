@@ -1,0 +1,10 @@
+@import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
+/* @import "~easymde/dist/easymde.min.css"; */
+@font-face {
+  font-family: "icomoon";
+  src: url("/fonts/icomoon.woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
