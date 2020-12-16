@@ -2,11 +2,9 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
 @import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
-@import "~easymde/dist/easymde.min.css";
-
+/* @import "~easymde/dist/easymde.min.css"; */
 @font-face {
   font-family: "icomoon";
   src: url("/fonts/icomoon.woff");
@@ -14,7 +12,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 html {
   scroll-behavior: smooth;
 }
@@ -22,7 +19,6 @@ html,
 body {
   background-color: rgb(248, 248, 248);
 }
-
 h1 {
   @apply text-5xl leading-tight;
 }
@@ -32,7 +28,6 @@ h2 {
 h3 {
   @apply text-xl;
 }
-
 .bg-black-05 {
   background: rgba(0, 0, 0, 0.5) !important;
 }
@@ -44,18 +39,16 @@ h3 {
 }
 /* use !important to prevent issues with browser extensions that change fonts */
 .icon-shape {
-  font-family: "icomoon" !important;
+  font-family: "icomoon", serif !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
 }
-
 nav.close {
   opacity: 0;
   top: -45px;
 }
-
 nav .icon-shape {
   line-height: 1;
   position: absolute;
@@ -63,11 +56,9 @@ nav .icon-shape {
   top: 0.71rem;
   font-size: 1.25rem;
 }
-
 .icon-shape:before {
   content: "\e900";
 }
-
 .page-title {
   font-family: "Abril Fatface", cursive;
   font-weight: normal !important;
@@ -83,7 +74,6 @@ nav .icon-shape {
   background-repeat: no-repeat;
   background-position: 50%;
 }
-
 .login-form {
   height: max-content;
 }
@@ -91,9 +81,8 @@ nav .icon-shape {
   @apply px-4 py-2 font-bold text-white bg-red-500 rounded;
 }
 .btn-red:hover {
-  @apply bg-yellow-700;
+  @apply bg-red-700;
 }
-
 .btn-orange {
   @apply px-4 py-2 font-bold text-white bg-yellow-500 rounded;
 }
@@ -107,25 +96,10 @@ nav .icon-shape {
 .btn-blue:hover {
   @apply bg-blue-700;
 }
-
-.btn-red {
-  @apply px-4 py-2 font-bold text-white bg-red-500 rounded;
-}
-.btn-red:hover {
-  @apply bg-red-700;
-}
-
 .thumb {
   position: relative;
   overflow: hidden;
   background-color: white;
-  &:hover {
-    .fa-search {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
   .fa-search {
     z-index: 1;
     transform: scale(0.25);
@@ -142,7 +116,6 @@ nav .icon-shape {
     font-size: 3em;
     pointer-events: none;
   }
-
   img {
     transform: scale(1);
     opacity: 1;
@@ -152,18 +125,32 @@ nav .icon-shape {
       opacity: 0.5;
     }
   }
+  &:hover {
+    .fa-search {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 }
-
+blockquote {
+  @apply block pl-4 border-l-4 border-solid;
+  text-indent: 1em;
+  text-align: justify;
+  p {
+    @apply mb-4;
+  }
+  cite {
+    @apply block mt-4;
+  }
+}
 /* Posts */
 .post-body {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
-
   hr {
     @apply my-8;
   }
-
   ul {
     list-style: disc;
     list-style-position: inside;
@@ -171,7 +158,6 @@ nav .icon-shape {
     padding: 1em;
     background-color: rgb(248, 248, 248);
   }
-
   a {
     @apply text-blue-600;
     &:hover {
@@ -264,11 +250,9 @@ nav .icon-shape {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: #e8eeeb;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-
-  background: #e8eeeb;
   box-shadow: inset 2px 2px 4px #d8dddb, inset -2px -2px 4px #f8fffb;
 }
 
@@ -299,30 +283,6 @@ input:checked + .slider:before {
   }
 }
 
-#content {
-  p,
-  h1,
-  h2,
-  h3,
-  input,
-  textarea,
-  .button,
-  .btn,
-  .entry-meta,
-  .job-title,
-  .social-block a {
-    &.content-primed {
-      opacity: 0;
-      transform: translate3d(0, 20px, 0);
-    }
-    &.fade-in {
-      opacity: 0;
-      transform: translate3d(0, 20px, 0);
-      animation-name: fadeContent;
-    }
-  }
-}
-
 .content-primed:not(.no-fade) {
   opacity: 0;
   transform: translate3d(0, 20px, 0);
@@ -341,36 +301,21 @@ input:checked + .slider:before {
   }
 }
 
-blockqoute {
-  @apply border-l-4 border-solid block pl-4;
-  text-indent: 1em;
-  text-align: justify;
-  p {
-    @apply mb-4;
-  }
-  cite {
-    @apply block mt-4;
-  }
-}
-
 /* ----------------  THE Timeline */
 .timeline-item {
   padding: 4em 2em 3em;
   position: relative;
   border-left: 2px solid rgba(0, 0, 0, 0.3);
-
   p {
     font-size: 1rem;
   }
-
   &:before {
     content: attr(date-is);
     position: absolute;
     left: 2em;
-    font-weight: bold;
+    font-weight: 700;
     top: 1em;
     display: block;
-    font-weight: 700;
     font-size: 0.785rem;
   }
 
@@ -403,6 +348,29 @@ blockqoute {
   top: 0px;
   background-color: black;
 }
+#content {
+  p,
+  h1,
+  h2,
+  h3,
+  input,
+  textarea,
+  .button,
+  .btn,
+  .entry-meta,
+  .job-title,
+  .social-block a {
+    &.content-primed {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+    }
+    &.fade-in {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+      animation-name: fadeContent;
+    }
+  }
+}
 
 @keyframes fadeContent {
   from {
@@ -414,7 +382,6 @@ blockqoute {
     transform: translate3d(0, 0, 0);
   }
 }
-
 @keyframes fadeImg {
   from {
     opacity: 0;
