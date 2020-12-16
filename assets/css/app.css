@@ -8,8 +8,8 @@
 @import "fix_me.css"; /* this is a dump, clean up */
 @import "buttons.css";
 @import "nav.css";
-@import "post.css";
 @import "time_line.css";
+@import "post.css";
 @import "fade.css";
 
 /* @import "~prism-themes/themes/prism-atom-dark.css"; */
@@ -18,4 +18,4 @@
 /* @import "~prism-themes/themes/prism-dracula.css"; */
 /* @import "~prism-themes/themes/prism-material-dark.css"; */
 /* @import "~prism-themes/themes/prism-material-oceanic.css"; */
-@import "~prism-themes/themes/prism-xonokai.css";
+@import "prism-themes/themes/prism-xonokai.css";
