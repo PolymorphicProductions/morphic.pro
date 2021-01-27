@@ -63,7 +63,7 @@ defmodule MorphicPro.MixProject do
       {:sweet_xml, "~> 0.6"},
       {:phoenix_live_view, "~> 0.14.8"},
       {:phoenix_live_dashboard, "~> 0.3.6"},
-      {:ecto_psql_extras, "~>0.4.1"},
+      {:ecto_psql_extras, "~> 0.6.2"},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:captcha, "~> 0.1.0"},
