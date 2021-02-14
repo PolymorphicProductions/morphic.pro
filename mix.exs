@@ -41,7 +41,7 @@ defmodule MorphicPro.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bcrypt_elixir, "~> 2.0"},
+      {:bcrypt_elixir, "~> 2.3"},
       {:phoenix, "~> 1.5.6"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
@@ -51,8 +51,8 @@ defmodule MorphicPro.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.2", override: true},
       {:plug_cowboy, "~> 2.4.1"},
-      {:bamboo, "~> 1.6"},
-      {:timex, "~> 3.6.1"},
+      {:bamboo, "~> 1.7"},
+      {:timex, "~> 3.6.3"},
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.4.13"},
       {:bodyguard, "~> 2.4.0"},
@@ -68,9 +68,9 @@ defmodule MorphicPro.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:captcha, "~> 0.1.0"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
-      {:sobelow, "~> 0.10.5", only: :dev},
+      {:sobelow, "~> 0.11", only: :dev},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:floki, ">= 0.29.0", only: :test},
+      {:floki, ">= 0.30.0", only: :test},
       {:ex_machina, "~> 2.4.0", only: :test},
       {:faker, "~> 0.16.0", only: :test},
       {:excoveralls, "0.13.3", only: [:test, :dev]},
