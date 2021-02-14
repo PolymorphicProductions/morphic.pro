@@ -9,7 +9,7 @@ module.exports = (env, options) => ({
   mode: "production",
   optimization: {
     minimizer: [
-      new TerserPlugin({ cache: true, parallel: true }),
+      new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
       new OptimizeCSSAssetsPlugin({})
     ],
     splitChunks: {
