@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "@fullhuman/postcss-purgecss": "^4.0.0",
+    "@fullhuman/postcss-purgecss": "^4.0.2",
     "@mojs/core": "^0.288.2",
     "@silvia-odwyer/photon": "^0.2.0",
     "exifreader": "^3.14.0",
