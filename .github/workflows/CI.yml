@@ -37,7 +37,7 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
     - name: Setup elixir
-      uses: actions/setup-elixir@v1.5.0
+      uses: erlef/setup-beam@v1
       with:
         elixir-version: 1.11.2 # Define the elixir version [required]
         otp-version: 23.1.1 # Define the OTP version [required]
