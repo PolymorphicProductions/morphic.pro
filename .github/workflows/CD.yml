@@ -22,17 +22,17 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v2
-      - name: Cache mix modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-mix-modules
-        with:
-          path: deps # mix cache files are stored in `deps` in the root of the project folder
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+      # - name: Cache mix modules
+      #   uses: actions/cache@v1
+      #   env:
+      #     cache-name: cache-mix-modules
+      #   with:
+      #     path: deps # mix cache files are stored in `deps` in the root of the project folder
+      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-build-${{ env.cache-name }}-
+      #       ${{ runner.os }}-build-
+      #       ${{ runner.os }}-
       - name: Setup elixir
         uses: erlef/setup-beam@v1
         with:
@@ -59,17 +59,17 @@ jobs:
         with:
           elixir-version: 1.12.1 # Define the elixir version [required]
           otp-version: 23.3 # Define the OTP version [required]
-      - name: Cache mix modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-mix-modules
-        with:
-          path: deps
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+      # - name: Cache mix modules
+      #   uses: actions/cache@v1
+      #   env:
+      #     cache-name: cache-mix-modules
+      #   with:
+      #     path: deps
+      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-build-${{ env.cache-name }}-
+      #       ${{ runner.os }}-build-
+      #       ${{ runner.os }}-
       - name: Install Elixir Dependencies
         run: |
           mix local.rebar --force
@@ -79,17 +79,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.13.1"
-      - name: Cache npm modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-npm-modules
-        with:
-          path: assets/node_module
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+      # - name: Cache npm modules
+        # uses: actions/cache@v1
+        # env:
+        #   cache-name: cache-npm-modules
+        # with:
+        #   path: assets/node_module
+        #   key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        #   restore-keys: |
+        #     ${{ runner.os }}-build-${{ env.cache-name }}-
+        #     ${{ runner.os }}-build-
+        #     ${{ runner.os }}-
       - name: Install Npm Dependencies
         working-directory: ./assets
         run: npm install
