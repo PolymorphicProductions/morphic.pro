@@ -110,7 +110,7 @@ jobs:
       - name: Compile assets
         run: |
           npm run deploy --prefix ./assets
-          mix phx.digest
+          MIX_ENV=prod mix phx.digest
       - name: Build Mix Release
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
