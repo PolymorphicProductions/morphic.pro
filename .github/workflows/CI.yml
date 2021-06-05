@@ -25,17 +25,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Cache mix modules
-      uses: actions/cache@v1
-      env:
-        cache-name: cache-mix-modules
-      with:
-        path: deps # mix cache files are stored in `deps` in the root of the project folder
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+    # - name: Cache mix modules
+    #   uses: actions/cache@v1
+    #   env:
+    #     cache-name: cache-mix-modules
+    #   with:
+    #     path: deps # mix cache files are stored in `deps` in the root of the project folder
+    #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-build-${{ env.cache-name }}-
+    #       ${{ runner.os }}-build-
+    #       ${{ runner.os }}-
     - name: Setup elixir
       uses: erlef/setup-beam@v1
       with:
