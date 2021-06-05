@@ -28,25 +28,24 @@ jobs:
     - name: Cache mix modules
       uses: actions/cache@v1
       env:
-        cache-name: cache-mix-modules
+        cache-name: cache-mix-modules-v2
       with:
         path: deps # mix cache files are stored in `deps` in the root of the project folder
-        key: ${{ runner.os }}-build2-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
-          ${{ runner.os }}-build2-${{ env.cache-name }}-
-          ${{ runner.os }}-build2-
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
           ${{ runner.os }}-
     - name: Setup elixir
       uses: erlef/setup-beam@v1
       with:
-        elixir-version: 1.9.4 # Define the elixir version [required]
-        otp-version: 22.2 # Define the OTP version [required]
+        elixir-version: 1.12.1 # Define the elixir version [required]
+        otp-version: 23.3 # Define the OTP version [required]
     - name: Install Dependencies
       run: |
         mix local.rebar --force
         mix local.hex --force
         mix deps.get
-        mix deps.compile
     - name: Run Tests
       env:
         MIX_ENV: test
