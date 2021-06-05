@@ -28,10 +28,10 @@ jobs:
           cache-name: cache-mix-modules
         with:
           path: deps # mix cache files are stored in `deps` in the root of the project folder
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          key: ${{ runner.os }}-build2-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
+            ${{ runner.os }}-build2-${{ env.cache-name }}-
+            ${{ runner.os }}-build2-
             ${{ runner.os }}-
       - name: Setup elixir
         uses: erlef/setup-beam@v1
@@ -67,10 +67,10 @@ jobs:
           cache-name: cache-mix-modules
         with:
           path: deps
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          key: ${{ runner.os }}-build2-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
+            ${{ runner.os }}-build2-${{ env.cache-name }}-
+            ${{ runner.os }}-build2-
             ${{ runner.os }}-
       - name: Install Elixir Dependencies
         run: |
@@ -87,10 +87,10 @@ jobs:
           cache-name: cache-npm-modules
         with:
           path: assets/node_module
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build2-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
+            ${{ runner.os }}-build2-${{ env.cache-name }}-
+            ${{ runner.os }}-build2-
             ${{ runner.os }}-
       - name: Install Npm Dependencies
         working-directory: ./assets

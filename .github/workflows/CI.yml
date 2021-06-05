@@ -31,10 +31,10 @@ jobs:
         cache-name: cache-mix-modules
       with:
         path: deps # mix cache files are stored in `deps` in the root of the project folder
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+        key: ${{ runner.os }}-build2-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
+          ${{ runner.os }}-build2-${{ env.cache-name }}-
+          ${{ runner.os }}-build2-
           ${{ runner.os }}-
     - name: Setup elixir
       uses: erlef/setup-beam@v1
