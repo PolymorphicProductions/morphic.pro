@@ -45,7 +45,7 @@ defmodule MorphicPro.MixProject do
       {:phoenix, "~> 1.5.6"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.5.3"},
+      {:ecto_sql, "~> 3.6.2"},
       {:postgrex, ">= 0.15.7"},
       {:phoenix_html, "~> 2.14.3"},
       {:gettext, "~> 0.11"},
