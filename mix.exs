@@ -57,7 +57,7 @@ defmodule MorphicPro.MixProject do
       {:earmark, "~> 1.4.13"},
       {:bodyguard, "~> 2.4.0"},
       {:dissolver, "~> 0.9.4"},
-      {:ex_aws, "~> 2.1.6"},
+      {:ex_aws, "~> 2.2.3"},
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.17"},
       {:sweet_xml, "~> 0.6"},
