@@ -52,7 +52,7 @@ defmodule MorphicPro.MixProject do
       {:jason, "~> 1.2", override: true},
       {:plug_cowboy, "~> 2.4.1"},
       {:bamboo, "~> 1.7"},
-      {:timex, "~> 3.6.3"},
+      {:timex, "~> 3.7.5"},
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.4.13"},
       {:bodyguard, "~> 2.4.0"},
