@@ -51,7 +51,7 @@ defmodule MorphicPro.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.2", override: true},
       {:plug_cowboy, "~> 2.4.1"},
-      {:bamboo, "~> 1.7"},
+      {:bamboo, "~> 2.2"},
       {:timex, "~> 3.6.3"},
       {:slugify, "~> 1.3.0"},
       {:earmark, "~> 1.4.13"},
